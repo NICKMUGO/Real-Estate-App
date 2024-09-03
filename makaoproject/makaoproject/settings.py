@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+<<<<<<< HEAD
 import os;
 
+=======
+import os
+>>>>>>> 8f4f837aad5d9f9192a05e7888d563e56c93a3f0
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'makaoapp',
 ]
 
 MIDDLEWARE = [
