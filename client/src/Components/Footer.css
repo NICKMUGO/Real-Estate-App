@@ -1,0 +1,35 @@
+footer{
+    background-color: navy;
+    margin: -10px;
+    padding: 10px;
+}
+#footer{
+    position: relative;
+    display: flex;
+}
+#f-title{
+    padding-left: 100px;
+    font-size: x-large;
+    font-weight: bold;
+}
+#f-desc{
+    position: relative;
+    display:flex;
+    padding-left: 150px;
+}
+.f-contacts{
+    padding-left: 100px;
+    text-align: left;
+}
+.f-p{
+    font-size: small;
+    color: gray;
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+}
+a:hover{
+    color: gold;
+}
