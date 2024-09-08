@@ -1,7 +1,9 @@
 footer{
     background-color: navy;
     margin: -10px;
-    padding: 10px;
+    padding-bottom: 40px;
+    background-image: url(Premium\ Vector\ _\ Luxury\ dark\ blue\ background\ with\ shiny\ gold\ line\ -\ Copy.jpg);
+    background-size: contain;
 }
 #footer{
     position: relative;
@@ -11,6 +13,7 @@ footer{
     padding-left: 100px;
     font-size: x-large;
     font-weight: bold;
+    color: aliceblue;
 }
 #f-desc{
     position: relative;
@@ -27,7 +30,7 @@ footer{
 }
 a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: large;
 }
 a:hover{
