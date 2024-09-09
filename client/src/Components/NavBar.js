@@ -50,5 +50,4 @@ function Navbar() {
         </div>
     );
 }
-// Export your component or function
 export default Navbar;
