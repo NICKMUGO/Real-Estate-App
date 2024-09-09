@@ -2,14 +2,10 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import LoginPage from "./Components/LoginPage"; 
 import QuestionsPage from "./Components/QuestionsPage"
 import AwardsPage from "./Components/AwardsPage";
-import './awards.css';
-import pic1 from './pic1.jpeg';  
-import pic2 from './pic2.jpeg'; 
-import pic3 from './pic3.jpeg'; 
 import NavBar from './Components/NavBar';
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
-
+import Footer from "./Components/Footer";
 
 
 
