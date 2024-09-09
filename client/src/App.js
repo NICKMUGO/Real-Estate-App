@@ -3,6 +3,7 @@ import NavBar from "./Components/NavBar";
 import LoginPage from "./Components/LoginPage";
 import Footer from "./Components/Footer"
 import HomePage from "./Components/HomePage";
+import HighlightsofHouses from "./Components/HighlightsofHouses";
 function App() {
   return (
     <div>
@@ -12,6 +13,7 @@ function App() {
           <Route path="/footer" element={<Footer/>}></Route>
           <Route path="/navbar" element={<NavBar/>}></Route>
           <Route path="/homepage" element={<HomePage/>}></Route>
+          <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
