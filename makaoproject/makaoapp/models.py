@@ -3,6 +3,18 @@ from django.db import models
 
 
 # Create your models here.
+
+class Users(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    username = models.CharField(unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField()
+    phone_number = models.IntegerField()
+    address = models.CharField()
+    usertype = models.CharField()
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+    
 class Properties(models.Model):
     # user_id= models.ForeignKey(User, on_delete=models.CASCADE)
     property_type=models.CharField()

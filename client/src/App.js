@@ -1,15 +1,27 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import NavBar from "./Components/NavBar";
-import LoginPage from "./Components/LoginPage";
-import Footer from "./Components/Footer"
-import HomePage from "./Components/HomePage";
-import HighlightsofHouses from "./Components/HighlightsofHouses";
+import LoginPage from "./Components/LoginPage"; 
+import QuestionsPage from "./Components/QuestionsPage"
+import AwardsPage from "./Components/AwardsPage";
+import './awards.css';
+import pic1 from './pic1.jpeg';  
+import pic2 from './pic2.jpeg'; 
+import pic3 from './pic3.jpeg'; 
+import NavBar from './Components/NavBar';
+import HighlightsofHouses from './Components/HighlightsofHouses';
+import HomePage from './Components/HomePage';
+
+
+
+
+
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage/>}></Route>
+          <Route path="/awards" element={<AwardsPage/>}></Route>
+          <Route path="/questions" element={<QuestionsPage/>}></Route>
           <Route path="/footer" element={<Footer/>}></Route>
           <Route path="/navbar" element={<NavBar/>}></Route>
           <Route path="/homepage" element={<HomePage/>}></Route>
