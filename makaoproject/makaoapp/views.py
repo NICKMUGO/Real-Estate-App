@@ -5,7 +5,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 from django.http import JsonResponse
-from .firebase import firebase_db
+from makaoproject.firebase import firebase_db
 
 def get_data_from_firebase(request):
     data = firebase_db.child('your-data-node').get()
@@ -19,7 +19,7 @@ def write_data_to_firebase(request):
     firebase_db.child('users').push(new_data)
     return JsonResponse({"message": "Data written successfully"})
 
-from .firebase import db
+from makaoproject.firebase import db
 
 def some_view(request):
     # Use Firestore
