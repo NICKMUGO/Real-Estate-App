@@ -21,3 +21,22 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore the virtual environment directory
+myvenv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore static and media files (if applicable)
+staticfiles/
+media/
+
+# Ignore environment-specific settings
+.env
+
+#ignore firebase admin key
+makao-project-firebase-adminsdk-eb4qf-aa269d9e7d.json
+*.env
+
