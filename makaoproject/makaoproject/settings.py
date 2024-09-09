@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Makao_db',
-        'USER': 'Nick',
-        'PASSWORD': '',
+        'USER': 'Mugo',
+        'PASSWORD': 'nick',
         'HOST': 'localhost',
         'PORT': '5432',
     }
