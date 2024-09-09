@@ -36,7 +36,4 @@ media/
 # Ignore environment-specific settings
 .env
 
-#ignore firebase admin key
-makao-project-firebase-adminsdk-eb4qf-aa269d9e7d.json
-*.env
 

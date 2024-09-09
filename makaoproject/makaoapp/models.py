@@ -33,6 +33,9 @@ class Rentals(models.Model):
     monthly_rent=models.IntegerField()
     payment_status=models.BooleanField()
     created_at=models.DateTimeField()
+
+def __str__(self):
+    return self.name
     
 
 
