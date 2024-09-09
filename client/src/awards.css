@@ -1,0 +1,56 @@
+/* src/Components/AwardsPage.css */
+.awards-page {
+    background-color: navy;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .awards-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .award-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .award-item h2 {
+    margin-top: 15px;
+    font-size: 1.2rem;
+  }
+  
+  .award-item p {
+    font-size: 1rem;
+  }
+  
+  .award-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .questions-page {
+    background-color: navy;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+  }
+  
