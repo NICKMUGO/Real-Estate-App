@@ -18,6 +18,10 @@ function App() {
           <Route path="/" element={<LoginPage/>}></Route>
           <Route path="/awards" element={<AwardsPage/>}></Route>
           <Route path="/questions" element={<QuestionsPage/>}></Route>
+          <Route path="/footer" element={<Footer/>}></Route>
+          <Route path="/navbar" element={<NavBar/>}></Route>
+          <Route path="/homepage" element={<HomePage/>}></Route>
+          <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
