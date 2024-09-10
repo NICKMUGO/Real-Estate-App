@@ -17,7 +17,7 @@ class Users(models.Model):
         return self.username
 
 class Properties(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE,default=1)
     property_type = models.CharField(max_length=100)  
     image = models.ImageField(upload_to='properties/')  
     status = models.CharField(max_length=50)  
@@ -30,8 +30,8 @@ class Properties(models.Model):
         return f"{self.property_type} - {self.price}"
 
 class Rentals(models.Model):
-    property_id = models.ForeignKey(Properties, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    property_id = models.ForeignKey(Properties, on_delete=models.CASCADE,default=1)
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE,default=1)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     monthly_rent = models.IntegerField()
@@ -43,7 +43,7 @@ class Rentals(models.Model):
 
 class Utility(models.Model):
     utility_id = models.AutoField(primary_key=True)
-    utility_type = models.CharField(max_length=255)  # Added max_length
+    utility_type = models.CharField(max_length=255)  
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -53,9 +53,9 @@ class Utility(models.Model):
 
 class UtilityProvider(models.Model):
     provider_id = models.AutoField(primary_key=True)
-    provider_name = models.CharField(max_length=100)  # Added max_length
+    provider_name = models.CharField(max_length=100)  
     contact_info = models.TextField()
-    utility_id = models.ForeignKey(Utility, on_delete=models.CASCADE)
+    utility_id = models.ForeignKey(Utility, on_delete=models.CASCADE,default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -72,9 +72,9 @@ class Owners(models.Model):
     status=models.CharField()
 
 class Payments(models.Model):
-    property_id=models.ForeignKey(Properties,on_delete=models.CASCADE)
-    user_id=models.ForeignKey(Users, on_delete=models.CASCADE)
-    utility_id=models.ForeignKey(Utility, on_delete=models.CASCADE)
+    property_id=models.ForeignKey(Properties,on_delete=models.CASCADE,default=1)
+    user_id=models.ForeignKey(Users, on_delete=models.CASCADE,default=1)
+    utility_id=models.ForeignKey(Utility, on_delete=models.CASCADE,default=1)
     payment_id = models.AutoField(primary_key= True)
     amount = models.DecimalField(decimal_places= 2 , max_digits= 9)
     payment_date = models.DateTimeField()
