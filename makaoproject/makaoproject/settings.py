@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'makaoapp',
-    'django-seed',
+    # 'django_faker',
 ]
 
 MIDDLEWARE = [
