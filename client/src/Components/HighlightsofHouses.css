@@ -6,6 +6,11 @@
     padding: 0;
 }
 
+h3{
+    color: #031739;
+    
+}
+
 /* provides background color to body */
 body {
     background-color: rgb(255, 235, 235);
@@ -20,8 +25,8 @@ body {
     justify-content: center;
     align-items: center;
     margin: auto;
-    width: 800px;
-    height: 600px;
+    width: 700px;
+    height: 500px;
 }
 /* ----- end of container stylings ----- */
 
