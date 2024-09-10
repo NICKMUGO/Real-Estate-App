@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'makaoapp',
+    'django-seed',
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,8 @@ WSGI_APPLICATION = 'makaoproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Makao_db',
-        'USER': 'Mugo',
+        'NAME': 'makao_db',
+        'USER': 'mugo',
         'PASSWORD': 'nick',
         'HOST': 'localhost',
         'PORT': '5433',
