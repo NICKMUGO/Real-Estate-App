@@ -34,12 +34,12 @@ class Rentals(models.Model):
     payment_status=models.BooleanField()
     created_at=models.DateTimeField()
 
-     #UtilityProvider Model
+#UtilityProvider Model
     class UtilityProvider(models.Model):
         provider_id = models.AutoField(primary_key=True)
         provider_name = models.CharField(max_length=100)
         contact_info = models.TextField()
-        utility = models.ForeignKey('Utility', on_delete=models.CASCADE)  # Assuming 'Utility' is another model
+        # utility = models.ForeignKey('Utility', on_delete=models.CASCADE)  # Assuming 'Utility' is another model
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
 
@@ -55,7 +55,7 @@ class Payments(models.Model):
     # user_id=models.ForeignKey(User, on_delete=models.CASCADE)
     # utility_id=models.ForeignKey(User, on_delete=models.CASCADE)
     payment_id = models.AutoField(primary_key= True)
-    amount = models.DecimalField()
+    amount = models.DecimalField(decimal_places= 2 , max_digits= 9)
     payment_date = models.DateTimeField()
     payment_status=models.BooleanField()
     created_at= models.DateTimeField()
