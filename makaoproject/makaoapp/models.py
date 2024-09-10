@@ -56,15 +56,6 @@ class UtilityProvider(models.Model):
 
 
 
-#UtilityProvider Model
-    class UtilityProvider(models.Model):
-        provider_id = models.AutoField(primary_key=True)
-        provider_name = models.CharField(max_length=100)
-        contact_info = models.TextField()
-        # utility = models.ForeignKey('Utility', on_delete=models.CASCADE)  # Assuming 'Utility' is another model
-        created_at = models.DateTimeField(auto_now_add=True)
-        updated_at = models.DateTimeField(auto_now=True)
-
 class Owners(models.Model):
     owners_id = models.AutoField(primary_key=True)
     owner_name = models.CharField(max_length=256)
@@ -73,9 +64,9 @@ class Owners(models.Model):
     status=models.CharField()
 
 class Payments(models.Model):
-    # property_id=models.ForeignKey(Propeties,on_delete=models.CASCADE);
-    # user_id=models.ForeignKey(User, on_delete=models.CASCADE)
-    # utility_id=models.ForeignKey(User, on_delete=models.CASCADE)
+    property_id=models.ForeignKey(Properties,on_delete=models.CASCADE)
+    user_id=models.ForeignKey(Users, on_delete=models.CASCADE)
+    utility_id=models.ForeignKey(Utility, on_delete=models.CASCADE)
     payment_id = models.AutoField(primary_key= True)
     amount = models.DecimalField(decimal_places= 2 , max_digits= 9)
     payment_date = models.DateTimeField()

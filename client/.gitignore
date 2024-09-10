@@ -35,5 +35,7 @@ media/
 
 # Ignore environment-specific settings
 .env
+*.pyc
+
 
 
