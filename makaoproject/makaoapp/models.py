@@ -42,3 +42,22 @@ class Rentals(models.Model):
         utility = models.ForeignKey('Utility', on_delete=models.CASCADE)  # Assuming 'Utility' is another model
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
+
+class Owners(models.Model):
+    owners_id = models.AutoField(primary_key=True)
+    owner_name = models.CharField(max_length=256)
+    contact_info = models.TextField()
+    properties = models.CharField()
+    status=models.CharField()
+
+class Payments(models.Model):
+    # property_id=models.ForeignKey(Propeties,on_delete=models.CASCADE);
+    # user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+    # utility_id=models.ForeignKey(User, on_delete=models.CASCADE)
+    payment_id = models.AutoField(primary_key= True)
+    amount = models.DecimalField()
+    payment_date = models.DateTimeField()
+    payment_status=models.BooleanField()
+    created_at= models.DateTimeField()
+    updated_at= models.DateTimeField()
+
