@@ -61,3 +61,24 @@ class UtilityProvider(models.Model):
 
     def __str__(self):
         return self.provider_name
+
+
+
+class Owners(models.Model):
+    owners_id = models.AutoField(primary_key=True)
+    owner_name = models.CharField(max_length=256)
+    contact_info = models.TextField()
+    properties = models.CharField()
+    status=models.CharField()
+
+class Payments(models.Model):
+    property_id=models.ForeignKey(Properties,on_delete=models.CASCADE)
+    user_id=models.ForeignKey(Users, on_delete=models.CASCADE)
+    utility_id=models.ForeignKey(Utility, on_delete=models.CASCADE)
+    payment_id = models.AutoField(primary_key= True)
+    amount = models.DecimalField(decimal_places= 2 , max_digits= 9)
+    payment_date = models.DateTimeField()
+    payment_status=models.BooleanField()
+    created_at= models.DateTimeField()
+    updated_at= models.DateTimeField()
+
