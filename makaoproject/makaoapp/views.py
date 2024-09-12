@@ -1,32 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Properties
+
 
 # Create your views here.
 
-from django.http import JsonResponse
-from makaoproject.firebase import firebase_db
+def home(request):
+    return HttpResponse("Welcome to MakaoApp API")
 
-def get_data_from_firebase(request):
-    data = firebase_db.child('your-data-node').get()
-    return JsonResponse(data)
+def get_properties(request):
+    if request.method == 'GET':
+        properties = Properties.objects.all()
+    return
 
-def write_data_to_firebase(request):
-    new_data = {
-        "name": "John Doe",
-        "email": "johndoe@example.com"
-    }
-    firebase_db.child('users').push(new_data)
-    return JsonResponse({"message": "Data written successfully"})
+def delete_property(request,property_id):
+    property = get_object_or_404(Properties, id=property_id)
+    if request.method == 'POST':
+        property.delete() 
+        # return redirect('properties_list')
+    return
 
-from makaoproject.firebase import db
 
-def some_view(request):
-    # Use Firestore
-    docs = db.collection('users').get()
-    for doc in docs:
-        print(f'{doc.id} => {doc.to_dict()}')
-    # ... rest of your view code
+
+
+
 
 
 

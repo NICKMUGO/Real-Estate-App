@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from makaoapp import views  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.home),
+    path('properties/',views.get_properties,name='get_properties'),
+    path('properties/<int:property_id>',views.delete_property,name='delete_property'),
 ]

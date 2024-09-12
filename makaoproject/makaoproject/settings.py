@@ -13,12 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os;
 from pathlib import Path
 
-import environ
-
-env = environ.Env()
-environ.Env.read_env()  # Reads from .env file if present
-
-FIREBASE_CRED_PATH = env('FIREBASE_CRED_PATH')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'makaoapp',
+    'django_seed',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +79,12 @@ WSGI_APPLICATION = 'makaoproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'makao_db',
+        'USER': 'mugo',
+        'PASSWORD': 'nick',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 
