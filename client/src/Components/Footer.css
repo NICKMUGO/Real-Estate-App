@@ -1,28 +1,43 @@
 footer{
-    background-color: navy;
+    background-color: #031739;
+    font-family: Playfair Display;
     margin: -10px;
-    padding-bottom: 40px;
-    background-image: url(Premium\ Vector\ _\ Luxury\ dark\ blue\ background\ with\ shiny\ gold\ line\ -\ Copy.jpg);
-    background-size: contain;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-size: 1298px;
 }
 #footer{
     position: relative;
     display: flex;
 }
 #f-title{
+    margin-top: -30px;
     padding-left: 100px;
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: bold;
-    color: aliceblue;
+    font-family: Bebas Neue ;
+    color: #B4975A;
 }
 #f-desc{
     position: relative;
     display:flex;
-    padding-left: 150px;
+    padding-left: 20px;
 }
 .f-contacts{
     padding-left: 100px;
     text-align: left;
+}
+.Contact{
+    width: 80px;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 50%;
+}
+#contacts{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: -100px;
 }
 .f-p{
     font-size: small;
@@ -34,5 +49,18 @@ a {
     font-size: large;
 }
 a:hover{
-    color: gold;
+    color: #B4975A;
+}
+#logo{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+.Contact:hover{
+    background-color: #B4975A;
+    transition: ease-in 1s;
+}
+#fb{
+    border-radius: 0%;
+    width: 100px;
 }
