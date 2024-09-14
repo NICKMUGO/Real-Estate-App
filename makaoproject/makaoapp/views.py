@@ -29,3 +29,6 @@ def delete_property(request,property_id):
 
 
 
+
+
+
