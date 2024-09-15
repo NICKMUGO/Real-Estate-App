@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
     path('properties/',views.get_properties,name='get_properties'),
-    path('properties/<int:property_id>',views.delete_property,name='delete_property'),
+    path('payments/', views.get_payments,name='get_payments'),
 ]

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'makaoapp',
     'django_seed',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
