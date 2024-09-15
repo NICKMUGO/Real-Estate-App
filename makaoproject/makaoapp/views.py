@@ -1,7 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,Owner,Rental,Property,UtilityProvider,Utility
+from .models import Property ,Payment,Owner,Rental,Property,UtilityProvider,Utility,Client
+from rest_framework import generics
+from .serializers import ClientSerializer,OwnerSerializer
 
 
 # Create your views here.
@@ -9,35 +12,17 @@ from .models import Property ,Payment,Owner,Rental,Property,UtilityProvider,Util
 def home(request):
     return HttpResponse("Welcome to MakaoApp API")
 
-def get_properties(request):
-    if request.method == 'GET':
-        properties = Property.objects.all()
-        properties_list= list(properties)
-    return JsonResponse(properties_list,safe=False)
+class ClientDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Client.objects.all()
+    serializer_class=ClientSerializer
+    permission_classes = [AllowAny]
 
-def get_payments(request):
-    if request.method == 'GET':
-        payments = Payment.objects.all()
-        payments_list= list(payments)
-    return JsonResponse(payments_list,safe=False)
+class OwnerDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Owner.objects.all()
+    serializer_class= OwnerSerializer
+    permission_classes = [AllowAny]
+    
 
-def get_rentals(request):
-    if request.method == 'GET':
-        owners = Owner.objects.all()
-        owners_list= list(owners)
-    return JsonResponse(owners_list,safe=False)
-
-def get_properties(request):
-    if request.method == 'GET':
-        owners = Owner.objects.all()
-        owners_list= list(owners)
-    return JsonResponse(owners_list,safe=False)
-
-def get_utilities(request):
-    if request.method == 'GET':
-        owners = Owner.objects.all()
-        owners_list= list(owners)
-    return JsonResponse(owners_list,safe=False)
 
 
 

@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from makaoapp import views  
+from makaoapp import views
+from makaoapp.views import ClientDetails 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home),
-    path('properties/',views.get_properties,name='get_properties'),
-    path('payments/', views.get_payments,name='get_payments'),
+    path('client/<int:pk>/',ClientDetails.as_view(),name='client_details'),
 ]
