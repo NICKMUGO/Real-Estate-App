@@ -6,7 +6,7 @@ import NavBar from './Components/NavBar';
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
-
+import MyPaymentspage from "./Components/MyPaymentspage"; 
 
 
 
@@ -22,6 +22,8 @@ function App() {
           <Route path="/navbar" element={<NavBar/>}></Route>
           <Route path="/homepage" element={<HomePage/>}></Route>
           <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
+          <Route path="/MyPayments" element={<MyPaymentspage/>}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
