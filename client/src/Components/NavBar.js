@@ -4,8 +4,8 @@ import "./NavBar.css";
 function Navbar() {
     return (
         <div>
-            {/* Add a self-closing tag for the 'link' element */}
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"></link>
 <style>
@@ -34,7 +34,7 @@ function Navbar() {
                             <a href="/MyProperties">MyProperty</a>
                         </li>
                         <li>
-                            <a href="/MyRent">MyRent</a>
+                            <a href="MyPaymentspage.js">MyRent</a>
                         </li>
                     </ul>
                 </nav>
