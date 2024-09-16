@@ -12,6 +12,8 @@ function AwardsPage() {
     { id: 3, title: "Top Innovator", year: 2021, imgSrc: pic3},
   ];
 
+  
+
   return (
     <div className="awards-page">
       <h1 className="heading">Why You Should Choose Us</h1>

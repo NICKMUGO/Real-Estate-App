@@ -7,6 +7,8 @@ import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
 import MyPaymentspage from "./Components/MyPaymentspage"; 
+import Signup from "./Components/signup";
+import Login from "./Components/login";
 
 
 
@@ -23,7 +25,10 @@ function App() {
           <Route path="/homepage" element={<HomePage/>}></Route>
           <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
           <Route path="/MyPayments" element={<MyPaymentspage/>}></Route>
-
+          <Route path="/signup" element={<Signup/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          
+    
         </Routes>
       </BrowserRouter>
     </div>
