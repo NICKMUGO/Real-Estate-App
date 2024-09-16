@@ -3,7 +3,7 @@ from django.db import models
 
 
 
-class Client(models.Model):
+class User(models.Model):
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=150, unique=True) 
     email = models.EmailField(unique=True)
@@ -62,15 +62,15 @@ class UtilityProvider(models.Model):
     def __str__(self):
         return self.provider_name
 
-class Owner(models.Model):
-    owners_id = models.AutoField(primary_key=True)
-    owner_name = models.CharField(max_length=256)
-    contact_info = models.TextField()
-    properties = models.ManyToManyField(Property)  # Corrected field
-    status = models.CharField(max_length=50)
+# class Owner(models.Model):
+#     owners_id = models.AutoField(primary_key=True)
+#     owner_name = models.CharField(max_length=256)
+#     contact_info = models.TextField()
+#     properties = models.ManyToManyField(Property)  # Corrected field
+#     status = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.owner_name
+#     def __str__(self):
+#         return self.owner_name
 
 class Payment(models.Model):
     property_id = models.ForeignKey(Property, on_delete=models.CASCADE)
