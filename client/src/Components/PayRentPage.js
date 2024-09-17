@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './payrent.css'; // Styling for this page
+
 
 function PayRentPage () {
   const [paymentInfo, setPaymentInfo] = useState({
