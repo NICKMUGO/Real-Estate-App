@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Footer.css'; 
 
 
@@ -12,22 +12,22 @@ function Footer() {
           <div id="f-desc">
             <div className="f-contacts">
               <p className="f-p">Connect</p>
-              <a href="">Instagram</a><br /><br />
-              <a href="">Facebook</a><br /><br />
-              <a href="">Pinterest</a><br /><br />
-              <a href="">YouTube</a><br /><br />
+              <a href="/homepage">Instagram</a><br /><br />
+              <a href="/homepage">Facebook</a><br /><br />
+              <a href="/homepage">Pinterest</a><br /><br />
+              <a href="/homepage">YouTube</a><br /><br />
             </div>
             <div className="f-contacts">
               <p className="f-p">Resources</p>
-              <a href="">FAQs</a><br /><br />
-              <a href="">Privacy Policy</a><br /><br />
-              <a href="">Talent Login</a><br /><br />
+              <a href="/homepage">FAQs</a><br /><br />
+              <a href="/homepage">Privacy Policy</a><br /><br />
+              <a href="/homepage">Talent Login</a><br /><br />
             </div>
             <div className="f-contacts">
               <p className="f-p">About</p>
-              <a href="">Our Story</a><br /><br />
-              <a href="">Careers</a><br /><br />
-              <a href="">Press</a><br /><br />
+              <a href="/homepage">Our Story</a><br /><br />
+              <a href="/homepage">Careers</a><br /><br />
+              <a href="/homepage">Press</a><br /><br />
             </div>
           </div>
         </div>

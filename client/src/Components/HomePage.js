@@ -2,7 +2,7 @@ import AwardsPage from "./AwardsPage";
 import Footer from "./Footer";
 import HighlightsofHouses from "./HighlightsofHouses";
 import Navbar from "./NavBar";
-
+import React from "react";
 function HomePage() {
     return (
       <div>

@@ -1,5 +1,3 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-// Define your component or function
 import "./MyPaymentpage.css";
 function MyPaymentspage() {
     // const[user, setUser] = useState();
@@ -24,7 +22,7 @@ function MyPaymentspage() {
                     <h1>MyPayments</h1>
                 </header>
                 <main>
-                    <section class="rent-details">
+                    <section className="rent-details">
                         <h2>Rent Details</h2>
                         <table>
                             <tr>
@@ -48,8 +46,8 @@ function MyPaymentspage() {
                            </tr>
                         </table>
                     </section>
-                       <section class="payment-summary">
-                       <h2>Payment Summary</h2>
+                    <section class="payment-summary">
+                        <h2>Payment Summary</h2>
                         <p>Total Paid: $45000</p>
                         <p>Balance: $0</p>
                     </section>
