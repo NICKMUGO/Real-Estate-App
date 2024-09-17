@@ -3,7 +3,7 @@ import './awards.css';
 
 function QuestionsPage(){
     return(
-        <div>
+        <div className="questions-page">
             <h1 className="heading"><b>Frequently Asked Questions</b></h1>
             <ul>
                 <li>Do you only deal with buying of houses or leasing as well?</li>
