@@ -82,8 +82,7 @@ nav li:first-child {
 .bodytext {
     padding-top: 190px;
     padding-left: 50px;
-    /* backdrop-filter: blur(5px); Add backdrop-filter property to blur the background */
-    /* backdrop-filter: blur(5px); Add backdrop-filter property to blur the background */
+    
 }
   
 .bodytext h1 {
