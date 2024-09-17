@@ -1,5 +1,10 @@
 import "./MyPaymentpage.css";
 function MyPaymentspage() {
+    // const[user, setUser] = useState();
+    // useEffect(() => {
+    //     const response = await.axios();
+    //     setUser(response.data);
+    // }, []);
     return (
         <div>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +46,7 @@ function MyPaymentspage() {
                            </tr>
                         </table>
                     </section>
-                    <section className="payment-summary">
+                    <section class="payment-summary">
                         <h2>Payment Summary</h2>
                         <p>Total Paid: $45000</p>
                         <p>Balance: $0</p>
