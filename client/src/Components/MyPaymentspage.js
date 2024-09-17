@@ -1,5 +1,3 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-// Define your component or function
 import "./MyPaymentpage.css";
 function MyPaymentspage() {
     return (
