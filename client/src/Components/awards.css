@@ -1,6 +1,6 @@
 /* src/Components/AwardsPage.css */
 .awards-page {
-    background-color: navy;
+    background-color: #031739;
     color: white;
     min-height: 100vh;
     padding: 20px;
@@ -11,6 +11,7 @@
     font-size: 2.5rem;
     margin-bottom: 30px;
     text-align: center;
+    color: #B4975A;
   }
   
   .awards-container {
@@ -47,7 +48,7 @@
   }
   
   .questions-page {
-    background-color: navy;
+    background-color: #031739;
     color: white;
     min-height: 100vh;
     padding: 20px;

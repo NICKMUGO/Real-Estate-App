@@ -6,27 +6,28 @@ import NavBar from './Components/NavBar';
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
-import MyPaymentspage from "./Components/MyPaymentspage"; 
-import Signup from "./Components/signup";
-import Login from "./Components/login";
+import PayRentPage from './Components/PayRentPage';
+
+
+
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar /> 
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/awards" element={<AwardsPage />} />
-        <Route path="/questions" element={<QuestionsPage />} />
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/highlights" element={<HighlightsofHouses />} />
-        <Route path="/MyPayments" element={<MyPaymentspage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/questions" element={<QuestionsPage/>}/>
-      </Routes>
-      <Footer /> 
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage/>}></Route>
+          <Route path="/awards" element={<AwardsPage/>}></Route>
+          <Route path="/questions" element={<QuestionsPage/>}></Route>
+          <Route path="/footer" element={<Footer/>}></Route>
+          <Route path="/navbar" element={<NavBar/>}></Route>
+          <Route path="/homepage" element={<HomePage/>}></Route>
+          <Route path="/payrent" element={<PayRentPage/>}></Route>
+          <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
