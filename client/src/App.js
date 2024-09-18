@@ -13,6 +13,7 @@ import PayRentPage from './Components/PayRentPage';
 
 
 function App() {
+  
   return (
     <div>
       <BrowserRouter>
