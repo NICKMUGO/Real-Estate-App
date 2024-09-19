@@ -7,12 +7,11 @@ function HomePage() {
     return (
       <div>
           {/* <h1>Hello Wolrd</h1> */}
-          <Navbar/>
-          <br></br><br></br><br></br>
+          <Navbar/>0
           <AwardsPage/>
           <br></br><br></br><br></br>
           <HighlightsofHouses/>
-          <br></br><br></br><br></br>
+          <br></br><br></br><br></br><br></br><br></br><br></br>
           <Footer />
       </div>
     );

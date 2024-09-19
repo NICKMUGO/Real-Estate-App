@@ -7,6 +7,9 @@ import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
 import PayRentPage from './Components/PayRentPage';
+import Signup from "./Components/Signup";
+
+
 
 
 
@@ -25,6 +28,8 @@ function App() {
           <Route path="/homepage" element={<HomePage/>}></Route>
           <Route path="/payrent" element={<PayRentPage/>}></Route>
           <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
+          <Route path="/signup" element={<Signup/>}></Route>
+          
         </Routes>
       </BrowserRouter>
     </div>
