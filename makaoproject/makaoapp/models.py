@@ -14,7 +14,7 @@ class User(models.Model):
     password = models.CharField(max_length=128)  
     phone_number = models.CharField(max_length=15)  
     address = models.CharField(max_length=255)  
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES,default='client')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -22,15 +22,19 @@ class User(models.Model):
         return self.username
 
 class Client(User):
-    preferences = models.TextField()
 
+    def save(self, *args, **kwargs):
+        self.role = 'client' 
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"Client: {self.username}"
 
 
 class Owner(User):
-    status = models.CharField(max_length=50)
 
+    def save(self, *args, **kwargs):
+        self.role = 'owner' 
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"Owner: {self.username}"
 
@@ -40,10 +44,14 @@ class Property(models.Model):
         ('bungalow', 'Bungalow'),
         ('mansion', 'Manison'),
     )
+    status = (
+        ('available', 'Available'),
+        ('sold', 'Sold')
+    )
     user_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
     property_type = models.CharField(max_length=100,choices=property_types)  
     image = models.ImageField(upload_to='properties/')  
-    status = models.CharField(max_length=50)  
+    status = models.CharField(max_length=50 ,choices=status)  
     price = models.IntegerField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

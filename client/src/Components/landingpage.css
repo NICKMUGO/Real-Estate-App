@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  /* <uniquifier>: Use a unique and descriptive class name */
+  /* <weight>: Use a value from 400 to 900 */
+  
+  /* .playfair-display-<uniquifier> {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+  } */
+  
+  /* <uniquifier>: Use a unique and descriptive class name */
+  /* <weight>: Use a value from 200 to 700 */
+  /* 
+  .oswald-<uniquifier> {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+  } */
+  
+  body {
+    height: 65vh;
+    background-image: url(house.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* backdrop-filter: blur(5px); */
+  }
+
+  
+.bodytext {
+    padding-top: 190px;
+    padding-left: 50px;
+    
+}
+  
+.bodytext h1 {
+    color: #ffffff;
+    font-size: 70px;
+    font-family: "Oswald";
+    line-height: 72px;
+    text-align: justify;
+    margin-top: 0; 
+    font-weight: 500;
+}
+
+
+.bodytext p{
+    color: #ffffff;
+    font-size: 24px;
+    font-family: "Playfair Display";
+    font-weight: 500;
+    line-height: 32px;
+    margin-top: 30px; 
+    margin-bottom: 20px;
+}
+
+
+.bodytext input{
+    top: 534px;
+    left: 795px;
+    width: 356px;
+    height: 43px;
+    padding: 0px 8px;
+    border: 0;
+    box-sizing: border-box;
+    background-color: #eeeeee;
+    color: #031739;
+    font-size: 14px;
+    font-family: "Playfair Display";
+    line-height: 36px;
+    outline: none;
+    display: inline-block;
+    margin-right: 10px;
+    backdrop-filter: blur(5px); /* Add backdrop-filter property to blur the background */
+}
+
+.bodytext input:hover {
+    background-color: lightgray;
+}
+
+ 
+.navbarbutton {
+  color: #fcfdff;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #031739;
+  padding: 10px 90px;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  font-family: "Playfair Display";
+  margin-top: 110px;
+  margin-bottom: 50px;
+  margin-left: 270px;
+}
+
+.navbarbutton::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  top: 0;
+  left: 0;
+  background-color: #031739;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbarbutton:hover::after {
+  width: 100%;
+}
+
+.navbarbutton:hover {
+  color: white;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+  

@@ -22,7 +22,7 @@ function Navbar() {
                         <a href="/MyProperties">MyProperty</a>
                     </li>
                     <li>
-                        <a href="/MyPaymentspage">MyRent</a>
+                        <a href="/MyPayments">MyRent</a>
                     </li>
                 </ul>
             </nav>
@@ -36,7 +36,7 @@ function Navbar() {
                 <input type="text" className="input" placeholder="Property Type" />
                 <input type="text" className="input" placeholder="Price Range" /> 
                 */}
-                <button>
+                <button className="navbarbutton">
                     <span>Search</span>
                 </button>
             </div>
