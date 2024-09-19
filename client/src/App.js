@@ -21,6 +21,7 @@ function App() {
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
         <Route path="/questions" element={<QuestionsPage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>

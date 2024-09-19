@@ -2,10 +2,12 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility
-from rest_framework import generics
+from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
+from rest_framework import generics,status
 from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer
-
+from django.db import transaction
+from rest_framework.response import Response
+from django.utils import timezone
 
 # Create your views here.
 
@@ -17,9 +19,50 @@ class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [AllowAny]
 
 class UserListCreate(generics.ListCreateAPIView):
-    queryset= User.objects.all()
-    serializer_class= UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        role = request.data.get('role', 'client') 
+
+        request_data = request.data.copy()  
+        request_data['role'] = role
+
+        serializer = self.get_serializer(data=request_data)
+        serializer.is_valid(raise_exception=True)
+    
+        user = serializer.save()
+
+        if role == 'owner':
+            user.role = 'owner'  
+            user.save()  
+            Owner.objects.create(
+                user_ptr=user,
+                username=user.username,
+                email=user.email,
+                password=user.password,
+                phone_number=user.phone_number,
+                address=user.address,
+                created_at=timezone.now(),
+                updated_at=timezone.now()
+            )
+        else:
+            user.role = 'client'  
+            user.save() 
+            Client.objects.create(
+                user_ptr=user, 
+                username=user.username,
+                email=user.email,
+                password=user.password,  
+                phone_number=user.phone_number,
+                address=user.address,
+                created_at=timezone.now(),
+                updated_at=timezone.now()
+            )
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
