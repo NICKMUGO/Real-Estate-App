@@ -14,7 +14,7 @@ const Signup = () => {
         },
         leftSection: {
             flex: 1,
-            padding: '100px',
+            padding: '30px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -60,8 +60,8 @@ const Signup = () => {
             justifyContent: 'center',
         },
         img: {
-            width: '110%',
-            height: '50%',
+            width: '100%',
+            height: '90%',
             objectFit: 'unset',
         }
     };
@@ -88,23 +88,12 @@ const Signup = () => {
                     <label htmlFor="address" style={styles.label}>Address</label>
                     <input type="number" name="address" id="address" required style={styles.input} />
 
-                    <label htmlFor="usertype" style={styles.label}>Usertype</label>
-                    <input type="text" id="usertype" name="usertype" required style={styles.input} />
+                    <label htmlFor="role" style={styles.label}>Usertype</label>
+                    <input type="text" id="role" name="role" required style={styles.input} />
 
-                    <div style={styles.gender}>
-                        <label>Gender:</label>
-                        <input type="radio" name="gender" id="male" value="male" />
-                        <label htmlFor="male">Male</label>
-                        <input type="radio" name="gender" id="female" value="female" />
-                        <label htmlFor="female">Female</label>
-                        <input type="radio" id="other" name="gender" value="other" />
-                        <label htmlFor="other">Prefer not to say</label>
-                    </div>
+                    
 
-                    <div style={styles.terms}>
-                        <input type="checkbox" name="terms" id="terms" required />
-                        <label htmlFor="terms">I agree to the Terms of Service</label>
-                    </div>
+                    
                     <button type="submit" style={styles.button}>Sign Up</button>
                 </form>
             </div>
