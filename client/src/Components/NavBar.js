@@ -36,7 +36,7 @@ function Navbar() {
                 <input type="text" className="input" placeholder="Property Type" />
                 <input type="text" className="input" placeholder="Price Range" /> 
                 */}
-                <button>
+                <button className="navbarbutton">
                     <span>Search</span>
                 </button>
             </div>
