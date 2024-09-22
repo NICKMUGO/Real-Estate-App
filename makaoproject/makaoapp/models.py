@@ -70,7 +70,7 @@ class Rental(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Rental for {self.property_id} by {self.user_id}"
+        return f"Rental for {self.property_id} by {self.tenant}"
 
 class Utility(models.Model):
     utility_id = models.AutoField(primary_key=True)
