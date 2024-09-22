@@ -13,7 +13,7 @@ function Navbar() {
                         <a href="/login">Login</a>
                     </li>
                     <li>
-                        <a href="/signup">Sign up</a>
+                        <a href="./signup">Sign up</a>
                     </li>
                     <li>
                         <a href="/About">About</a>

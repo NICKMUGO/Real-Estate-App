@@ -7,6 +7,8 @@ import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
 import MyPaymentspage from "./Components/MyPaymentspage"; 
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
 
 
 function App() {
@@ -22,7 +24,8 @@ function App() {
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
         <Route path="/questions" element={<QuestionsPage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>
