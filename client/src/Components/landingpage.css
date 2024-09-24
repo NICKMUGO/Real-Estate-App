@@ -29,7 +29,7 @@
     font-style: normal;
   } */
   
-  body {
+  .bodytext {
     height: 65vh;
     background-image: url(house.jpg);
     background-size: cover;

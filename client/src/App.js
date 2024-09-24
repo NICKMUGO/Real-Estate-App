@@ -9,7 +9,7 @@ import Footer from "./Components/Footer";
 import MyPaymentspage from "./Components/MyPaymentspage"; 
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
-
+import landingpage from "./Components/landingpage";
 
 function App() {
   
@@ -26,6 +26,7 @@ function App() {
         <Route path="/questions" element={<QuestionsPage/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/landingpage" element={<landingpage/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>
