@@ -1,18 +1,18 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./Components/LoginPage"; 
-import QuestionsPage from "./Components/QuestionsPage";
-import AwardsPage from "./Components/AwardsPage";
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import HighlightsofHouses from './Components/HighlightsofHouses';
+import Footer from './Components/Footer';
+import LoginPage from './Components/LoginPage';
+import AwardsPage from './Components/AwardsPage';
+import QuestionsPage from './Components/QuestionsPage';
 import HomePage from './Components/HomePage';
-import Footer from "./Components/Footer";
-import MyPaymentspage from "./Components/MyPaymentspage"; 
-import Signup from "./Components/Signup";
+import HighlightsofHouses from './Components/HighlightsofHouses';
+import MyPaymentspage from './Components/MyPaymentspage';
+import Signup from './Components/Signup';
+import PropertyForm from "./Components/PropertyForm";
 import Login from "./Components/Login";
 
-
 function App() {
-  
   return (
     <BrowserRouter>
       <NavBar /> 
@@ -23,9 +23,8 @@ function App() {
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
-        <Route path="/questions" element={<QuestionsPage/>}/>
-        <Route path="/signup" element={<Signup/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/property-form" element={<PropertyForm />} />
       </Routes>
       <Footer /> 
     </BrowserRouter>
