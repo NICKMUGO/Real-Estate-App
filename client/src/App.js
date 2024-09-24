@@ -9,6 +9,8 @@ import Footer from "./Components/Footer";
 import MyPaymentspage from "./Components/MyPaymentspage"; 
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
+import UtilityProviderForm from "./Components/utilityprovider";
+
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path="/questions" element={<QuestionsPage/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/UtilityProviderForm" element={<UtilityProviderForm/>}/>
+
       </Routes>
       <Footer /> 
     </BrowserRouter>
