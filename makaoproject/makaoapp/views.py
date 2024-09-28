@@ -6,8 +6,10 @@ from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utili
 from rest_framework import generics,status
 from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer
 from django.db import transaction
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from django.utils import timezone
+import json
 
 # Create your views here.
 
@@ -113,6 +115,41 @@ class UtilityProviderDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Utility.objects.all()
     serializer_class= UtilityProviderSerializer
     permission_classes = [AllowAny] 
+
+@csrf_exempt
+def Login(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+            password = data.get('password')
+        
+            if not email or not password:
+                return JsonResponse({'error': 'Email and password are required.'}, status=400)
+            
+            user = User.objects.filter(email=email, password=password).first()
+
+            if user:
+                user_data = {
+                    'user_id': user.user_id,
+                    'username': user.username,
+                    'email': user.email,
+                    'phone_number': user.phone_number,
+                    'address': user.address,
+                    'role': user.role,
+                    'created_at': user.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                    'updated_at': user.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                return JsonResponse({'user': user_data}, status=200)
+            else:
+                return JsonResponse({'error': 'Invalid email or password'}, status=400)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON format'}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
 
 
 

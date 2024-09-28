@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Login = () => {
     const styles = {
@@ -27,7 +29,7 @@ const Login = () => {
         label: {
             marginTop: '10px',
             fontFamily: 'Times New Roman, Times, serif',
-            color: '#B4975A', // Added text color
+            color: '#B4975A',
         },
         input: {
             padding: '10px',
@@ -46,12 +48,6 @@ const Login = () => {
             marginTop: '20px',
             cursor: 'pointer',
         },
-        gender: {
-            marginTop: '15px',
-        },
-        terms: {
-            marginTop: '20px',
-        },
         rightSection: {
             flex: 1,
             backgroundSize: 'cover',
@@ -66,24 +62,56 @@ const Login = () => {
         }
     };
 
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    });
+
+    const navigate = useNavigate(); 
+
+    const onLoginSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/login/', {
+                email: user.email,
+                password: user.password
+            })
+            navigate('/homepage'); 
+        } catch (error) {
+            console.log("Failed to login user");
+            alert("Invalid Username or Password");
+        }
+    };
+
     return (
         <div style={styles.container}>
             <div style={styles.leftSection}>
-                
                 <h2>Log in to Makao</h2>
-                <form style={styles.form}>
-                    
-
+                <form style={styles.form} onSubmit={onLoginSubmit}>
                     <label htmlFor="email" style={styles.label}>Email</label>
-                    <input type="email" name="email" id="email" required style={styles.input} />
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        required
+                        style={styles.input}
+                        value={user.email}
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                    />
 
                     <label htmlFor="password" style={styles.label}>Password</label>
-                    <input type="password" name="password" id="password" required minLength="8" style={styles.input} />
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        required
+                        minLength="8"
+                        style={styles.input}
+                        value={user.password}
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                    />
                     <small>Please enter 8 or more characters.</small>
 
-                                  
-
-                    
                     <button type="submit" style={styles.button}>Login</button>
                 </form>
             </div>

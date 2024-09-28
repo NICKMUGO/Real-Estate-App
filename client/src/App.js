@@ -12,6 +12,7 @@ import Login from "./Components/Login";
 import UtilityProviderForm from "./Components/utilityprovider";
 
 
+import landingpage from "./Components/landingpage";
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/UtilityProviderForm" element={<UtilityProviderForm/>}/>
 
+        <Route path="/landingpage" element={<landingpage/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>
