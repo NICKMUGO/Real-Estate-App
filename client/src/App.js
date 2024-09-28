@@ -7,7 +7,9 @@ import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
 import Houses from "./Components/Houses";
-
+import Signup from "./Components/Signup";
+import MyPaymentspage from "./Components/MyPaymentspage";
+import Login from "./Components/Login";
 
 
 function App() {

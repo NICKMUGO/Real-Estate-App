@@ -17,16 +17,6 @@ function Footer() {
           </div>
           <div id="f-desc">
             <div className="f-contacts">
-<<<<<<< HEAD
-=======
-              <p className="f-p">Connect</p>
-              <a href="/homepage">Instagram</a><br /><br />
-              <a href="/homepage">Facebook</a><br /><br />
-              <a href="/homepage">Pinterest</a><br /><br />
-              <a href="/homepage">YouTube</a><br /><br />
-            </div>
-            <div className="f-contacts">
->>>>>>> origin/HEAD
               <p className="f-p">Resources</p>
               <a href="/homepage">FAQs</a><br /><br />
               <a href="/homepage">Privacy Policy</a><br /><br />
