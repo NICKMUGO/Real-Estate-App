@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const styles = {
@@ -27,7 +29,7 @@ const Signup = () => {
         label: {
             marginTop: '10px',
             fontFamily: 'Times New Roman, Times, serif',
-            color: '#B4975A', // Added text color
+            color: '#B4975A', 
         },
         input: {
             padding: '10px',
@@ -65,35 +67,80 @@ const Signup = () => {
             objectFit: 'unset',
         }
     };
+    const[newUser,setnewUser]=useState({
+        name:"",
+        email:"",
+        password:"",
+        phone_number:"",
+        address:"",
+        user_type:""
+    })
+    const navigate = useNavigate();
+
+    const OnSignUpSubmit= async (event)=>{
+        event.preventDefault();
+        try{
+            const reponse= await axios.post("http://127.0.0.1:8000/users/",{
+                username:newUser.name,
+                email: newUser.email,
+                password:newUser.password,
+                phone_number:newUser.phone_number,
+                address:newUser.address,
+                role:newUser.user_type
+            })
+            navigate('/login')
+        }catch (error) {
+            console.log("Failed to login user");
+            alert("Invalid Username or Password");
+        }
+
+    }
 
     return (
         <div style={styles.container}>
             <div style={styles.leftSection}>
                 <p>Already have an account? <a href="/login">Log in</a></p>
                 <h2>Sign Up to Makao</h2>
-                <form style={styles.form}>
+                <form style={styles.form} onSubmit={OnSignUpSubmit}>
                     <label htmlFor="fullname" style={styles.label}>Username</label>
-                    <input type="text" id="fullname" name="fullname" required style={styles.input} />
+                    <input type="text" id="fullname" name="fullname" required style={styles.input} 
+                    onChange={(e)=>setnewUser( {...newUser, name: e.target.value})} value={newUser.name}
+                    />
 
                     <label htmlFor="email" style={styles.label}>Email</label>
-                    <input type="email" name="email" id="email" required style={styles.input} />
+                    <input type="email" name="email" id="email" required style={styles.input} 
+                    onChange={(e)=>setnewUser( {...newUser, email: e.target.value})} value={newUser.email}
+                    />
 
                     <label htmlFor="password" style={styles.label}>Password</label>
-                    <input type="password" name="password" id="password" required minLength="8" style={styles.input} />
+                    <input type="password" name="password" id="password" required minLength="8" style={styles.input} 
+                    onChange={(e)=>setnewUser( {...newUser, password: e.target.value})} value={newUser.password}
+                    />
                     <small>Please enter 8 or more characters.</small>
 
                     <label htmlFor="phone" style={styles.label}>Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="*254" required style={styles.input} />
+                    <input type="tel" id="phone" name="phone" placeholder="*254" required style={styles.input}
+                    onChange={(e)=>setnewUser( {...newUser, phone_number: e.target.value})} value={newUser.phone_number}
+                    />
 
                     <label htmlFor="address" style={styles.label}>Address</label>
-                    <input type="number" name="address" id="address" required style={styles.input} />
+                    <input type="text" name="address" id="address" required style={styles.input}
+                    onChange={(e)=>setnewUser( {...newUser, address: e.target.value})} value={newUser.address}
+                    />
 
                     <label htmlFor="role" style={styles.label}>Usertype</label>
-                    <input type="text" id="role" name="role" required style={styles.input} />
-
-                    
-
-                    
+                    <select
+                        id="role"
+                        name="role"
+                        required
+                        style={styles.input}
+                        value={newUser.user_type}
+                        onChange={(e) => setnewUser({...newUser, user_type: e.target.value})} 
+                    >
+                        <option value="" disabled>Select your role</option> 
+                        <option value="owner">Owner</option>
+                        <option value="client">Client</option>
+                    </select>
                     <button type="submit" style={styles.button}>Sign Up</button>
                 </form>
             </div>
