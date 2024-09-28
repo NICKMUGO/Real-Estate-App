@@ -6,13 +6,12 @@ import NavBar from './Components/NavBar';
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
-import MyPaymentspage from "./Components/MyPaymentspage"; 
+import Houses from "./Components/Houses";
 import Signup from "./Components/Signup";
+import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
-import UtilityProviderForm from "./Components/utilityprovider";
-
-
-import landingpage from "./Components/landingpage";
+import LandingPage from "./Components/LandingPage";
+import PayRentPage from "./Components/PayRentPage";
 
 function App() {
   
@@ -29,9 +28,9 @@ function App() {
         <Route path="/questions" element={<QuestionsPage/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/UtilityProviderForm" element={<UtilityProviderForm/>}/>
-
-        <Route path="/landingpage" element={<landingpage/>}/>
+        <Route path="/landingpage" element={<LandingPage/>}/>
+        <Route path="/payrent" element={<PayRentPage/>}/>
+        <Route path="/houses" element={<Houses/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>
