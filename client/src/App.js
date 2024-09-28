@@ -30,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
+        <Route path="/houses" element={<Houses/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>
