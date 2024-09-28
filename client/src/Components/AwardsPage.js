@@ -12,6 +12,8 @@ function AwardsPage() {
     { id: 3, title: "Top Innovator", year: 2021, imgSrc: pic3},
   ];
 
+  
+
   return (
     <div className="awards-page">
       <h1 className="heading">Why You Should Choose Us</h1>
@@ -24,7 +26,7 @@ function AwardsPage() {
           </div>
         ))}
       </div>
-    </div>
+      <p>Our company stands out not only for our extensive experience in the real estate market but also for the numerous awards we have earned over the years. These accolades are a testament to our commitment to excellence, customer satisfaction, and innovation in the industry. </p></div>
   );
 }
 

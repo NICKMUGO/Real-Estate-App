@@ -15,11 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from makaoapp import views  
+from makaoapp import views
+from makaoapp.views import (
+    UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
+    RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home),
-    path('properties/',views.get_properties,name='get_properties'),
-    path('properties/<int:property_id>',views.delete_property,name='delete_property'),
+    path('', views.home, name='home'),
+    path('user/<int:pk>/', UserDetails.as_view(), name='user_details'),
+    path('users/', UserListCreate.as_view(), name='user_listcreate'),
+    path('properties/', PropertyListCreate.as_view(), name='property_listcreate'),
+    path('property/<int:pk>/', PropertyDetails.as_view(), name='property_details'),
+    path('rental/', RentalListCreate.as_view(), name='rental_listcreate'),
+    path('rental/<int:pk>/', RentalDetails.as_view(), name='rental_details'),
+    path('payment/', PaymentListCreate.as_view(), name='payment_listcreate'),
+    path('payment/<int:pk>/', PaymentDetails.as_view(), name='payment_details'),
+    path('utility/', UtilityListCreate.as_view(), name='utility_listcreate'),
+    path('utility/<int:pk>/', UtilityDetails.as_view(), name='utility_details'),
+    path('utilityprovider/', UtilityProviderListCreate.as_view(), name='utilityprovider_listcreate'),
+    path('utilityprovider/<int:pk>/', UtilityProviderDetails.as_view(), name='utilityprovider_details'),
+    path('login/',views.Login,name='login')
 ]
