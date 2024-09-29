@@ -25,6 +25,11 @@ class UserListCreate(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+    def dispatch(self, request, *args, **kwargs):
+        if 'user_id' not in request.session:
+            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+        return super().dispatch(request, *args, **kwargs)
+
     @transaction.atomic
     def post(self, request, *args, **kwargs):
         role = request.data.get('role', 'client') 
@@ -71,16 +76,29 @@ class PropertyListCreate(generics.ListCreateAPIView):
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
+    def dispatch(self, request, *args, **kwargs):
+        if 'user_id' not in request.session:
+            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+        return super().dispatch(request, *args, **kwargs)
+
 class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
+    def dispatch(self, request, *args, **kwargs):
+        if 'user_id' not in request.session:
+            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+        return super().dispatch(request, *args, **kwargs)
 class RentalListCreate(generics.ListCreateAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
     permission_classes = [AllowAny]
 
+    def dispatch(self, request, *args, **kwargs):
+        if 'user_id' not in request.session:
+            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+        return super().dispatch(request, *args, **kwargs)
 class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -130,8 +148,11 @@ def Login(request):
             user = User.objects.filter(email=email, password=password).first()
 
             if user:
+                request.session['user_id'] = user.id
+                request.session['username'] = user.username
+                request.session['role'] = user.role
                 user_data = {
-                    'user_id': user.user_id,
+                    'user_id': user.id,
                     'username': user.username,
                     'email': user.email,
                     'phone_number': user.phone_number,
@@ -149,9 +170,10 @@ def Login(request):
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
-
-
-
+@csrf_exempt
+def logout(request):
+    request.session.flush()  # Clears the session
+    return JsonResponse({'message': 'Logged out successfully'}, status=200)
 
 
 

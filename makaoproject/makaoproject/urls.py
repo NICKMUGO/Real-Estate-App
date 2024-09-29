@@ -19,7 +19,7 @@ from makaoapp import views
 from makaoapp.views import (
     UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
-    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout
 )
 
 urlpatterns = [
@@ -37,5 +37,6 @@ urlpatterns = [
     path('utility/<int:pk>/', UtilityDetails.as_view(), name='utility_details'),
     path('utilityprovider/', UtilityProviderListCreate.as_view(), name='utilityprovider_listcreate'),
     path('utilityprovider/<int:pk>/', UtilityProviderDetails.as_view(), name='utilityprovider_details'),
-    path('login/',views.Login,name='login')
+    path('login/',views.Login,name='login'),
+    path('logout/',views.logout,name='logout')
 ]
