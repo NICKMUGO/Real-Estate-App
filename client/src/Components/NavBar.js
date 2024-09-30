@@ -22,7 +22,7 @@ function Navbar() {
                         <a href="/MyProperties">MyProperty</a>
                     </li>
                     <li>
-                        <a href="/MyPayments">MyRent</a>
+                        <a href="/MyPayments">MyPayments</a>
                     </li>
                 </ul>
             </nav>

@@ -177,6 +177,25 @@ def logout(request):
 
 
 
+class PropertyByUserId(generics.ListAPIView):
+    serializer_class = PropertiesSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Property.objects.filter(user_id__user_ptr=user_id) 
+
+
+class PaymentsByUserId(generics.ListAPIView):
+    serializer_class = PaymentSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Payment.objects.filter(user_id=user_id) 
+
+
+
 
 
 

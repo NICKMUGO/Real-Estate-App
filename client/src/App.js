@@ -12,11 +12,13 @@ import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
+import UserContextProvider from "./Components/UserContextProvider";
 
 function App() {
   
   return (
     <BrowserRouter>
+      <UserContextProvider>
       <NavBar /> 
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -33,6 +35,7 @@ function App() {
         <Route path="/houses" element={<Houses/>}/>
       </Routes>
       <Footer /> 
+      </UserContextProvider>
     </BrowserRouter>
   );
 }
