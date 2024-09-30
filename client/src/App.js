@@ -13,6 +13,7 @@ import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
+import UtilityProviderForm from "./Components/UtilityProvider";
 
 function App() {
   
@@ -33,6 +34,7 @@ function App() {
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
         <Route path="/houses" element={<Houses/>}/>
+        <Route path="/utilityprovider" element={<UtilityProviderForm/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>

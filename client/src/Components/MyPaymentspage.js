@@ -11,7 +11,7 @@ function MyPaymentsPage() {
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                
+
                 const response = await axios.get(`http://127.0.0.1:8000/payments/user/${user.user_id}/`);
                 setPayments(response.data);
                 console.log(response.data); 
@@ -20,10 +20,7 @@ function MyPaymentsPage() {
                 alert("Error fetching payment data");
             }
         };
-
-        if (user) {
             fetchPayments();
-        }
     }, [user]);
 
     return (
@@ -54,7 +51,7 @@ function MyPaymentsPage() {
                             {payments.map((payment) => (
                                 <tr key={payment.payment_id}>
                                     <td>{new Date(payment.payment_date).toLocaleDateString()}</td>
-                                    <td>${payment.amount.toFixed(2)}</td>
+                                    <td>${payment.amount}</td>
                                     <td>{payment.payment_method}</td> 
                                 </tr>
                             ))}
