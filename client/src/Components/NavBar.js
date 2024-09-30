@@ -3,7 +3,7 @@ import "./NavBar.css";
 
 function Navbar() {
     return (
-        <div>
+        <div className="NavBar">
             <nav>
                 <ul className="header">
                     <li>
@@ -13,7 +13,7 @@ function Navbar() {
                         <a href="/login">Login</a>
                     </li>
                     <li>
-                        <a href="./signup">Sign up</a>
+                        <a href="/signup">Sign up</a>
                     </li>
                     <li>
                         <a href="/About">About</a>
@@ -22,24 +22,10 @@ function Navbar() {
                         <a href="/MyProperties">MyProperty</a>
                     </li>
                     <li>
-                        <a href="/MyPayments">MyRent</a>
+                        <a href="/MyPayments">MyPayments</a>
                     </li>
                 </ul>
             </nav>
-
-            <div className="bodytext">
-                <h1>Welcome,</h1>
-                <h1>Your Dream Home Awaits!</h1>
-                {/* 
-                <p>Quick Search</p>
-                <input type="text" className="input" placeholder="Location" />
-                <input type="text" className="input" placeholder="Property Type" />
-                <input type="text" className="input" placeholder="Price Range" /> 
-                */}
-                <button className="navbarbutton">
-                    <span>Search</span>
-                </button>
-            </div>
         </div>
     );
 }

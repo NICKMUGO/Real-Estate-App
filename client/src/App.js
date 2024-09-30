@@ -6,15 +6,19 @@ import LoginPage from './Components/LoginPage';
 import AwardsPage from './Components/AwardsPage';
 import QuestionsPage from './Components/QuestionsPage';
 import HomePage from './Components/HomePage';
-import HighlightsofHouses from './Components/HighlightsofHouses';
-import MyPaymentspage from './Components/MyPaymentspage';
-import Signup from './Components/Signup';
-import PropertyForm from "./Components/PropertyForm";
+import Footer from "./Components/Footer";
+import Houses from "./Components/Houses";
+import Signup from "./Components/Signup";
+import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
+import LandingPage from "./Components/LandingPage";
+import PayRentPage from "./Components/PayRentPage";
+import UserContextProvider from "./Components/UserContextProvider";
 
 function App() {
   return (
     <BrowserRouter>
+      <UserContextProvider>
       <NavBar /> 
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -23,10 +27,15 @@ function App() {
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/property-form" element={<PropertyForm />} />
+        <Route path="/questions" element={<QuestionsPage/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/landingpage" element={<LandingPage/>}/>
+        <Route path="/payrent" element={<PayRentPage/>}/>
+        <Route path="/houses" element={<Houses/>}/>
       </Routes>
       <Footer /> 
+      </UserContextProvider>
     </BrowserRouter>
   );
 }

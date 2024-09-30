@@ -1,145 +1,127 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .bebas-neue-regular {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  /* <uniquifier>: Use a unique and descriptive class name */
-  /* <weight>: Use a value from 400 to 900 */
-  
-  /* .playfair-display-<uniquifier> {
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-  } */
-  
-  /* <uniquifier>: Use a unique and descriptive class name */
-  /* <weight>: Use a value from 200 to 700 */
-  /* 
-  .oswald-<uniquifier> {
-    font-family: "Oswald", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
-  } */
-  
-  body {
-    height: 65vh;
-    background-image: url(house.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* backdrop-filter: blur(5px); */
-  }
+  margin: 0;
+  padding: 0;
+}
 
-  
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .bodytext {
-    padding-top: 190px;
-    padding-left: 50px;
-    
+  height: 100vh;
+  background-image: url(house.jpg)!important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 190px;
+  padding-left: 50px;
 }
-  
+
 .bodytext h1 {
-    color: #ffffff;
-    font-size: 70px;
-    font-family: "Oswald";
-    line-height: 72px;
-    text-align: justify;
-    margin-top: 0; 
-    font-weight: 500;
+  color: #ffffff;
+  font-size: 70px;
+  font-family: "Oswald", sans-serif;
+  line-height: 72px;
+  text-align: justify;
+  margin-top: 0;
+  font-weight: 500;
 }
 
-
-.bodytext p{
-    color: #ffffff;
-    font-size: 24px;
-    font-family: "Playfair Display";
-    font-weight: 500;
-    line-height: 32px;
-    margin-top: 30px; 
-    margin-bottom: 20px;
+.bodytext p {
+  color: #ffffff;
+  font-size: 24px;
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
-
-.bodytext input{
-    top: 534px;
-    left: 795px;
-    width: 356px;
-    height: 43px;
-    padding: 0px 8px;
-    border: 0;
-    box-sizing: border-box;
-    background-color: #eeeeee;
-    color: #031739;
-    font-size: 14px;
-    font-family: "Playfair Display";
-    line-height: 36px;
-    outline: none;
-    display: inline-block;
-    margin-right: 10px;
-    backdrop-filter: blur(5px); /* Add backdrop-filter property to blur the background */
+.bodytext input {
+  width: 356px;
+  height: 43px;
+  padding: 0 8px;
+  border: 0;
+  background-color: #eeeeee;
+  color: #031739;
+  font-size: 14px;
+  font-family: "Playfair Display", serif;
+  line-height: 36px;
+  outline: none;
+  margin-right: 10px;
+  margin-top: 20px;
+  backdrop-filter: blur(5px);
 }
 
 .bodytext input:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
- 
 .navbarbutton {
-  color: #fcfdff;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid #031739;
-  padding: 10px 90px;
-  font-size: 17px;
-  cursor: pointer;
-  font-weight: bold;
-  background: transparent;
   position: relative;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  margin-top: 90px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px;
+  background: #031739;
+  font-family: "Playfair Display", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  margin-left: 300px;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  font-family: "Playfair Display";
-  margin-top: 110px;
-  margin-bottom: 50px;
-  margin-left: 270px;
+  cursor: pointer;
+  border: none;
 }
 
 .navbarbutton::after {
-  content: "";
-  position: absolute;
+  content: " ";
+  width: 0%;
   height: 100%;
-  width: 0;
-  top: 0;
-  left: 0;
-  background-color: #031739;
-  z-index: -1;
-  transition: all 0.3s ease-in-out;
+  background: #B4975A;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
 }
 
 .navbarbutton:hover::after {
+  right: auto;
+  left: 0;
   width: 100%;
 }
+.navbarbutton span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px 70px;
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
 
-.navbarbutton:hover {
-  color: white;
+.navbarbutton:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
 }
 
 @keyframes scaleUp {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(0.95);
   }
+
   100% {
     transform: scale(1);
   }
 }
-  
