@@ -20,13 +20,16 @@ const UtilityProviderForm = () => {
             backgroundColor: '#031739',
             padding: '30px',
             borderRadius: '10px',
-            maxWidth: '500px',
+            maxWidth: '350px',
             width: '100%',
             position: 'relative', // Added to position the close button
         },
         form: {
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'center',  // Centers items vertically
+            
+            
         },
         h2: {
             color: '#B4975A',

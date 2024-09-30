@@ -12,6 +12,7 @@ import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
+import UtilityProviderForm from "./Components/utilityprovider";
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
         <Route path="/houses" element={<Houses/>}/>
+        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
       </Routes>
       <Footer /> 
     </BrowserRouter>

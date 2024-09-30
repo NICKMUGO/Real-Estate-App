@@ -12,7 +12,7 @@ function HomePage() {
           <AwardsPage/>
           <br></br><br></br><br></br>
           <HighlightsofHouses/>
-          <br></br><br></br><br></br><br></br><br></br><br></br>
+          <br></br><br></br><br></br><br></br>
           <QuestionsPage/>
       </div>
     );
