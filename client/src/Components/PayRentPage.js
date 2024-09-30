@@ -24,10 +24,12 @@ function PayRentPage () {
 
   return (
     <div className="pay-rent-container">
-      <h1 className="page-title">Pay My Rent</h1>
+      <h1 className="heading">Pay My Rent</h1>
+      <br></br>
       <form onSubmit={handleSubmit} className="pay-rent-form">
+        <div className="form-group1">
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label className='blue' htmlFor="name">Name</label>
           <input 
             type="text" 
             id="name" 
@@ -39,7 +41,7 @@ function PayRentPage () {
         </div>
         
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label className="blue" htmlFor="email">Email</label>
           <input 
             type="email" 
             id="email" 
@@ -51,7 +53,7 @@ function PayRentPage () {
         </div>
 
         <div className="form-group">
-          <label htmlFor="propertyId">Property ID</label>
+          <label className="blue" htmlFor="propertyId">Property ID</label>
           <input 
             type="text" 
             id="propertyId" 
@@ -63,7 +65,7 @@ function PayRentPage () {
         </div>
 
         <div className="form-group">
-          <label htmlFor="rentAmount">Rent Amount</label>
+          <label className="blue" htmlFor="rentAmount">Rent Amount</label>
           <input 
             type="number" 
             id="rentAmount" 
@@ -73,9 +75,11 @@ function PayRentPage () {
             required
           />
         </div>
-
-        <div className="form-group">
-          <label htmlFor="cardNumber">Card Number</label>
+        <h1>Payment Methods</h1>
+        <div class="container-fluid">
+  ...   
+          <div className="form-group">
+          <label className="blue" htmlFor="cardNumber">Card Number</label>
           <input 
             type="text" 
             id="cardNumber" 
@@ -87,7 +91,7 @@ function PayRentPage () {
         </div>
 
         <div className="form-group">
-          <label htmlFor="expirationDate">Expiration Date</label>
+          <label className="blue" htmlFor="expirationDate">Expiration Date</label>
           <input 
             type="text" 
             id="expirationDate" 
@@ -100,7 +104,7 @@ function PayRentPage () {
         </div>
 
         <div className="form-group">
-          <label htmlFor="cvv">CVV</label>
+          <label className="blue" htmlFor="cvv">CVV</label>
           <input 
             type="text" 
             id="cvv" 
@@ -110,7 +114,28 @@ function PayRentPage () {
             required
           />
         </div>
+        </div>
 
+        <div class="container-fluid">
+          <h2>Mpesa </h2>
+          <div className="form-group">
+          <label className="blue" htmlFor="mpesa number">Input Number</label>
+          <input 
+            type="text" 
+            required
+          />
+          <label className="blue" htmlFor="amount">Amount </label>
+          <input 
+            type="text" 
+            required
+          />
+        </div>
+        </div>
+
+       
+
+        </div>
+       
         <button type="submit" className="submit-button">Submit Payment</button>
       </form>
     </div>

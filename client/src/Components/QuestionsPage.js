@@ -3,6 +3,7 @@ import './awards.css';
 
 function QuestionsPage(){
     return(
+        <div className="blue">
         <div className="questions-page">
             <h1 className="heading"><b>Frequently Asked Questions</b></h1>
             <ul>
@@ -19,6 +20,7 @@ function QuestionsPage(){
                 <a href="/homepage">Learn More</a>
                 </ul>
 
+        </div>
         </div>
     );
 };

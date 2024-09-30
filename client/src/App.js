@@ -7,9 +7,9 @@ import HighlightsofHouses from './Components/HighlightsofHouses';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
 import PayRentPage from './Components/PayRentPage';
-
-
-
+import UtilitiesForm from './Components/UtilitiesForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
           <Route path="/homepage" element={<HomePage/>}></Route>
           <Route path="/payrent" element={<PayRentPage/>}></Route>
           <Route path="/highlights" element={<HighlightsofHouses/>}></Route>
+          <Route path="/utilitiesform" element={<UtilitiesForm/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
