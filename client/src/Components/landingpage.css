@@ -9,9 +9,10 @@
   font-style: normal;
 }
 
+
 .bodytext {
-  height: 65vh;
-  background-image: url(house.jpg);
+  height: 100vh;
+  background-image: url(house.jpg)!important;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -61,51 +62,65 @@
 }
 
 .navbarbutton {
-  color: #fcfdff;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid #031739;
-  padding: 10px 90px;
-  font-size: 17px;
-  cursor: pointer;
-  font-weight: bold;
-  background: transparent;
   position: relative;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  margin-top: 90px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px;
+  background: #031739;
+  font-family: "Playfair Display", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  margin-left: 300px;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  font-family: "Playfair Display", serif;
-  margin-top: 110px;
-  margin-bottom: 50px;
-  margin-left: 270px;
+  cursor: pointer;
+  border: none;
 }
 
 .navbarbutton::after {
-  content: "";
-  position: absolute;
+  content: " ";
+  width: 0%;
   height: 100%;
-  width: 0;
-  top: 0;
-  left: 0;
-  background-color: #031739;
-  z-index: -1;
-  transition: all 0.3s ease-in-out;
+  background: #B4975A;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
 }
 
 .navbarbutton:hover::after {
+  right: auto;
+  left: 0;
   width: 100%;
 }
+.navbarbutton span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px 70px;
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
 
-.navbarbutton:hover {
-  color: white;
+.navbarbutton:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
 }
 
 @keyframes scaleUp {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(0.95);
   }
+
   100% {
     transform: scale(1);
   }
