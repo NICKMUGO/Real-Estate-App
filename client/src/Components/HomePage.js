@@ -7,8 +7,7 @@ import LandingPage from "./LandingPage";
 function HomePage() {
     return (
       <div>
-          <LandingPage/>
-          <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+          <LandingPage/> 
           <AwardsPage/>
           <br></br><br></br><br></br>
           <HighlightsofHouses/>
