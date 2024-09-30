@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Usercontext } from "./UserContextProvider";
 
 const Login = () => {
     const styles = {
@@ -62,10 +63,12 @@ const Login = () => {
         }
     };
 
-    const [user, setUser] = useState({
+    const [loggedinuser, setloggedinUser] = useState({
         email: "",
         password: ""
     });
+
+    const[user,setUser]=useContext(Usercontext);
 
     const navigate = useNavigate(); 
 
@@ -73,16 +76,18 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://127.0.0.1:8000/login/', {
-                email: user.email,
-                password: user.password
+                email: loggedinuser.email,
+                password: loggedinuser.password
             })
+            setUser(response.data.user);
+            console.log(response.data.user)
             navigate('/homepage'); 
         } catch (error) {
-            console.log("Failed to login user");
+            console.log("Failed to login loggedinuser");
             alert("Invalid Username or Password");
         }
     };
-
+    console.log(user)
     return (
         <div style={styles.container}>
             <div style={styles.leftSection}>
@@ -95,8 +100,8 @@ const Login = () => {
                         id="email"
                         required
                         style={styles.input}
-                        value={user.email}
-                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        value={loggedinuser.email}
+                        onChange={(e) => setloggedinUser({ ...loggedinuser, email: e.target.value })}
                     />
 
                     <label htmlFor="password" style={styles.label}>Password</label>
@@ -107,8 +112,8 @@ const Login = () => {
                         required
                         minLength="8"
                         style={styles.input}
-                        value={user.password}
-                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        value={loggedinuser.password}
+                        onChange={(e) => setloggedinUser({ ...loggedinuser, password: e.target.value })}
                     />
                     <small>Please enter 8 or more characters.</small>
 

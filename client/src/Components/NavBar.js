@@ -19,10 +19,10 @@ function Navbar() {
                         <a href="/About">About</a>
                     </li>
                     <li>
-                        <a href="/MyProperties">MyProperty</a>
+                        <a href="/houses">MyProperty</a>
                     </li>
                     <li>
-                        <a href="/MyPayments">MyRent</a>
+                        <a href="/MyPayments">MyPayments</a>
                     </li>
                 </ul>
             </nav>
