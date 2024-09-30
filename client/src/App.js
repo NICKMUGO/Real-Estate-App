@@ -1,9 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./Components/LoginPage"; 
-import QuestionsPage from "./Components/QuestionsPage";
-import AwardsPage from "./Components/AwardsPage";
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import HighlightsofHouses from './Components/HighlightsofHouses';
+import Footer from './Components/Footer';
+import LoginPage from './Components/LoginPage';
+import AwardsPage from './Components/AwardsPage';
+import QuestionsPage from './Components/QuestionsPage';
 import HomePage from './Components/HomePage';
 import Footer from "./Components/Footer";
 import Houses from "./Components/Houses";
@@ -16,7 +17,6 @@ import UserContextProvider from "./Components/UserContextProvider";
 import UtilityProviderForm from "./Components/UtilityProvider";
 
 function App() {
-  
   return (
     <BrowserRouter>
       <UserContextProvider>
