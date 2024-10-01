@@ -13,7 +13,9 @@ import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
+import UtilityProviderForm from "./Components/UtilityProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
+import PropertyForm from './Components/PropertyForm';
 
 function App() {
   return (
@@ -32,8 +34,9 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
-        <Route path="/houses" element={<Houses/>}/>  
-        
+        <Route path="/houses" element={<Houses/>}/>
+        <Route path="/utilityprovider" element={<UtilityProviderForm/>}/>
+        <Route path="/propertyform" element={<PropertyForm/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>
