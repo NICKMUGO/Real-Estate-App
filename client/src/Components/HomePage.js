@@ -10,7 +10,7 @@ function HomePage() {
           <LandingPage/> 
           <AwardsPage/>
           <br></br><br></br><br></br>
-          <HighlightsofHouses/>
+          <HighlightsofHouses/>   
           <br></br><br></br><br></br><br></br><br></br><br></br>
           <QuestionsPage/>
       </div>
