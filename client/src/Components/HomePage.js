@@ -10,8 +10,8 @@ function HomePage() {
           <LandingPage/> 
           <AwardsPage/>
           <br></br><br></br><br></br>
-          <HighlightsofHouses/>   
-          <br></br><br></br><br></br><br></br><br></br><br></br>
+          <HighlightsofHouses/>
+          <br></br><br></br><br></br><br></br>
           <QuestionsPage/>
       </div>
     );
