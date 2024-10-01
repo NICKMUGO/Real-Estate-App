@@ -19,7 +19,7 @@ from makaoapp import views
 from makaoapp.views import (
     UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
-    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate
 )
 
 urlpatterns = [
@@ -41,4 +41,6 @@ urlpatterns = [
     path('logout/',views.logout,name='logout'),
     path('properties/user/<int:user_id>/', PropertyByUserId.as_view(), name='properties_by_user_id'),
     path('payments/user/<int:user_id>/', PaymentsByUserId.as_view(), name='payments_by_user_id'),
+    path('owners/', OnwerListCreate.as_view(), name='onwer_listcreate'),
+    path('owner/<int:pk>/', OwnerDetails.as_view(), name='onwer_details'),
 ]

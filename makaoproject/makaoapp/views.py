@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -24,11 +24,6 @@ class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
-
-    def dispatch(self, request, *args, **kwargs):
-        if 'user_id' not in request.session:
-            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
-        return super().dispatch(request, *args, **kwargs)
 
     @transaction.atomic
     def post(self, request, *args, **kwargs):
@@ -70,16 +65,25 @@ class UserListCreate(generics.ListCreateAPIView):
             )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+class OwnerDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Owner.objects.all()
+    serializer_class= OwnerSerializer
+    permission_classes = [AllowAny]
+
+class OnwerListCreate(generics.ListCreateAPIView):
+    queryset = Owner.objects.all()
+    serializer_class = OwnerSerializer
+    permission_classes = [AllowAny] 
 
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
-    def dispatch(self, request, *args, **kwargs):
-        if 'user_id' not in request.session:
-            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if 'user_id' not in request.session:
+    #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+    #     return super().dispatch(request, *args, **kwargs)
 
 class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Property.objects.all()

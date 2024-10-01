@@ -2,8 +2,8 @@ import React from "react";
 import "./landingpage.css";  // Ensure this imports the CSS file
 
 function LandingPage() {
-    const navigateToSignup = () => {
-        window.location.href = "/signup";
+    const navigateToMyProperties = () => {
+        window.location.href = "/houses";
     };
 
     return (
@@ -14,7 +14,7 @@ function LandingPage() {
             <div className="bodytext">
                 <h1>Welcome,</h1>
                 <h1>Your Dream Home Awaits!</h1>
-                <button className="navbarbutton" onClick={navigateToSignup}>
+                <button className="navbarbutton" onClick={navigateToMyProperties}>
                     <span>SEARCH</span>
                 </button>
             </div>

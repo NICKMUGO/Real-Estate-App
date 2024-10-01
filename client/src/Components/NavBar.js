@@ -7,7 +7,7 @@ function Navbar() {
             <nav>
                 <ul className="header">
                     <li>
-                        <a href="/">MAKAO Marketplace</a>
+                        <a href="/homepage">MAKAO Marketplace</a>
                     </li>
                     <li>
                         <a href="/login">Login</a>
