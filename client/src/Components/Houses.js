@@ -1,6 +1,4 @@
-import Footer from "./Footer";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-// Define your component or function
+import React from "react";
 import "./Houses.css";
 import House1 from "./House-1.jpg";
 import House2 from "./House-2.jpg";

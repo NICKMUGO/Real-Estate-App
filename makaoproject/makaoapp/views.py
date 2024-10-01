@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -65,22 +65,44 @@ class UserListCreate(generics.ListCreateAPIView):
             )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+class OwnerDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Owner.objects.all()
+    serializer_class= OwnerSerializer
+    permission_classes = [AllowAny]
+
+class OnwerListCreate(generics.ListCreateAPIView):
+    queryset = Owner.objects.all()
+    serializer_class = OwnerSerializer
+    permission_classes = [AllowAny] 
 
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
+    # def dispatch(self, request, *args, **kwargs):
+    #     if 'user_id' not in request.session:
+    #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+    #     return super().dispatch(request, *args, **kwargs)
+
 class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
+    def dispatch(self, request, *args, **kwargs):
+        if 'user_id' not in request.session:
+            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+        return super().dispatch(request, *args, **kwargs)
 class RentalListCreate(generics.ListCreateAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
     permission_classes = [AllowAny]
 
+    def dispatch(self, request, *args, **kwargs):
+        if 'user_id' not in request.session:
+            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+        return super().dispatch(request, *args, **kwargs)
 class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -130,11 +152,14 @@ def Login(request):
             user = User.objects.filter(email=email, password=password).first()
 
             if user:
+                request.session['user_id'] = user.id
+                request.session['username'] = user.username
+                request.session['role'] = user.role
                 user_data = {
-                    'user_id': user.user_id,
+                    'user_id': user.id,
                     'username': user.username,
                     'email': user.email,
-                    'phone_number': user.phone_number,
+                    'phone_number': user.phone_number,  
                     'address': user.address,
                     'role': user.role,
                     'created_at': user.created_at.strftime('%Y-%m-%d %H:%M:%S'),
@@ -149,9 +174,29 @@ def Login(request):
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
+@csrf_exempt
+def logout(request):
+    request.session.flush()  # Clears the session
+    return JsonResponse({'message': 'Logged out successfully'}, status=200)
 
 
 
+class PropertyByUserId(generics.ListAPIView):
+    serializer_class = PropertiesSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Property.objects.filter(user_id__user_ptr=user_id) 
+
+
+class PaymentsByUserId(generics.ListAPIView):
+    serializer_class = PaymentSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Payment.objects.filter(user_id=user_id) 
 
 
 

@@ -1,22 +1,26 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./Components/LoginPage"; 
-import QuestionsPage from "./Components/QuestionsPage";
-import AwardsPage from "./Components/AwardsPage";
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import HighlightsofHouses from './Components/HighlightsofHouses';
+import Footer from './Components/Footer';
+import LoginPage from './Components/LoginPage';
+import AwardsPage from './Components/AwardsPage';
+import QuestionsPage from './Components/QuestionsPage';
 import HomePage from './Components/HomePage';
-import Footer from "./Components/Footer";
 import Houses from "./Components/Houses";
 import Signup from "./Components/Signup";
 import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
+import UserContextProvider from "./Components/UserContextProvider";
+import UtilityProviderForm from "./Components/UtilityProvider";
+import HighlightsofHouses from './Components/HighlightsofHouses';
+import PropertyForm from './Components/PropertyForm';
 
 function App() {
-  
   return (
     <BrowserRouter>
+      <UserContextProvider>
       <NavBar /> 
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -31,8 +35,11 @@ function App() {
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
         <Route path="/houses" element={<Houses/>}/>
+        <Route path="/utilityprovider" element={<UtilityProviderForm/>}/>
+        <Route path="/propertyform" element={<PropertyForm/>}/>
       </Routes>
       <Footer /> 
+      </UserContextProvider>
     </BrowserRouter>
   );
 }
