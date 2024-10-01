@@ -6,7 +6,6 @@ import LoginPage from './Components/LoginPage';
 import AwardsPage from './Components/AwardsPage';
 import QuestionsPage from './Components/QuestionsPage';
 import HomePage from './Components/HomePage';
-import Footer from "./Components/Footer";
 import Houses from "./Components/Houses";
 import Signup from "./Components/Signup";
 import MyPaymentspage from "./Components/MyPaymentspage";
@@ -14,7 +13,7 @@ import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
-import UtilityProviderForm from "./Components/UtilityProvider";
+import HighlightsofHouses from './Components/HighlightsofHouses';
 
 function App() {
   return (
@@ -33,8 +32,8 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
-        <Route path="/houses" element={<Houses/>}/>
-        <Route path="/utilityprovider" element={<UtilityProviderForm/>}/>
+        <Route path="/houses" element={<Houses/>}/>  
+        
       </Routes>
       <Footer /> 
       </UserContextProvider>
