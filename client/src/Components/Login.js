@@ -99,7 +99,7 @@ const Login = () => {
                         name="email"
                         id="email"
                         required
-                        style={styles.input}
+                        style={styles.input} 
                         value={loggedinuser.email}
                         onChange={(e) => setloggedinUser({ ...loggedinuser, email: e.target.value })}
                     />

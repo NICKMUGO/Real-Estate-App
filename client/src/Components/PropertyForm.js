@@ -78,7 +78,7 @@ const PropertyForm = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [owners, setOwners] = useState([]);
     const [property, setProperty] = useState({
-        user_id: "",
+        id: "",
         property_type: "",
         image: null, // Change to null for file input
         status: "",
@@ -90,15 +90,17 @@ const PropertyForm = () => {
         const fetchOwners = async () => {
             const response = await axios.get('http://127.0.0.1:8000/owners/');
             setOwners(response.data);
+            console.log(response.data)
         };
         fetchOwners();
     }, []);
+  
 
     const handlePropertySubmit = async (e) => {
         e.preventDefault();
         
         const formData = new FormData(); 
-        formData.append('user_id', property.user_id); 
+        formData.append('id', property.id); 
         formData.append('property_type', property.property_type); 
         formData.append('image', property.image);
         formData.append('status', property.status);
@@ -136,8 +138,8 @@ const PropertyForm = () => {
                                 id="owner_name"
                                 required
                                 style={styles.input}
-                                value={property.user_id}
-                                onChange={(e) => setProperty({ ...property, user_id: e.target.value })}
+                                value={property.id}
+                                onChange={(e) => setProperty({ ...property, id: e.target.value })}
                             >
                                 <option value="" disabled>Select your name</option>
                                 {owners.map((owner) => (

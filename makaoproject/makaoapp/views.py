@@ -10,6 +10,10 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from django.utils import timezone
 import json
+import logging
+from django.utils.decorators import method_decorator
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -20,6 +24,7 @@ class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class= UserSerializer
     permission_classes = [AllowAny]
 
+@method_decorator(csrf_exempt, name='dispatch')
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -27,9 +32,11 @@ class UserListCreate(generics.ListCreateAPIView):
 
     @transaction.atomic
     def post(self, request, *args, **kwargs):
+        logger.info("Entering UserListCreate view")
+        logger.info(f"Request data: {request.data}")
+        
         role = request.data.get('role', 'client') 
-
-        request_data = request.data.copy()  
+        request_data = request.data.copy()
         request_data['role'] = role
 
         serializer = self.get_serializer(data=request_data)
