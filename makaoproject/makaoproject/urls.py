@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from makaoapp import views
 from makaoapp.views import (
@@ -43,4 +45,7 @@ urlpatterns = [
     path('payments/user/<int:user_id>/', PaymentsByUserId.as_view(), name='payments_by_user_id'),
     path('owners/', OnwerListCreate.as_view(), name='onwer_listcreate'),
     path('owner/<int:pk>/', OwnerDetails.as_view(), name='onwer_details'),
+    
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

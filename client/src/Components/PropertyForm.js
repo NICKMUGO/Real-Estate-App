@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { Usercontext } from './UserContextProvider';
 
 const PropertyForm = () => {
     const styles = {
@@ -74,13 +75,13 @@ const PropertyForm = () => {
             cursor: 'pointer',
         },
     };
-
+    const[user]=useContext(Usercontext)
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [owners, setOwners] = useState([]);
     const [property, setProperty] = useState({
         id: "",
         property_type: "",
-        image: null, // Change to null for file input
+        image: null, 
         status: "",
         price: "",
         description: ""
@@ -100,7 +101,7 @@ const PropertyForm = () => {
         e.preventDefault();
         
         const formData = new FormData(); 
-        formData.append('id', property.id); 
+        formData.append('user_id', property.id); 
         formData.append('property_type', property.property_type); 
         formData.append('image', property.image);
         formData.append('status', property.status);
@@ -116,7 +117,12 @@ const PropertyForm = () => {
             console.log(response.data);
             setIsPopupOpen(false);
         } catch (error) {
-            console.error('Error submitting form:', error);
+            if (error.response) {
+                console.error('Error response:', error.response.data); 
+                alert(error.response.data.detail || 'Failed to register User');
+            } else {
+                console.error('Error submitting form:', error);
+            }
         }
     };
 

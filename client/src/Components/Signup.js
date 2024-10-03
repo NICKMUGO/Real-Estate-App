@@ -92,7 +92,7 @@ const Signup = () => {
             // navigate('/login')
         }catch (error) {
             if (error.response) {
-                console.error('Error response:', error.response.data); // Outputs backend error
+                console.error('Error response:', error.response.data); 
                 alert(error.response.data.detail || 'Failed to register User');
             } else {
                 console.error('Error submitting form:', error);
