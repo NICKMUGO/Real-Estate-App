@@ -9,20 +9,23 @@ const PropertyForm = () => {
             top: 0,
             left: 0,
             width: '100%',
-            height: '100%',
+            height: '140%',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 1000,
+            overflowY: 'auto',
+            maxHeight: '108vh',
         },
         popupContent: {
             backgroundColor: '#031739',
             padding: '30px',
             borderRadius: '10px',
-            maxWidth: '350px',
-            width: '100%',
+            maxWidth: '75%', // Make responsive (from 350px fixed width)
+            width: '500px', // Max width for larger screens
             position: 'relative',
+            overflowY: 'auto', // Allow content to scroll inside the popup
         },
         form: {
             display: 'flex',
@@ -57,7 +60,7 @@ const PropertyForm = () => {
         },
         closeButton: {
             position: 'absolute',
-            top: '30px',
+            top: '40px',  
             right: '10px', 
             background: 'none',
             border: 'none',
@@ -71,9 +74,20 @@ const PropertyForm = () => {
             color: 'white',
             fontSize: '16px',
             border: 'none',
-            borderRadius: '5px',
+            borderRadius: '100%',
             cursor: 'pointer',
+            display: 'block',
+            margin: '20px auto', 
+            position: 'absolute', 
+            top: '48px', 
+            left: '48%', 
+            transform: 'translateX(-50%)', 
         },
+        buttonContainer: {
+            display: 'flex',
+            justifyContent: 'center', 
+            marginTop: '20px', 
+        }
     };
     const[user]=useContext(Usercontext)
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -129,7 +143,7 @@ const PropertyForm = () => {
     return (
         <div>
             <button style={styles.openButton} onClick={() => setIsPopupOpen(true)}>
-                Register Property
+                Add
             </button>
             {isPopupOpen && (
                 <div style={styles.popupOverlay}>
@@ -175,7 +189,7 @@ const PropertyForm = () => {
                                     type="file" 
                                     required 
                                     style={styles.input} 
-                                    onChange={(e) => setProperty({ ...property, image: e.target.files[0] })} // Update image state with the file
+                                    onChange={(e) => setProperty({ ...property, image: e.target.files[0] })}
                                 />
                             </div>
 

@@ -37,7 +37,7 @@ class UtilityProviderSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class PaymentSerializer(serializers.ModelSerializer):
-
+    utility_id = UtilitySerializer(read_only=True)
     class Meta:
         model = Payment
         fields='__all__'
