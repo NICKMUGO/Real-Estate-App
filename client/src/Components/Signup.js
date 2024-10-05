@@ -68,30 +68,35 @@ const Signup = () => {
         }
     };
     const[newUser,setnewUser]=useState({
-        name:"",
+        username:"",
         email:"",
         password:"",
         phone_number:"",
         address:"",
-        user_type:""
+        role:""
     })
     const navigate = useNavigate();
 
     const OnSignUpSubmit= async (event)=>{
         event.preventDefault();
+        console.log(newUser);
         try{
             const reponse= await axios.post("http://127.0.0.1:8000/users/",{
-                username:newUser.name,
+                username:newUser.username,
                 email: newUser.email,
                 password:newUser.password,
                 phone_number:newUser.phone_number,
                 address:newUser.address,
-                role:newUser.user_type
+                role:newUser.role
             })
-            navigate('/login')
+            // navigate('/login')
         }catch (error) {
-            console.log("Failed to login user");
-            alert("Invalid Username or Password");
+            if (error.response) {
+                console.error('Error response:', error.response.data); 
+                alert(error.response.data.detail || 'Failed to register User');
+            } else {
+                console.error('Error submitting form:', error);
+            }
         }
 
     }
@@ -103,8 +108,8 @@ const Signup = () => {
                 <h2>Sign Up to Makao</h2>
                 <form style={styles.form} onSubmit={OnSignUpSubmit}>
                     <label htmlFor="fullname" style={styles.label}>Username</label>
-                    <input type="text" id="fullname" name="fullname" required style={styles.input} 
-                    onChange={(e)=>setnewUser( {...newUser, name: e.target.value})} value={newUser.name}
+                    <input type="text" id="fullname" username="fullname" required style={styles.input} 
+                    onChange={(e)=>setnewUser( {...newUser, username: e.target.value})} value={newUser.username}
                     />
 
                     <label htmlFor="email" style={styles.label}>Email</label>
@@ -134,8 +139,8 @@ const Signup = () => {
                         name="role"
                         required
                         style={styles.input}
-                        value={newUser.user_type}
-                        onChange={(e) => setnewUser({...newUser, user_type: e.target.value})} 
+                        value={newUser.role}
+                        onChange={(e) => setnewUser({...newUser, role: e.target.value})} 
                     >
                         <option value="" disabled>Select your role</option> 
                         <option value="owner">Owner</option>

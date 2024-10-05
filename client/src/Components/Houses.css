@@ -3,6 +3,9 @@
     padding: 0;
   }
   
+  .main{
+    margin-top: 10px;
+  }
   .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
@@ -90,45 +93,86 @@
     padding: 0px 8px;
     border: 0;
     box-sizing: border-box;
-    background-color: #eeeeee;
+    background-color: rgb(223, 214, 214);
     color: #031739;
     font-size: 14px;
     font-family: "Playfair Display";
     line-height: 36px;
     outline: none;
     margin-right: 10px;
-    margin-left: 5px;
+    margin-left: 80px;
     border-radius: 10px;
+}
+
+#location{
+  margin-left: 180px;
 }
 
 #input{
     display: inline-block;
-    margin-top: -110px;
+    margin-top: -100px;
+    margin-bottom: 20px;
 }
 
 .bodytext input:hover {
     background-color: lightgray;
 }
-.search {
-    color: #fcfdff;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 2px solid #031739;
-    position:absolute;
-    display: inline-block;
-    border-radius: 10px;
-    font-size: 17px;
-    cursor: pointer;
-    font-weight: bold;
-    background: transparent;
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-    font-family: "Playfair Display";
-    padding: 5px 15px 5px 15px;
-    margin-left: 50px;
-    margin-top: 5px;
+#search {
+    color: #031739;
+  text-decoration: none;
+  border: 2px solid #031739;
+  padding: 5px 15px 5px 15px;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  font-family: "Playfair Display", serif;
+  margin-top: 5px;
+  margin-left: 150px;
+  border-radius: 10px;
 }
+
+#search::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  top: 0;
+  left: 0;
+  background-color: #031739;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+#search:hover::after {
+  width: 100%;
+}
+#search:hover {
+  color: #B4975A;
+}
+
+
 .img{
   width: 400px;
   height: 300px;
+  border-bottom: 5px solid #031739;
+  border-radius: 10px;
+}
+
+.house-display{
+  display: flex;
+}
+
+.div-img{
+  border: 5px solid #031739;
+ text-align: left;
+  border-radius: 10px;
+  margin-right: 50px;
+  margin-left: 140px;
+  margin-bottom: 50px;
+  font-family: "Playfair Display";
+  background-color: rgba(128, 128, 128, 0.349);
 }

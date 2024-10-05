@@ -42,17 +42,23 @@ function MyPaymentsPage() {
                     <table>
                         <thead>
                             <tr>
-                                <th>Payment Date</th>
+                                <th>User</th>
                                 <th>Payment Amount</th>
-                                <th>Payment Method</th>
+                                <th>Utility</th>
+                                <th>Created at</th>
+                                <th>Updated at</th>
+                                <th>Payment Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             {payments.map((payment) => (
                                 <tr key={payment.payment_id}>
+                                    <td>{user.username}</td>
+                                    <td>{payment.amount} ksh</td>
+                                    <td>{payment.utility_id?.utility_type || 'N/A'}</td>
+                                    <td>{payment.created_at ? new Date(payment.created_at).toLocaleString() : 'N/A'}</td>
+                                    <td>{payment.updated_at ? new Date(payment.created_at).toLocaleString() : 'N/A'}</td>
                                     <td>{new Date(payment.payment_date).toLocaleDateString()}</td>
-                                    <td>${payment.amount}</td>
-                                    <td>{payment.payment_method}</td> 
                                 </tr>
                             ))}
                         </tbody>

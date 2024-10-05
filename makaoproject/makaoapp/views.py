@@ -4,12 +4,16 @@ from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from django.utils import timezone
 import json
+import logging
+from django.utils.decorators import method_decorator
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -20,21 +24,19 @@ class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class= UserSerializer
     permission_classes = [AllowAny]
 
+@method_decorator(csrf_exempt, name='dispatch')
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-    def dispatch(self, request, *args, **kwargs):
-        if 'user_id' not in request.session:
-            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
-        return super().dispatch(request, *args, **kwargs)
-
     @transaction.atomic
     def post(self, request, *args, **kwargs):
+        logger.info("Entering UserListCreate view")
+        logger.info(f"Request data: {request.data}")
+        
         role = request.data.get('role', 'client') 
-
-        request_data = request.data.copy()  
+        request_data = request.data.copy()
         request_data['role'] = role
 
         serializer = self.get_serializer(data=request_data)
@@ -70,16 +72,25 @@ class UserListCreate(generics.ListCreateAPIView):
             )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+class OwnerDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Owner.objects.all()
+    serializer_class= OwnerSerializer
+    permission_classes = [AllowAny]
+
+class OnwerListCreate(generics.ListCreateAPIView):
+    queryset = Owner.objects.all()
+    serializer_class = OwnerSerializer
+    permission_classes = [AllowAny] 
 
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
-    def dispatch(self, request, *args, **kwargs):
-        if 'user_id' not in request.session:
-            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if 'user_id' not in request.session:
+    #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+    #     return super().dispatch(request, *args, **kwargs)
 
 class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Property.objects.all()
