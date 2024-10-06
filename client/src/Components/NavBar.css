@@ -29,15 +29,7 @@
   font-style: normal;
 } */
 
-body {
-  height: 65vh;
-  background-image: url(house.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* backdrop-filter: blur(5px); */
-}
+
 
 nav{
     background-color: #031739;
