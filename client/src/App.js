@@ -13,9 +13,11 @@ import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
 import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
-import UtilityProviderForm from "./Components/UtilityProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
+import UtilityProviderForm from './Components/utilityprovider';
+
+
 import RentalPopup from './Components/RentalPopup';
 function App() {
   return (
@@ -35,8 +37,12 @@ function App() {
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPage/>}/>
         <Route path="/houses" element={<Houses/>}/>
-        <Route path="/utilityprovider" element={<UtilityProviderForm/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
+        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
+        
+        
+        
+        
         <Route path="/rentalpopup" element={<RentalPopup/>}/> 
       </Routes>
       <Footer /> 

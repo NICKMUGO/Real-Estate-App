@@ -1,10 +1,6 @@
 import React from 'react';
 import './Footer.css'; 
-import logo from './logo.jpg';
-import pint from './pinterest.png';
-import insta from './instagram.png';
-import fb from './facebook.png';
-import twitt from './twitter.png';
+
 
 function Footer() {
   return (
@@ -13,7 +9,7 @@ function Footer() {
         <footer>
           <div id="footer">
             <div id="f-title">
-              <img id="logo" src={logo} alt="Logo" />
+              <img id="logo" src={'logo.jpg'} alt="Logo" />
             </div>
             <div id="f-desc">
               <div className="f-contacts">
@@ -34,22 +30,22 @@ function Footer() {
               
               <div>
                 <a className="social" href="https://twitter.com">
-                  <img className="Contact" src={twitt} width="288" alt="Twitter" />
+                  <img className="Contact" src={'/twitter.png'} width="288" alt="Twitter" />
                 </a>
               </div>
               <div>
                 <a className="social" id="fb" href="https://www.facebook.com">
-                  <img className="Contact" src={fb} width="288" alt="Facebook" />
+                  <img className="Contact" src={'/facebook.png'} width="288" alt="Facebook" />
                 </a>
               </div>
               <div>
                 <a className="social" href="https://www.instagram.com">
-                  <img className="Contact" src={insta} width="288" alt="Instagram" />
+                  <img className="Contact" src={'/instagram.png'} width="288" alt="Instagram" />
                 </a>
               </div>
               <div>
                 <a className="social" href="https://www.pinterest.com">
-                  <img className="Contact" src={pint} width="288" alt="Pinterest" />
+                  <img className="Contact" src={'/pinterest.png'} width="288" alt="Pinterest" />
                 </a>
               </div>
             </div>

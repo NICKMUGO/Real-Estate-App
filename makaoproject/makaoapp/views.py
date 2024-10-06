@@ -92,15 +92,19 @@ class PropertyListCreate(generics.ListCreateAPIView):
     #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
     #     return super().dispatch(request, *args, **kwargs)
 
+@method_decorator(csrf_exempt, name='dispatch')
 class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
     permission_classes = [AllowAny]
 
-    def dispatch(self, request, *args, **kwargs):
-        if 'user_id' not in request.session:
-            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if 'user_id' not in request.session:
+    #         print(f"Session data: {request.session.items()}")
+    #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+    #     print(f"User allowed: user_id={request.session['user_id']}")
+    #     return super().dispatch(request, *args, **kwargs)
+
 class RentalListCreate(generics.ListCreateAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -162,6 +166,7 @@ def Login(request):
                 request.session['user_id'] = user.id
                 request.session['username'] = user.username
                 request.session['role'] = user.role
+                print(f"Session data set: user_id={request.session['user_id']}, username={request.session['username']}, role={request.session['role']}")
                 user_data = {
                     'user_id': user.id,
                     'username': user.username,
