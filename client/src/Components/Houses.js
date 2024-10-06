@@ -104,7 +104,7 @@ const Houses = () => {
       <div style={styles.searchBarContainer}>
         <input 
           type="text" 
-          style={styles.input} // Apply the input styles here
+          style={styles.input} 
           placeholder="Search Property Type"
           value={search} 
           onChange={(e) => setSearch(e.target.value)} 
