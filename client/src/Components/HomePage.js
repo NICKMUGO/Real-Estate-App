@@ -1,19 +1,18 @@
 import AwardsPage from "./AwardsPage";
 import HighlightsofHouses from "./HighlightsofHouses";
-import Navbar from "./NavBar";
 import React from "react";
-import Footer from "./Footer";
+import QuestionsPage from "./QuestionsPage";
+import LandingPage from "./LandingPage";
+
 function HomePage() {
     return (
       <div>
-          {/* <h1>Hello Wolrd</h1> */}
-          <Navbar/>
-          <br></br><br></br><br></br>
+          <LandingPage/> 
           <AwardsPage/>
           <br></br><br></br><br></br>
           <HighlightsofHouses/>
-          <br></br><br></br><br></br>
-          <Footer />
+          <br></br><br></br><br></br><br></br>
+          <QuestionsPage/>
       </div>
     );
   }

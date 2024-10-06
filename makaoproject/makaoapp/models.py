@@ -8,13 +8,13 @@ class User(models.Model):
         ('client', 'Client'),
         ('owner', 'Owner'),
     ]
-    user_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=150, unique=True) 
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)  
     phone_number = models.CharField(max_length=15)  
     address = models.CharField(max_length=255)  
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES,default='client')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -22,15 +22,19 @@ class User(models.Model):
         return self.username
 
 class Client(User):
-    preferences = models.TextField()
 
+    def save(self, *args, **kwargs):
+        self.role = 'client' 
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"Client: {self.username}"
 
 
 class Owner(User):
-    status = models.CharField(max_length=50)
 
+    def save(self, *args, **kwargs):
+        self.role = 'owner' 
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"Owner: {self.username}"
 
@@ -40,10 +44,14 @@ class Property(models.Model):
         ('bungalow', 'Bungalow'),
         ('mansion', 'Manison'),
     )
+    status = (
+        ('available', 'Available'),
+        ('sold', 'Sold')
+    )
     user_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
     property_type = models.CharField(max_length=100,choices=property_types)  
     image = models.ImageField(upload_to='properties/')  
-    status = models.CharField(max_length=50)  
+    status = models.CharField(max_length=50 ,choices=status)  
     price = models.IntegerField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -62,7 +70,7 @@ class Rental(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Rental for {self.property_id} by {self.user_id}"
+        return f"Rental for {self.property_id} by {self.tenant}"
 
 class Utility(models.Model):
     utility_id = models.AutoField(primary_key=True)
@@ -101,7 +109,7 @@ class Payment(models.Model):
 
 class PayRent(models.Model):
     rental = models.ForeignKey(Rental, on_delete=models.CASCADE)
-    tenant = models.ForeignKey(User, on_delete=models.CASCADE)  # The person renting
+    tenant = models.ForeignKey(Client, on_delete=models.CASCADE) 
     payrent_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(decimal_places=2, max_digits=9)
     payment_date = models.DateTimeField()

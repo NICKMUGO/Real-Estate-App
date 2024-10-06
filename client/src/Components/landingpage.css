@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.bodytext {
+  height: 100vh;
+  background-image: url(house.jpg)!important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 190px;
+  padding-left: 50px;
+}
+
+.bodytext h1 {
+  color: #ffffff;
+  font-size: 70px;
+  font-family: "Oswald", sans-serif;
+  line-height: 72px;
+  text-align: justify;
+  margin-top: 0;
+  font-weight: 500;
+}
+
+.bodytext p {
+  color: #ffffff;
+  font-size: 24px;
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.bodytext input {
+  width: 356px;
+  height: 43px;
+  padding: 0 8px;
+  border: 0;
+  background-color: #eeeeee;
+  color: #031739;
+  font-size: 14px;
+  font-family: "Playfair Display", serif;
+  line-height: 36px;
+  outline: none;
+  margin-right: 10px;
+  margin-top: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.bodytext input:hover {
+  background-color: lightgray;
+}
+
+.navbarbutton {
+  position: relative;
+  display: flex;
+  margin-top: 90px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px;
+  background: #031739;
+  font-family: "Playfair Display", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  margin-left: 300px;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+}
+
+.navbarbutton::after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #B4975A;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.navbarbutton:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+.navbarbutton span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px 70px;
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbarbutton:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

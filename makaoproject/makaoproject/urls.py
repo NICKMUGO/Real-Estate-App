@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from makaoapp import views
 from makaoapp.views import (
     UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
-    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate
 )
 
 urlpatterns = [
@@ -37,4 +39,13 @@ urlpatterns = [
     path('utility/<int:pk>/', UtilityDetails.as_view(), name='utility_details'),
     path('utilityprovider/', UtilityProviderListCreate.as_view(), name='utilityprovider_listcreate'),
     path('utilityprovider/<int:pk>/', UtilityProviderDetails.as_view(), name='utilityprovider_details'),
+    path('login/',views.Login,name='login'),
+    path('logout/',views.logout,name='logout'),
+    path('properties/user/<int:user_id>/', PropertyByUserId.as_view(), name='properties_by_user_id'),
+    path('payments/user/<int:user_id>/', PaymentsByUserId.as_view(), name='payments_by_user_id'),
+    path('owners/', OnwerListCreate.as_view(), name='onwer_listcreate'),
+    path('owner/<int:pk>/', OwnerDetails.as_view(), name='onwer_details'),
+    
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

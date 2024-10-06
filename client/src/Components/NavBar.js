@@ -3,11 +3,11 @@ import "./NavBar.css";
 
 function Navbar() {
     return (
-        <div>
+        <div className="NavBar">
             <nav>
                 <ul className="header">
                     <li>
-                        <a href="/">MAKAO Marketplace</a>
+                        <a href="/homepage">MAKAO Marketplace</a>
                     </li>
                     <li>
                         <a href="/login">Login</a>
@@ -19,27 +19,13 @@ function Navbar() {
                         <a href="/About">About</a>
                     </li>
                     <li>
-                        <a href="/MyProperties">MyProperty</a>
+                        <a href="/houses">MyProperty</a>
                     </li>
                     <li>
-                        <a href="/MyPaymentspage">MyRent</a>
+                        <a href="/MyPayments">MyPayments</a>
                     </li>
                 </ul>
             </nav>
-
-            <div className="bodytext">
-                <h1>Welcome,</h1>
-                <h1>Your Dream Home Awaits!</h1>
-                {/* 
-                <p>Quick Search</p>
-                <input type="text" className="input" placeholder="Location" />
-                <input type="text" className="input" placeholder="Property Type" />
-                <input type="text" className="input" placeholder="Price Range" /> 
-                */}
-                <button>
-                    <span>Search</span>
-                </button>
-            </div>
         </div>
     );
 }
