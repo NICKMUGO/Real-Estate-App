@@ -9,6 +9,8 @@ const Houses = () => {
   const [myProperties, setMyProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
+  const [propertyId, setPropertyId] = useState("");
 
   useEffect(() => {
     const fetchMyProperties = async () => {
@@ -42,10 +44,11 @@ const Houses = () => {
       padding: '20px',
       backgroundColor: '#031739',
     },
-    searchBar: {
+    searchBarContainer: { 
       display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: '20px',
+      justifyContent: 'center',
+      marginBottom: '30px',
+      width:'40%'
     },
     input: {
       flex: 1,
@@ -53,14 +56,6 @@ const Houses = () => {
       padding: '10px',
       borderRadius: '5px',
       border: '1px solid #ccc',
-    },
-    searchButton: {
-      padding: '10px 15px',
-      borderRadius: '5px',
-      backgroundColor: '#007bff',
-      color: '#fff',
-      border: 'none',
-      cursor: 'pointer',
     },
     houseDisplay: {
       display: 'grid',
@@ -84,19 +79,42 @@ const Houses = () => {
     },
   };
 
+  const PropertySearch = () => {
+    return myProperties.filter((property) => 
+      property.property_type.toString().toLowerCase().includes(search.toLowerCase())
+    );
+  };
+
+  const DeleteProperty = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
+      setMyProperties(myProperties.filter((property) => property.id !== id));
+    }catch (error) {
+      if (error.response) {
+          console.error('Error response:', error.response.data); 
+          alert(error.response.data.detail || 'Failed to Delete Property');
+      } else {
+          console.error('Error submitting form:', error);
+      }
+    }
+  };
+
   return (
     <div style={styles.container}>
-      <div style={styles.searchBar}>
-        <input type="text" style={styles.input} id="location" placeholder="Location" />
-        <input type="text" style={styles.input} placeholder="Property Type" />
-        <button style={styles.searchButton} id="search">Search</button>
+      <div style={styles.searchBarContainer}>
+        <input 
+          type="text" 
+          style={styles.input} // Apply the input styles here
+          placeholder="Search Property Type"
+          value={search} 
+          onChange={(e) => setSearch(e.target.value)} 
+        />
       </div>
-      <PropertyForm/>
-
+      <PropertyForm />
       <center>
         <div style={styles.houseDisplay}>
           {myProperties.length > 0 ? (
-            myProperties.map((property) => (
+            PropertySearch().map((property) => (
               <div style={styles.card} key={property.id}>
                 <img
                   src={property.image}
@@ -109,6 +127,7 @@ const Houses = () => {
                 Status: {property.status}<br />
                 Price: KES {property.price}<br />
                 Description: {property.description}<br />
+                <button onClick={() => DeleteProperty(property.id)}>🚮</button>
               </div>
             ))
           ) : (
