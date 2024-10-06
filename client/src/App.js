@@ -16,7 +16,7 @@ import UserContextProvider from "./Components/UserContextProvider";
 import UtilityProviderForm from "./Components/UtilityProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
-
+import RentalPopup from './Components/RentalPopup';
 function App() {
   return (
     <BrowserRouter>
@@ -37,6 +37,7 @@ function App() {
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/utilityprovider" element={<UtilityProviderForm/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
+        <Route path="/rentalpopup" element={<RentalPopup/>}/> 
       </Routes>
       <Footer /> 
       </UserContextProvider>
