@@ -55,7 +55,7 @@ a:hover{
     height: 200px;
     border-radius: 10px;
 }
-.Contact:hover{
+.Contact{
     background-color: #B4975A;
     transition: ease-in 1s;
 }
