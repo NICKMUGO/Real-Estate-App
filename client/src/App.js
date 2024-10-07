@@ -39,10 +39,6 @@ function App() {
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
         <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
-        
-        
-        
-        
         <Route path="/rentalpopup" element={<RentalPopup/>}/> 
       </Routes>
       <Footer /> 
