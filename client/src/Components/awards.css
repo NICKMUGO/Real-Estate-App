@@ -1,57 +1,343 @@
-/* src/Components/AwardsPage.css */
+
 .awards-page {
-    background-color: #031739;
-    color: white;
-    min-height: 100vh;
-    padding: 20px;
-    text-align: center;
+  background-color: #031739;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+  background-image: url(house.jpg);
+  background-position: center;
+  height: 65vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heading {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #B4975A;
+}
+
+.awards-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.award-item {
+  background-color: rgba(255, 255, 255, 0.1); 
+  margin: 10px;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.award-item h2 {
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.award-item p {
+  font-size: 1rem;
+}
+
+.award-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.questions-page {
+  background-color: #031739;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+  background-image: url(house.jpg);
+  background-position: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.form-group1{
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+
+}
+
+.utilities-form {
+  background-color: #031739;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+  text-decoration-color: white;
+  background-image: url(house.jpg);
+  background-position: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+h5, p {
+  color: white;
+}
+.smaller-carousel {
+  width: 60%;
+  margin: 0 auto; 
+}
+
+.carousel-item img {
+  height: 300px;
+  object-fit: cover; 
+}
+
+.carousel-caption {
+  color: white;
+}
+
+.blue{
+  background-color: #031739;
+}
+
+
+.utilities-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+  background-image:url(house.jpg) ;
+}
+
+.utilities-header {
+  text-align: center;
+  background-color: #031739; 
+  color: #B4975A;
+  padding: 40px 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.utilities-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.utilities-header p {
+  font-size: 1.2em;
+}
+
+.utilities-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.utility-card {
+  background-color: white;
+  border: 2px solid #031739; 
+  border-radius: 8px;
+  width: 250px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.utility-card h2 {
+  color: #031739; 
+  margin-bottom: 15px;
+}
+
+.utility-card p {
+  color: #031739;
+  margin-bottom: 20px;
+}
+
+.utility-button {
+  color: #B4975A;
+  background-color: #B4975A;; 
+  color: #031739; 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.utility-button:hover {
+  background-color: #B4975A; 
+}
+
+.tools-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tools-section h2 {
+  color: #031739 ;
+  margin-bottom: 20px;
+}
+
+.tools-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tool-card {
+  background-color: white;
+  border: 2px solid #031739; 
+  border-radius: 8px;
+  width: 300px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tool-card h3 {
+  color: #031739; /* Navy Blue */
+  margin-bottom: 15px;
+}
+
+.tool-card p {
+  color: #031739;
+  margin-bottom: 20px;
+}
+
+
+.payment-portal, .resource-center, .contact-info {
+  background-color: #031739; 
+  color:#B4975A; 
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.payment-portal button, .resource-center button, .contact-info button {
+  background-color: #B4975A;
+  color: #031739; 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.payment-portal button:hover, .resource-center button:hover, .contact-info button:hover {
+  background-color: #B4975A; 
+}
+
+
+@media (max-width: 768px) {
+  .utilities-section, .tools-container {
+      flex-direction: column;
+      align-items: center;
   }
-  
-  .heading {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #B4975A;
+
+  .utility-card, .tool-card {
+      width: 80%;
   }
-  
-  .awards-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+}
+
+/*/* src/Components/PaymentForm.css */
+.payment-form{
+  background-image:url(house.jpg);
+}
+.payment-container {
+  background: url(house.jpg) no-repeat center center;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #031739; 
+  color: #B4975A; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+}
+
+.payment-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #B4975A; 
+}
+
+.payment-method {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.payment-method label {
+  margin: 0 15px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.payment-method input {
+  margin-right: 8px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #B4975A;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #B4975A; 
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: #031739; 
+  font-size: 1em;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #B4975A; 
+  color: #031739; 
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #B4975A; 
+}
+
+.card-payment, .mpesa-payment {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .payment-container {
+      padding: 20px;
   }
-  
-  .award-item {
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-    width: 200px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
+
+  .payment-method {
+      flex-direction: column;
+      align-items: center;
   }
-  
-  .award-item h2 {
-    margin-top: 15px;
-    font-size: 1.2rem;
+
+  .payment-method label {
+      margin: 10px 0;
   }
-  
-  .award-item p {
-    font-size: 1rem;
-  }
-  
-  .award-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  
-  .questions-page {
-    background-color: #031739;
-    color: white;
-    min-height: 100vh;
-    padding: 20px;
-    text-align: center;
-  }
-  
+}
+
