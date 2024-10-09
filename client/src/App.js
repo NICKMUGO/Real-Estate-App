@@ -45,6 +45,7 @@ function App() {
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/utilityform" element={<UtilityForm/>}/>
         <Route path="/rentalpopup" element={<RentalPopup/>}/> 
+        <Route path="/utilitiesform" element={<UtilitiesForm/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>

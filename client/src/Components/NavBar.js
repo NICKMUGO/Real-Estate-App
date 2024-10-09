@@ -22,7 +22,7 @@ function Navbar() {
                         <a href="/houses">MyProperty</a>
                     </li>
                     <li>
-                        <a href="/MyPayments">MyPayments</a>
+                        <a href="/MyPayments">MyUtilityPay</a>
                     </li>
                 </ul>
             </nav>
