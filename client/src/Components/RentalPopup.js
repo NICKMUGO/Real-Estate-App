@@ -105,7 +105,7 @@ export default function RentalPopup() {
                 <select name='property_id' value={rental.property_id} onChange={handleInputChange} required>
                   <option value=''>Select Property</option>
                   {properties.map((property) => {
-                    console.log('Property:', property); // Debug log
+                    console.log('Property:', property);
                     return (
                       <option key={property.id} value={property.id}>
                         ({property.id}) {property.property_type} - {property.description}
