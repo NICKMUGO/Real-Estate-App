@@ -42,7 +42,7 @@ const Houses = () => {
       maxWidth: '1300px',
       margin: '0 auto',
       padding: '20px',
-      backgroundColor: '#031739',
+      backgroundColor:'white',
     },
     searchBarContainer: { 
       display: 'flex',
