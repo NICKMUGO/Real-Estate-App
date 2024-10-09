@@ -22,6 +22,7 @@ function PaymentForm() {
     };
 
     return (
+        <div className='pay'>
         <div className="payment-container">
             <h2>Make a Payment</h2>
             <form onSubmit={handleSubmit}>
@@ -83,6 +84,7 @@ function PaymentForm() {
                 <button type="submit" className="submit-button">Submit Payment</button>
             </form>
         </div>
+     </div>
     );
 }
 
