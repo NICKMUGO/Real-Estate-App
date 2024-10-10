@@ -13,7 +13,7 @@ class OwnerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PropertiesSerializer(serializers.ModelSerializer):
-
+    user_id = OwnerSerializer(read_only=True)
     class Meta:
         model = Property
         fields='__all__'

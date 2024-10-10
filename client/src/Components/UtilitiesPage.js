@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import UtilityPopup from "./UtilityPopup";
 function UtilitiesPage() {
   const [utilities, setUtilities] = useState([]);
   const [error, setError] = useState(null);
@@ -91,6 +91,15 @@ function UtilitiesPage() {
 
   console.log(utilities[0].utility_type)
 
+  const DeleteUtility= async(utility_id)=>{
+    const response = await axios.delete(`http://127.0.0.1:8000/utility/${utility_id}/`);
+    console.log(response.data);
+  }
+
+  const RedirectUtilityProviders=()=>{
+    window.location.href='/utilityproviderform';
+  }
+
   return (
     <div style={styles.container}>
       <header style={styles.header}>
@@ -112,11 +121,12 @@ function UtilitiesPage() {
           {utilities.length > 0 ? (
             UtilitySearch().map((utility) => (
               <div style={styles.card} key={utility.utility_id}>
+                <button onClick={() => DeleteUtility(utility.utility_id)} style={{marginLeft:'250px'}}>🚮</button>
                 <h2>{utility.utility_type}</h2>
                 <strong>
                   <p>{utility.description}</p>
                 </strong>
-                <button style={styles.button}>Find Providers</button>
+                <button style={styles.button} onClick={()=>RedirectUtilityProviders()}>Find Providers</button>
               </div>
             ))
           ) : (

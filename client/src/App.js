@@ -19,9 +19,8 @@ import UtilityProviderForm from './Components/utilityprovider';
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
-import UtilitiesForm from './Components/UtilitiesForm';
+import UtilityPopup from './Components/UtilityPopup';
 import AllProperties from './Components/AllPropertiesPage';
-
 function App() {
   return (
     <BrowserRouter>
@@ -44,9 +43,8 @@ function App() {
         <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
-        <Route path="/utilityform" element={<UtilityForm/>}/>
+        <Route path="/utilityform" element={<UtilityPopup/>}/>
         <Route path="/rentalpopup" element={<RentalPopup/>}/> 
-        <Route path="/utilitiesform" element={<UtilitiesForm/>}/>
         <Route path='/allproperties' element={<AllProperties/>}/>
       </Routes>
       <Footer /> 

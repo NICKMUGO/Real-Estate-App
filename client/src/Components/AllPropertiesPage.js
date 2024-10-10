@@ -10,7 +10,7 @@ const AllProperties = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [propertyId, setPropertyId] = useState("");
+  const [searchPrice, setPriceSearch] = useState("");
 
   useEffect(() => {
     const fetchMyProperties = async () => {
@@ -79,22 +79,24 @@ const AllProperties = () => {
     },
   };
 
-  const PropertySearch = () => {
-    return myProperties.filter((property) => 
-      property.property_type.toString().toLowerCase().includes(search.toLowerCase())
-    );
+  const filteredProperties = () => {
+    return myProperties.filter((property) => {
+      const matchesType = property.property_type.toString().toLowerCase().includes(search.toLowerCase());
+      const matchesPrice = property.price.toString().toLowerCase().includes(searchPrice.toLowerCase());
+      return matchesType && matchesPrice;
+    });
   };
 
   const DeleteProperty = async (id) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
       setMyProperties(myProperties.filter((property) => property.id !== id));
-    }catch (error) {
+    } catch (error) {
       if (error.response) {
-          console.error('Error response:', error.response.data); 
-          alert(error.response.data.detail || 'Failed to Delete Property');
+        console.error('Error response:', error.response.data); 
+        alert(error.response.data.detail || 'Failed to Delete Property');
       } else {
-          console.error('Error submitting form:', error);
+        console.error('Error submitting form:', error);
       }
     }
   };
@@ -109,12 +111,19 @@ const AllProperties = () => {
           value={search} 
           onChange={(e) => setSearch(e.target.value)} 
         />
+        <input 
+          type="text" 
+          style={styles.input} 
+          placeholder="Your Price"
+          value={searchPrice} 
+          onChange={(e) => setPriceSearch(e.target.value)} 
+        />
       </div>
       <PropertyForm />
       <center>
         <div style={styles.houseDisplay}>
           {myProperties.length > 0 ? (
-            PropertySearch().map((property) => (
+            filteredProperties().map((property) => (
               <div style={styles.card} key={property.id}>
                 <img
                   src={property.image}
@@ -122,7 +131,7 @@ const AllProperties = () => {
                   style={styles.image}
                 />
                 <br />
-                Owner Name: {user.username}<br />
+                Owner Name: {property.user_id ? property.user_id.username : "No owner Found"}<br />
                 Property Type: {property.property_type}<br />
                 Status: {property.status}<br />
                 Price: KES {property.price}<br />
