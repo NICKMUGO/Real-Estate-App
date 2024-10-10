@@ -10,7 +10,7 @@ const Houses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [propertyId, setPropertyId] = useState("");
+  const [editProperty, setEditProperty] = useState(null); 
 
   useEffect(() => {
     const fetchMyProperties = async () => {
@@ -42,13 +42,13 @@ const Houses = () => {
       maxWidth: '1300px',
       margin: '0 auto',
       padding: '20px',
-      backgroundColor:'white',
+      backgroundColor: 'white',
     },
-    searchBarContainer: { 
+    searchBarContainer: {
       display: 'flex',
       justifyContent: 'center',
       marginBottom: '30px',
-      width:'40%'
+      width: '40%',
     },
     input: {
       flex: 1,
@@ -89,12 +89,48 @@ const Houses = () => {
     try {
       await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
       setMyProperties(myProperties.filter((property) => property.id !== id));
-    }catch (error) {
+    } catch (error) {
       if (error.response) {
-          console.error('Error response:', error.response.data); 
-          alert(error.response.data.detail || 'Failed to Delete Property');
+        console.error('Error response:', error.response.data);
+        alert(error.response.data.detail || 'Failed to Delete Property');
       } else {
-          console.error('Error submitting form:', error);
+        console.error('Error submitting form:', error);
+      }
+    }
+  };
+  const handleUpdate = async () => {
+    if (editProperty) {
+      const formData = new FormData();
+      formData.append("property_type", editProperty.property_type);
+      formData.append("price", editProperty.price);
+      formData.append("description", editProperty.description);
+      formData.append("address", editProperty.address);
+      formData.append("status", editProperty.status);
+      formData.append("user_id", user.user_id);
+  
+      if (editProperty.image instanceof File) {
+        formData.append("image", editProperty.image);
+      }
+  
+      try {
+        const response = await axios.patch(
+          `http://127.0.0.1:8000/property/${editProperty.id}/`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setMyProperties((prevProperties) =>
+          prevProperties.map((property) =>
+            property.id === editProperty.id ? response.data : property
+          )
+        );
+        setEditProperty(null);
+      } catch (error) {
+        console.error("Error updating property:", error);
+        alert(error.response?.data?.detail || "Failed to update property");
       }
     }
   };
@@ -110,6 +146,40 @@ const Houses = () => {
           onChange={(e) => setSearch(e.target.value)} 
         />
       </div>
+      {editProperty && (
+        <div>
+          <h3>Edit Property</h3>
+          <button onClick={() => setEditProperty(null)}  style={{borderRadius:'40px',border:"none", padding:"5px"}}>❌</button>
+          <input
+            type="text"
+            value={editProperty.property_type}
+            onChange={(e) =>
+              setEditProperty({ ...editProperty, property_type: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            value={editProperty.price}
+            onChange={(e) =>
+              setEditProperty({ ...editProperty, price: e.target.value })
+            }
+          />
+          <input
+            type="file"
+            onChange={(e) =>
+              setEditProperty({ ...editProperty, image: e.target.files[0] })
+            }
+          />
+          <textarea
+            value={editProperty.description}
+            onChange={(e) =>
+              setEditProperty({ ...editProperty, description: e.target.value })
+            }
+          />
+          <button onClick={handleUpdate}>Update Property</button>
+        </div>
+      )}
+
       <PropertyForm />
       <center>
         <div style={styles.houseDisplay}>
@@ -118,16 +188,24 @@ const Houses = () => {
               <div style={styles.card} key={property.id}>
                 <img
                   src={property.image}
-                  alt={property.description || 'No description available'}
+                  alt={property.description || "No description available"}
                   style={styles.image}
                 />
                 <br />
-                Owner Name: {user.username}<br />
-                Property Type: {property.property_type}<br />
-                Status: {property.status}<br />
-                Price: KES {property.price}<br />
-                Description: {property.description}<br />
-                <button onClick={() => DeleteProperty(property.id)}>🚮</button>
+                Owner Name: {user.username}
+                <br />
+                Property Type: {property.property_type}
+                <br />
+                Status: {property.status}
+                <br />
+                Price: KES {property.price}
+                <br />
+                Description: {property.description}
+                <br />
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                  <button onClick={() => DeleteProperty(property.id)} style={{borderRadius:'40px',border:"none", padding:"5px"}}>🚮</button>
+                  <button onClick={() => setEditProperty(property)} style={{borderRadius:'40px',border:"none", padding:"5px"}}>✏️</button>
+                </div>
               </div>
             ))
           ) : (
@@ -137,6 +215,6 @@ const Houses = () => {
       </center>
     </div>
   );
-}
+};
 
 export default Houses;

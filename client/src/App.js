@@ -44,7 +44,7 @@ function App() {
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/utilityform" element={<UtilityPopup/>}/>
-        <Route path="/rentalpopup" element={<RentalPopup/>}/> 
+        <Route path="/rentalpopup" element={<RentalPopup/>}/>
         <Route path='/allproperties' element={<AllProperties/>}/>
       </Routes>
       <Footer /> 
