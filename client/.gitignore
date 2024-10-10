@@ -29,12 +29,14 @@ myvenv/
 __pycache__/
 *.pyc
 
+
 # Ignore static and media files (if applicable)
 staticfiles/
 media/
 
 # Ignore environment-specific settings
 .env
+
 
 
 

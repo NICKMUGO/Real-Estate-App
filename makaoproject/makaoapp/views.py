@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -82,6 +82,17 @@ class OnwerListCreate(generics.ListCreateAPIView):
     serializer_class = OwnerSerializer
     permission_classes = [AllowAny] 
 
+class ClientDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Client.objects.all()
+    serializer_class= ClientSerializer
+    permission_classes = [AllowAny]
+
+class ClienListCreate(generics.ListCreateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+    permission_classes = [AllowAny] 
+
+
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
     serializer_class= PropertiesSerializer
@@ -110,10 +121,10 @@ class RentalListCreate(generics.ListCreateAPIView):
     serializer_class= RentalSerializer
     permission_classes = [AllowAny]
 
-    def dispatch(self, request, *args, **kwargs):
-        if 'user_id' not in request.session:
-            return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if 'user_id' not in request.session:
+    #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
+    #     return super().dispatch(request, *args, **kwargs)
 class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
