@@ -19,6 +19,7 @@ import UtilityProviderForm from './Components/utilityprovider';
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
+import UserProfile from './Components/UserProfile';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/rentalpopup" element={<RentalPopup/>}/> 
+        <Route path="/userprofile" element={<UserProfile/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>
