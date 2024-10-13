@@ -22,6 +22,8 @@ import UtilityPage from './Components/UtilitiesPage';
 import UtilityPopup from './Components/UtilityPopup';
 import AllProperties from './Components/AllPropertiesPage';
 import DetailProperty from './Components/DetailProperty';
+import MyRentals from './Components/MyRentals';
+import RentalDetail from './Components/RentalDetail';
 function App() {
   return (
     <BrowserRouter>
@@ -48,6 +50,8 @@ function App() {
         <Route path="/rentalpopup" element={<RentalPopup/>}/>
         <Route path='/allproperties' element={<AllProperties/>}/>
         <Route path="/property/:id" element={<DetailProperty/>} />
+        <Route path="/myrentals" element={<MyRentals/>} />
+        <Route path="/rental/:id" element={<RentalDetail/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>
