@@ -22,10 +22,10 @@ const PropertyForm = () => {
             backgroundColor: '#031739',
             padding: '30px',
             borderRadius: '10px',
-            maxWidth: '75%', // Make responsive (from 350px fixed width)
-            width: '500px', // Max width for larger screens
+            maxWidth: '75%', 
+            width: '500px', 
             position: 'relative',
-            overflowY: 'auto', // Allow content to scroll inside the popup
+            overflowY: 'auto', 
         },
         form: {
             display: 'flex',

@@ -3,6 +3,7 @@ import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import PropertyForm from "./PropertyForm";
+import { Link } from "react-router-dom";
 
 const AllProperties = () => {
   const [user] = useContext(Usercontext);
@@ -125,17 +126,19 @@ const AllProperties = () => {
           {myProperties.length > 0 ? (
             filteredProperties().map((property) => (
               <div style={styles.card} key={property.id}>
-                <img
-                  src={property.image}
-                  alt={property.description || 'No description available'}
-                  style={styles.image}
-                />
-                <br />
-                Owner Name: {property.user_id ? property.user_id.username : "No owner Found"}<br />
-                Property Type: {property.property_type}<br />
-                Status: {property.status}<br />
-                Price: KES {property.price}<br />
-                Description: {property.description}<br />
+                <Link to={`/property/${property.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <img
+                    src={property.image}
+                    alt={property.description || 'No description available'}
+                    style={styles.image}
+                  />
+                  <br />
+                  Owner Name: {property.user_id ? property.user_id.username : "No owner Found"}<br />
+                  Property Type: {property.property_type}<br />
+                  Status: {property.status}<br />
+                  Price: KES {property.price}<br />
+                  Description: {property.description}<br />
+                </Link>
                 <button onClick={() => DeleteProperty(property.id)}>🚮</button>
               </div>
             ))

@@ -21,6 +21,7 @@ import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
 import UtilityPopup from './Components/UtilityPopup';
 import AllProperties from './Components/AllPropertiesPage';
+import DetailProperty from './Components/DetailProperty';
 function App() {
   return (
     <BrowserRouter>
@@ -46,6 +47,7 @@ function App() {
         <Route path="/utilityform" element={<UtilityPopup/>}/>
         <Route path="/rentalpopup" element={<RentalPopup/>}/>
         <Route path='/allproperties' element={<AllProperties/>}/>
+        <Route path="/property/:id" element={<DetailProperty/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>
