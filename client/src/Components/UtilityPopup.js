@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-import UtilitiesPage from './UtilitiesPage';
 
 function UtilityPopup() {
   const styles = {
