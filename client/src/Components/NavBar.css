@@ -45,3 +45,66 @@ nav a:hover {
 nav li:first-child {
     margin-right: auto;
 }
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: #031739;
+    color: B4975A;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+}
+
+.sidebar a:hover {
+    color: #B4975A;
+}
+
+
+.sidebar-toggle {
+    background: transparent; 
+    border: none; 
+    cursor: pointer; 
+    color: #B4975A;
+    font-size: 20px; 
+    padding: 10px; 
+    transition: color 0.3s; 
+}
+
+
+.close-sidebar-button {
+    margin-top: 20px;
+    background: #B4975A;
+    color: #031739;
+    border: none; 
+    padding: 10px;
+    width: 100%; 
+    font-family: "Playfair Display", serif; 
+    font-size: 17px;
+    font-weight: bolder; 
+    cursor: pointer;
+    transition: background 0.3s; 
+}
+.close-sidebar-button:hover {
+    background: #9A7B4A; 
+}

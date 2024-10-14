@@ -7,19 +7,25 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'
+
 class OwnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Owner
         fields = '__all__'
 
 class PropertiesSerializer(serializers.ModelSerializer):
-
+    user_id = OwnerSerializer(read_only=True)
     class Meta:
         model = Property
         fields='__all__'
 
 class RentalSerializer(serializers.ModelSerializer):
     property_id = PropertiesSerializer(read_only=True)
+    tenant = ClientSerializer(read_only=True)
     class Meta:
         model = Rental
         fields='__all__'

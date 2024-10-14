@@ -1,5 +1,5 @@
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import LoginPage from './Components/LoginPage';
@@ -15,14 +15,15 @@ import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
-import UtilityProviderForm from './Components/utilityprovider';
+import UtilityProviderForm from './Components/UtilityProviderForm';
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
-import UtilitiesForm from './Components/UtilitiesForm';
+import UtilityPopup from './Components/UtilityPopup';
 import AllProperties from './Components/AllPropertiesPage';
-import UserProfile from './Components/UserProfile';
-
+import DetailProperty from './Components/DetailProperty';
+import MyRentals from './Components/MyRentals';
+import RentalDetail from './Components/RentalDetail';
 function App() {
   return (
     <BrowserRouter>
@@ -45,11 +46,12 @@ function App() {
         <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
-        
-        <Route path="/rentalpopup" element={<RentalPopup/>}/> 
-        <Route path="/utilitiesform" element={<UtilitiesForm/>}/>
+        <Route path="/utilityform" element={<UtilityPopup/>}/>
+        <Route path="/rentalpopup" element={<RentalPopup/>}/>
         <Route path='/allproperties' element={<AllProperties/>}/>
-        <Route path="/userprofile" element={<UserProfile/>}/>
+        <Route path="/property/:id" element={<DetailProperty/>} />
+        <Route path="/myrentals" element={<MyRentals/>} />
+        <Route path="/rental/:id" element={<RentalDetail/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>

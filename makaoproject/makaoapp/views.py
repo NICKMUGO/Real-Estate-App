@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
+from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client
 from rest_framework import generics,status
 from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer
 from django.db import transaction
@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     return HttpResponse("Welcome to MakaoApp API")
+
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= User.objects.all()
     serializer_class= UserSerializer
@@ -72,6 +73,7 @@ class UserListCreate(generics.ListCreateAPIView):
             )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 class OwnerDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Owner.objects.all()
     serializer_class= OwnerSerializer
@@ -91,7 +93,6 @@ class ClienListCreate(generics.ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [AllowAny] 
-
 
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
@@ -115,7 +116,7 @@ class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
     #     print(f"User allowed: user_id={request.session['user_id']}")
     #     return super().dispatch(request, *args, **kwargs)
-
+@method_decorator(csrf_exempt, name='dispatch')
 class RentalListCreate(generics.ListCreateAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -125,6 +126,7 @@ class RentalListCreate(generics.ListCreateAPIView):
     #     if 'user_id' not in request.session:
     #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
     #     return super().dispatch(request, *args, **kwargs)
+
 class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -202,8 +204,6 @@ def logout(request):
     request.session.flush()  # Clears the session
     return JsonResponse({'message': 'Logged out successfully'}, status=200)
 
-
-
 class PropertyByUserId(generics.ListAPIView):
     serializer_class = PropertiesSerializer
     permission_classes = [AllowAny]
@@ -212,7 +212,6 @@ class PropertyByUserId(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         return Property.objects.filter(user_id__user_ptr=user_id) 
 
-
 class PaymentsByUserId(generics.ListAPIView):
     serializer_class = PaymentSerializer
     permission_classes = [AllowAny]
@@ -220,6 +219,15 @@ class PaymentsByUserId(generics.ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         return Payment.objects.filter(user_id=user_id) 
+
+class RentalsByUserId(generics.ListAPIView):
+    serializer_class = RentalSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        owner_id = self.kwargs['owner_id']
+        return Rental.objects.filter(property_id__user_id=owner_id)
+
 
 
 
