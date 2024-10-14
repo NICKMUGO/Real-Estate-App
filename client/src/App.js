@@ -21,6 +21,7 @@ import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
 import UtilitiesForm from './Components/UtilitiesForm';
 import AllProperties from './Components/AllPropertiesPage';
+import UserProfile from './Components/UserProfile';
 
 function App() {
   return (
@@ -44,10 +45,11 @@ function App() {
         <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
-        <Route path="/utilityform" element={<UtilityForm/>}/>
+        
         <Route path="/rentalpopup" element={<RentalPopup/>}/> 
         <Route path="/utilitiesform" element={<UtilitiesForm/>}/>
         <Route path='/allproperties' element={<AllProperties/>}/>
+        <Route path="/userprofile" element={<UserProfile/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>
