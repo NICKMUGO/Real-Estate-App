@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,Property,UtilityProvider,Utility,Owner,Client
+from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client
 from rest_framework import generics,status
 from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer
 from django.db import transaction
@@ -116,7 +116,7 @@ class PropertyDetails(generics.RetrieveUpdateDestroyAPIView):
     #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
     #     print(f"User allowed: user_id={request.session['user_id']}")
     #     return super().dispatch(request, *args, **kwargs)
-
+@method_decorator(csrf_exempt, name='dispatch')
 class RentalListCreate(generics.ListCreateAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -220,18 +220,14 @@ class PaymentsByUserId(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         return Payment.objects.filter(user_id=user_id) 
 
-def property_detail(request, id):
-    try:
-        property = Property.objects.get(id=id)
-        data = {
-            'name': property.name,
-            'description': property.description,
-            'price': property.price,
-            # Add more fields as needed
-        }
-        return JsonResponse(data)
-    except Property.DoesNotExist:
-        return JsonResponse({'error': 'Property not found'}, status=404)
+class RentalsByUserId(generics.ListAPIView):
+    serializer_class = RentalSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        owner_id = self.kwargs['owner_id']
+        return Rental.objects.filter(property_id__user_id=owner_id)
+
 
 
 

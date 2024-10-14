@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const DetailProperty = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,9 +37,9 @@ const DetailProperty = () => {
       maxWidth: '500px',
       margin: '50px auto',
       padding: '20px',
-      backgroundColor: '#ffffff !important', // Ensure white background
+      backgroundColor: '#ffffff !important', 
       borderRadius: '15px',
-      border: '5px solid #000 !important', // Ensure thick black border
+      border: '5px solid #000 !important', 
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
     },
     image: {
@@ -63,7 +64,7 @@ const DetailProperty = () => {
     price: {
       fontSize: '28px',
       fontWeight: '600',
-      color: '#4CAF50',
+      color: '#031739', // Change to blue
       marginBottom: '15px',
       textAlign: 'center',
     },
@@ -72,6 +73,35 @@ const DetailProperty = () => {
       lineHeight: '1.6',
       color: '#555',
       textAlign: 'center',
+    },
+    backButton: {
+      padding: '10px 15px',
+      margin: '20px auto',
+      border: 'none',
+      borderRadius: '5px',
+      backgroundColor: '#031739', // Change to blue
+      color: 'white',
+      cursor: 'pointer',
+      display: 'block',
+      textAlign: 'center',
+      textDecoration: 'none',
+    },
+    userDetailsContainer: {
+      marginTop: '20px',
+      padding: '15px',
+      borderRadius: '10px',
+      backgroundColor: '#e9ecef',
+      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+    },
+    userDetail: {
+      fontSize: '18px',
+      lineHeight: '1.6',
+      color: '#333',
+      marginBottom: '10px',
+    },
+    userDetailLabel: {
+      fontWeight: 'bold',
+      color: '#031739', // Change to blue
     },
   };
 
@@ -89,6 +119,22 @@ const DetailProperty = () => {
             <p style={styles.price}>Price: KES {property.price}</p>
             <p style={styles.description}>{property.description}</p>
           </div>
+          <div style={styles.userDetailsContainer}>
+            <h2 style={{ textAlign: 'center', margin: '10px 0' }}>User Details</h2>
+            <p style={styles.userDetail}>
+              <span style={styles.userDetailLabel}>Username: </span>
+              {property.user_id ? property.user_id.username : "No user found"}
+            </p>
+            <p style={styles.userDetail}>
+              <span style={styles.userDetailLabel}>Email: </span>
+              {property.user_id ? property.user_id.email : "No email found"}
+            </p>
+            <p style={styles.userDetail}>
+              <span style={styles.userDetailLabel}>Phone Number: </span>
+              {property.user_id ? property.user_id.phone_number : "No phone number found"}
+            </p>
+          </div>
+          <button onClick={() => navigate(-1)} style={styles.backButton}>Go Back</button>
         </div>
       ) : (
         <p>No property details found.</p>

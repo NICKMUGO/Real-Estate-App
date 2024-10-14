@@ -22,37 +22,41 @@ import UtilityPage from './Components/UtilitiesPage';
 import UtilityPopup from './Components/UtilityPopup';
 import AllProperties from './Components/AllPropertiesPage';
 import DetailProperty from './Components/DetailProperty';
-import PropertyPage from './Components/PropertyPage'; // Import the PropertyPage component
-
+import MyRentals from './Components/MyRentals';
+import RentalDetail from './Components/RentalDetail';
 function App() {
-    return (
-        <UserContextProvider>
-            <NavBar />
-            <Routes>
-                <Route path="/" element={<LoginPage />} />
-                <Route path="/awards" element={<AwardsPage />} />
-                <Route path="/questions" element={<QuestionsPage />} />
-                <Route path="/homepage" element={<HomePage />} />
-                <Route path="/highlights" element={<HighlightsofHouses />} />
-                <Route path="/MyPayments" element={<MyPaymentspage />} />
-                <Route path="/questions" element={<QuestionsPage />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/landingpage" element={<LandingPage />} />
-                <Route path="/payrent" element={<PayRentPage />} />
-                <Route path="/houses" element={<Houses />} />
-                <Route path="/propertyform" element={<PropertyForm />} />
-                <Route path="/utilityproviderform" element={<UtilityProviderForm />} />
-                <Route path="/paymentform" element={<PaymentForm />} />
-                <Route path="/utilitiespage" element={<UtilityPage />} />
-                <Route path="/utilityform" element={<UtilityPopup />} />
-                <Route path="/rentalpopup" element={<RentalPopup />} />
-                <Route path='/allproperties' element={<AllProperties />} />
-                <Route path="/property/:id" element={<PropertyPage />} /> {/* Add this line */}
-            </Routes>
-            <Footer />
-        </UserContextProvider>
-    );
+  return (
+    <BrowserRouter>
+      <UserContextProvider>
+      <NavBar /> 
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/awards" element={<AwardsPage />} />
+        <Route path="/questions" element={<QuestionsPage />} />
+        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/highlights" element={<HighlightsofHouses />} />
+        <Route path="/MyPayments" element={<MyPaymentspage />} />
+        <Route path="/questions" element={<QuestionsPage/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/landingpage" element={<LandingPage/>}/>
+        <Route path="/payrent" element={<PayRentPage/>}/>
+        <Route path="/houses" element={<Houses/>}/>
+        <Route path="/propertyform" element={<PropertyForm/>}/>
+        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
+        <Route path="/paymentform" element={<PaymentForm/>}/>
+        <Route path="/utilitiespage" element={<UtilityPage/>}/>
+        <Route path="/utilityform" element={<UtilityPopup/>}/>
+        <Route path="/rentalpopup" element={<RentalPopup/>}/>
+        <Route path='/allproperties' element={<AllProperties/>}/>
+        <Route path="/property/:id" element={<DetailProperty/>} />
+        <Route path="/myrentals" element={<MyRentals/>} />
+        <Route path="/rental/:id" element={<RentalDetail/>} />
+      </Routes>
+      <Footer /> 
+      </UserContextProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;

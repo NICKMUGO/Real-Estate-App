@@ -1,65 +1,135 @@
-footer{
+footer {
     background-color: #031739;
     font-family: Playfair Display;
     padding-top: 50px;
     padding-bottom: 20px;
     background-size: 1298px;
 }
-#footer{
+
+#footer {
     position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-#f-title{
+
+#f-title {
     margin-top: -30px;
     padding-left: 100px;
     font-size: xx-large;
     font-weight: bold;
-    font-family: Bebas Neue ;
+    font-family: Bebas Neue;
     color: #B4975A;
+    text-align: center;
 }
-#f-desc{
+
+#f-desc {
     position: relative;
-    display:flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-left: 20px;
 }
-.f-contacts{
+
+.f-contacts {
     padding-left: 100px;
     text-align: left;
 }
-.Contact{
+
+.Contact {
     width: 80px;
     padding: 5px;
     margin: 10px;
     border-radius: 50%;
+    background-color: #B4975A;
+    transition: ease-in 1s;
 }
-#contacts{
+
+#contacts {
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-wrap: wrap;
     margin-top: -100px;
 }
-.f-p{
+
+.f-p {
     font-size: small;
     color: gray;
 }
+
 a {
     text-decoration: none;
     color: white;
     font-size: large;
 }
-a:hover{
+
+a:hover {
     color: #B4975A;
 }
-#logo{
+
+#logo {
     width: 200px;
     height: 200px;
     border-radius: 10px;
 }
-.Contact{
-    background-color: #B4975A;
-    transition: ease-in 1s;
-}
-#fb{
+
+#fb {
     border-radius: 0%;
     width: 100px;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    #footer {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #f-title {
+        margin-top: 0;
+        padding-left: 0;
+        font-size: 2.5rem;
+    }
+
+    #f-desc {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 40px;
+    }
+
+    .f-contacts {
+        padding-left: 50px;
+        text-align: left;
+    }
+
+    #contacts {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    #f-title {
+        font-size: 2rem;
+        padding-left: 0;
+    }
+
+    .f-contacts {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .Contact {
+        width: 50px;
+    }
+
+    #contacts {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    #f-copy {
+        font-size: 0.8rem;
+        text-align: center;
+    }
 }

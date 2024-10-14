@@ -3,6 +3,7 @@ import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import PropertyForm from "./PropertyForm";
+import { Link } from "react-router-dom";
 
 const Houses = () => {
   const [user] = useContext(Usercontext);
@@ -186,6 +187,7 @@ const Houses = () => {
           {myProperties.length > 0 ? (
             PropertySearch().map((property) => (
               <div style={styles.card} key={property.id}>
+                <Link to={`/property/${property.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <img
                   src={property.image}
                   alt={property.description || "No description available"}
@@ -202,6 +204,7 @@ const Houses = () => {
                 <br />
                 Description: {property.description}
                 <br />
+                </Link>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
                   <button onClick={() => DeleteProperty(property.id)} style={{borderRadius:'40px',border:"none", padding:"5px"}}>🚮</button>
                   <button onClick={() => setEditProperty(property)} style={{borderRadius:'40px',border:"none", padding:"5px"}}>✏️</button>
