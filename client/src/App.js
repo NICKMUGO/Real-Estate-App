@@ -24,6 +24,7 @@ import AllProperties from './Components/AllPropertiesPage';
 import DetailProperty from './Components/DetailProperty';
 import MyRentals from './Components/MyRentals';
 import RentalDetail from './Components/RentalDetail';
+import AboutusPage from "./Components/aboutusPage";
 function App() {
   return (
     <BrowserRouter>
@@ -52,6 +53,7 @@ function App() {
         <Route path="/property/:id" element={<DetailProperty/>} />
         <Route path="/myrentals" element={<MyRentals/>} />
         <Route path="/rental/:id" element={<RentalDetail/>} />
+        <Route path="/aboutusPage" element={<AboutusPage/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>
