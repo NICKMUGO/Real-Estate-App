@@ -93,18 +93,24 @@ nav li:first-child {
 
 
 .close-sidebar-button {
-    margin-top: 20px;
+    position: absolute; /* Ensure it's positioned relative to its parent container */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Move the button back by 50% of its width and height */
     background: #B4975A;
     color: #031739;
-    border: none; 
     padding: 10px;
-    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
     font-family: "Playfair Display", serif; 
     font-size: 17px;
-    font-weight: bolder; 
+    font-weight: bolder;
     cursor: pointer;
-    transition: background 0.3s; 
+    transition: background 0.3s;
 }
+
 .close-sidebar-button:hover {
     background: #9A7B4A; 
 }

@@ -93,7 +93,7 @@ const PropertyForm = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [owners, setOwners] = useState([]);
     const [property, setProperty] = useState({
-        id: "",
+        owner: null,
         property_type: "",
         image: null, 
         status: "",
@@ -113,9 +113,10 @@ const PropertyForm = () => {
 
     const handlePropertySubmit = async (e) => {
         e.preventDefault();
-        
+
+        console.log("Property data before submission:", property);
         const formData = new FormData(); 
-        formData.append('user_id', property.id); 
+        formData.append('owner', property.owner); 
         formData.append('property_type', property.property_type); 
         formData.append('image', property.image);
         formData.append('status', property.status);
@@ -158,8 +159,8 @@ const PropertyForm = () => {
                                 id="owner_name"
                                 required
                                 style={styles.input}
-                                value={property.id}
-                                onChange={(e) => setProperty({ ...property, id: e.target.value })}
+                                value={property.owner}
+                                onChange={(e) => setProperty({ ...property, owner: e.target.value })}
                             >
                                 <option value="" disabled>Select your name</option>
                                 {owners.map((owner) => (
