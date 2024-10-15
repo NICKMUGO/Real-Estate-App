@@ -19,8 +19,12 @@ import UtilityProviderForm from './Components/utilityprovider';
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
+import UtilityPopup from './Components/UtilityPopup';
 import AllProperties from './Components/AllPropertiesPage';
-
+import DetailProperty from './Components/DetailProperty';
+import MyRentals from './Components/MyRentals';
+import RentalDetail from './Components/RentalDetail';
+import AboutusPage from "./Components/aboutusPage";
 function App() {
   return (
     <BrowserRouter>
@@ -43,8 +47,13 @@ function App() {
         <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
-        <Route path="/rentalpopup" element={<RentalPopup/>}/> 
-        <Route path="/allproperties" element={<AllProperties/>}/> 
+        <Route path="/utilityform" element={<UtilityPopup/>}/>
+        <Route path="/rentalpopup" element={<RentalPopup/>}/>
+        <Route path='/allproperties' element={<AllProperties/>}/>
+        <Route path="/property/:id" element={<DetailProperty/>} />
+        <Route path="/myrentals" element={<MyRentals/>} />
+        <Route path="/rental/:id" element={<RentalDetail/>} />
+        <Route path="/aboutusPage" element={<AboutusPage/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>

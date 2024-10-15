@@ -48,7 +48,7 @@ class Property(models.Model):
         ('available', 'Available'),
         ('sold', 'Sold')
     )
-    user_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
     property_type = models.CharField(max_length=100,choices=property_types)  
     image = models.ImageField(upload_to='properties/')  
     status = models.CharField(max_length=50 ,choices=status)  

@@ -21,17 +21,20 @@ from makaoapp import views
 from makaoapp.views import (
     UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
-    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId
 )
+from .views import property_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('user/<int:pk>/', UserDetails.as_view(), name='user_details'),
     path('users/', UserListCreate.as_view(), name='user_listcreate'),
+    path('client/<int:pk>/', ClientDetails.as_view(), name='user_details'),
+    path('clients/', ClienListCreate.as_view(), name='user_listcreate'),
     path('properties/', PropertyListCreate.as_view(), name='property_listcreate'),
     path('property/<int:pk>/', PropertyDetails.as_view(), name='property_details'),
-    path('rental/', RentalListCreate.as_view(), name='rental_listcreate'),
+    path('rentals/', RentalListCreate.as_view(), name='rental_listcreate'),
     path('rental/<int:pk>/', RentalDetails.as_view(), name='rental_details'),
     path('payment/', PaymentListCreate.as_view(), name='payment_listcreate'),
     path('payment/<int:pk>/', PaymentDetails.as_view(), name='payment_details'),
@@ -45,7 +48,8 @@ urlpatterns = [
     path('payments/user/<int:user_id>/', PaymentsByUserId.as_view(), name='payments_by_user_id'),
     path('owners/', OnwerListCreate.as_view(), name='onwer_listcreate'),
     path('owner/<int:pk>/', OwnerDetails.as_view(), name='onwer_details'),
-    
+    path('rentalUser/<int:owner_id>/', RentalsByUserId.as_view(), name='rental_by_user'),  
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

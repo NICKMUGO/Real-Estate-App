@@ -1,4 +1,6 @@
 import axios from "axios";
+import './utilityprovider.css';
+
 import React, { useEffect, useState } from "react";
 
 const UtilityProviderForm = () => {
@@ -26,9 +28,7 @@ const UtilityProviderForm = () => {
         form: {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',  // Centers items vertically
-            
-            
+            justifyContent: 'center',
         },
         h2: {
             color: '#B4975A',
@@ -39,13 +39,7 @@ const UtilityProviderForm = () => {
             fontFamily: 'Times New Roman, Times, serif',
             color: '#B4975A',
         },
-        input: {
-            padding: '10px',
-            marginTop: '5px',
-            border: '0.5px solid #ccc',
-            borderRadius: '5px',
-            backgroundColor: 'gray',
-        },
+       
         button: {
             padding: '15px',
             backgroundColor: 'black',
@@ -116,9 +110,6 @@ const UtilityProviderForm = () => {
         };
         fetchUtilities();
     }, []);
-    useEffect(() => {
-        console.log(utilities); 
-    }, [utilities]);
 
     return (
         <div>
@@ -140,7 +131,7 @@ const UtilityProviderForm = () => {
                                 id="provider_name"
                                 name="provider_name"
                                 required
-                                style={styles.input}
+                                className="utility-provider-input provider-name"
                                 value={Utilityprovider.providername}
                                 onChange={(e) =>
                                     setUtilityprovider({ ...Utilityprovider, providername: e.target.value })
@@ -153,7 +144,7 @@ const UtilityProviderForm = () => {
                                 id="contact_info"
                                 name="contact_info"
                                 required
-                                style={styles.input}
+                                className="utility-provider-input contact-info"
                                 value={Utilityprovider.contact_info}
                                 onChange={(e) =>
                                     setUtilityprovider({ ...Utilityprovider, contact_info: e.target.value })
@@ -165,7 +156,7 @@ const UtilityProviderForm = () => {
                                 id="utility_type"
                                 name="utility_type"
                                 required
-                                style={styles.input}
+                                className="utility-provider-input utility-type"
                                 value={Utilityprovider.utility_id}
                                 onChange={(e) =>
                                     setUtilityprovider({ ...Utilityprovider, utility_id: e.target.value })

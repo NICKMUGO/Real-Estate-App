@@ -1,21 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./AllProperties.css";
+import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import PropertyForm from "./PropertyForm";
+import { Link } from "react-router-dom";
 
-const Houses = () => {
+const AllProperties = () => {
   const [user] = useContext(Usercontext);
   const [myProperties, setMyProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [propertyId, setPropertyId] = useState("");
+  const [searchPrice, setPriceSearch] = useState("");
 
   useEffect(() => {
     const fetchMyProperties = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/properties/user/${user.user_id}/`);
+        const response = await axios.get(`http://127.0.0.1:8000/properties/`);
         setMyProperties(response.data);
       } catch (error) {
         setError(error.response ? error.response.data.detail : "Failed to fetch properties");
@@ -25,7 +26,7 @@ const Houses = () => {
     };
 
     fetchMyProperties();
-  }, [user]);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,7 +43,7 @@ const Houses = () => {
       maxWidth: '1300px',
       margin: '0 auto',
       padding: '20px',
-      backgroundColor: '#031739',
+      backgroundColor:'white',
     },
     searchBarContainer: { 
       display: 'flex',
@@ -79,22 +80,24 @@ const Houses = () => {
     },
   };
 
-  const PropertySearch = () => {
-    return myProperties.filter((property) => 
-      property.property_type.toString().toLowerCase().includes(search.toLowerCase())
-    );
+  const filteredProperties = () => {
+    return myProperties.filter((property) => {
+      const matchesType = property.property_type.toString().toLowerCase().includes(search.toLowerCase());
+      const matchesPrice = property.price.toString().toLowerCase().includes(searchPrice.toLowerCase());
+      return matchesType && matchesPrice;
+    });
   };
 
   const DeleteProperty = async (id) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
       setMyProperties(myProperties.filter((property) => property.id !== id));
-    }catch (error) {
+    } catch (error) {
       if (error.response) {
-          console.error('Error response:', error.response.data); 
-          alert(error.response.data.detail || 'Failed to Delete Property');
+        console.error('Error response:', error.response.data); 
+        alert(error.response.data.detail || 'Failed to Delete Property');
       } else {
-          console.error('Error submitting form:', error);
+        console.error('Error submitting form:', error);
       }
     }
   };
@@ -109,24 +112,33 @@ const Houses = () => {
           value={search} 
           onChange={(e) => setSearch(e.target.value)} 
         />
+        <input 
+          type="text" 
+          style={styles.input} 
+          placeholder="Your Price"
+          value={searchPrice} 
+          onChange={(e) => setPriceSearch(e.target.value)} 
+        />
       </div>
       <PropertyForm />
       <center>
         <div style={styles.houseDisplay}>
           {myProperties.length > 0 ? (
-            PropertySearch().map((property) => (
+            filteredProperties().map((property) => (
               <div style={styles.card} key={property.id}>
-                <img
-                  src={property.image}
-                  alt={property.description || 'No description available'}
-                  style={styles.image}
-                />
-                <br />
-                Owner Name: {user.username}<br />
-                Property Type: {property.property_type}<br />
-                Status: {property.status}<br />
-                Price: KES {property.price}<br />
-                Description: {property.description}<br />
+                <Link to={`/property/${property.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <img
+                    src={property.image}
+                    alt={property.description || 'No description available'}
+                    style={styles.image}
+                  />
+                  <br />
+                  Owner Name: {property.user_id ? property.user_id.username : "No owner Found"}<br />
+                  Property Type: {property.property_type}<br />
+                  Status: {property.status}<br />
+                  Price: KES {property.price}<br />
+                  Description: {property.description}<br />
+                </Link>
                 <button onClick={() => DeleteProperty(property.id)}>🚮</button>
               </div>
             ))
@@ -139,4 +151,4 @@ const Houses = () => {
   );
 }
 
-export default Houses;
+export default AllProperties;

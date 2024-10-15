@@ -1,7 +1,6 @@
 import React from 'react';
 import './Footer.css'; 
 
-
 function Footer() {
   return (
     <div>
@@ -9,7 +8,7 @@ function Footer() {
         <footer>
           <div id="footer">
             <div id="f-title">
-              <img id="logo" src={'logo.jpg'} alt="Logo" />
+              <img id="logo" src={'/logo.jpg'} alt="Logo" />
             </div>
             <div id="f-desc">
               <div className="f-contacts">
@@ -30,27 +29,27 @@ function Footer() {
               
               <div>
                 <a className="social" href="https://twitter.com">
-                  <img className="Contact" src={'/twitter.png'} width="288" alt="Twitter" />
+                  <img className="Contact" src={'/twitter.png'} alt="Twitter" />
                 </a>
               </div>
               <div>
                 <a className="social" id="fb" href="https://www.facebook.com">
-                  <img className="Contact" src={'/facebook.png'} width="288" alt="Facebook" />
+                  <img className="Contact" src={'/facebook.png'} alt="Facebook" />
                 </a>
               </div>
               <div>
                 <a className="social" href="https://www.instagram.com">
-                  <img className="Contact" src={'/instagram.png'} width="288" alt="Instagram" />
+                  <img className="Contact" src={'/instagram.png'} alt="Instagram" />
                 </a>
               </div>
               <div>
                 <a className="social" href="https://www.pinterest.com">
-                  <img className="Contact" src={'/pinterest.png'} width="288" alt="Pinterest" />
+                  <img className="Contact" src={'/pinterest.png'} alt="Pinterest" />
                 </a>
               </div>
             </div>
           </div>
-          <p className="f-p" id='f-copy'>
+          <p className="f-p" id="f-copy">
             All rights reserved.<br />
             All trademarks, logos, and brand names are the property of their respective owners.<br />
             MakaoLLC&copy;2024
