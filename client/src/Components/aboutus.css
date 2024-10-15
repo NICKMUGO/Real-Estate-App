@@ -1,0 +1,70 @@
+/* General Styles */
+.aboutus-container {
+    height: 100vh;
+    background-color: #f8f8f8;
+    padding: 100px 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #031739;
+    line-height: 1.6;
+    background-image: url('../../public/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px);
+}
+
+.aboutus-container h1 {
+    font-size: 60px;
+    font-family: "Oswald", sans-serif;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.aboutus-container h2 {
+    font-size: 40px;
+    font-family: "Playfair Display", serif;
+    color: #B4975A;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.aboutus-container p {
+    font-size: 20px;
+    font-family: "Playfair Display", serif;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.aboutus-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.aboutus-container ul li {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.aboutus-container ul li strong {
+    color: #B4975A;
+}
+
+@media screen and (max-width: 768px) {
+    .aboutus-container {
+        padding: 50px 20px;
+    }
+
+    .aboutus-container h1 {
+        font-size: 40px;
+    }
+
+    .aboutus-container h2 {
+        font-size: 30px;
+    }
+
+    .aboutus-container p, .aboutus-container ul li {
+        font-size: 16px;
+    }
+}
