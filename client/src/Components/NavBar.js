@@ -21,17 +21,39 @@ function Navbar() {
                         <a href="/login">Login</a>
                     </li>
                     <li>
+                        <a href="/utilitiespage">Utility Page</a>
+                    </li>
+                    <li>
                         <a href="/signup">Sign up</a>
                     </li>
                     <li>
                         <a href="/allproperties">Properties</a>
                     </li>
                     <li>
-                        <a href="/MyPayments">Pay My Rent</a>
-                    </li>
-                    <li>
                         <a href="/About">About</a>
                     </li>
+                    {user.role === 'owner' && (
+                        <>
+                            <li>
+                                <a href="/ownerDashboard">Owner Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="/houses">my🏡</a>
+                            </li>
+                        </>
+                    )}
+
+                    {user.role === 'client' && (
+                        <>
+                            <li>
+                                <a href="/MyPayments">PayMyRent</a>
+                            </li>
+                            <li>
+                                <a href="/manageRental">MyRentals</a>
+                            </li>
+                        </>
+                    )}
+
                     <li>
                         <button onClick={toggleSidebar} className="sidebar-toggle">
                             <svg
@@ -51,22 +73,33 @@ function Navbar() {
                     </li>
                 </ul>
             </nav>
-
-            {/* Sidebar */}
             {isSidebarOpen && (
                 <div className="sidebar">
                     <ul>
-                        <li>
-                            <a href="/houses">Property View</a>
-                        </li>
-                        <li>
-                            <a href="/utilitypage">Utility Page</a>
-                        </li>
-                        <li>
-                            <a href="/payrent">Pay Rent</a>
-                        </li>
+                        {user.role === 'owner' ? (
+                            <>
+                                {/* <li>
+                                    <a href="/houses">Property View</a>
+                                </li> */}
+                                {/* <li>
+                                    <a href="/ownerUtilities">Owner Utilities</a>
+                                </li> */}
+                                <li>
+                                    <a href="/myrentals">Rentals Overview</a>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                {/* <li>
+                                    <a href="/payrent">Pay Rent</a>
+                                </li> */}
+                                {/* <li>
+                                    <a href="/clientUtilities">Client Utilities</a>
+                                </li> */}
+                            </>
+                        )}
                     </ul>
-                    <button onClick={toggleSidebar} className="close-sidebar-button">Close</button>
+                    <button onClick={toggleSidebar} className="close-sidebar-button">❌</button>
                 </div>
             )}
         </div>

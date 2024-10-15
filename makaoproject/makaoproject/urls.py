@@ -23,6 +23,7 @@ from makaoapp.views import (
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
     UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId
 )
+from .views import property_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -49,5 +50,6 @@ urlpatterns = [
     path('owner/<int:pk>/', OwnerDetails.as_view(), name='onwer_details'),
     path('rentalUser/<int:owner_id>/', RentalsByUserId.as_view(), name='rental_by_user'),  
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

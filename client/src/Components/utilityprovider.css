@@ -1,0 +1,43 @@
+/* UtilityProviderForm.css */
+
+.utility-provider-input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #B4975A;
+    border-radius: 5px;
+    background-color: #f0f0f0; /* Light background */
+    color: #031739;
+}
+
+.utility-provider-input:focus {
+    border-color: #B4975A;
+    outline: none;
+}
+
+.provider-name {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #B4975A;
+    border-radius: 5px;
+    background-color: gray;
+    color: #031739;
+    
+}
+
+.contact-info {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #B4975A;
+    border-radius: 5px;
+    background-color: gray; /* Light background */
+    color: #031739;
+}
+
+.utility-type {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #B4975A;
+    border-radius: 5px;
+    background-color: gray; /* Light background */
+    color: #031739;
+}
