@@ -1,5 +1,6 @@
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import LoginPage from './Components/LoginPage';
@@ -15,7 +16,7 @@ import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
-import UtilityProviderForm from './Components/utilityprovider';
+
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
@@ -24,6 +25,8 @@ import AllProperties from './Components/AllPropertiesPage';
 import DetailProperty from './Components/DetailProperty';
 import MyRentals from './Components/MyRentals';
 import RentalDetail from './Components/RentalDetail';
+import UserProfile from './Components/UserProfile';
+import UtilityProviderForm from './Components/utilityprovider';
 function App() {
   return (
     <BrowserRouter>
@@ -43,7 +46,7 @@ function App() {
         <Route path="/payrent" element={<PayRentPage/>}/>
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
-        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
+        
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/utilityform" element={<UtilityPopup/>}/>
@@ -52,6 +55,8 @@ function App() {
         <Route path="/property/:id" element={<DetailProperty/>} />
         <Route path="/myrentals" element={<MyRentals/>} />
         <Route path="/rental/:id" element={<RentalDetail/>} />
+        <Route path="/userprofile" element={<UserProfile/>}/>
+        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>

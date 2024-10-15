@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     return HttpResponse("Welcome to MakaoApp API")
+
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= User.objects.all()
     serializer_class= UserSerializer
@@ -72,6 +73,7 @@ class UserListCreate(generics.ListCreateAPIView):
             )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 class OwnerDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Owner.objects.all()
     serializer_class= OwnerSerializer
@@ -91,7 +93,6 @@ class ClienListCreate(generics.ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [AllowAny] 
-
 
 class PropertyListCreate(generics.ListCreateAPIView):
     queryset= Property.objects.all()
@@ -125,6 +126,7 @@ class RentalListCreate(generics.ListCreateAPIView):
     #     if 'user_id' not in request.session:
     #         return JsonResponse({'error': 'You must be logged in to access this resource.'}, status=401)
     #     return super().dispatch(request, *args, **kwargs)
+
 class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= Rental.objects.all()
     serializer_class= RentalSerializer
@@ -202,8 +204,6 @@ def logout(request):
     request.session.flush()  # Clears the session
     return JsonResponse({'message': 'Logged out successfully'}, status=200)
 
-
-
 class PropertyByUserId(generics.ListAPIView):
     serializer_class = PropertiesSerializer
     permission_classes = [AllowAny]
@@ -211,7 +211,6 @@ class PropertyByUserId(generics.ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         return Property.objects.filter(owner__user_ptr=user_id) 
-
 
 class PaymentsByUserId(generics.ListAPIView):
     serializer_class = PaymentSerializer
