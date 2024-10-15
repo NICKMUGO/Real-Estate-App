@@ -42,7 +42,7 @@ const Login = () => {
         button: {
             padding: '15px',
             backgroundColor: 'black',
-            color: 'white',
+            color: '#B4975A',
             fontSize: '16px',
             border: 'none',
             borderRadius: '5px',

@@ -107,7 +107,7 @@ const Houses = () => {
       formData.append("description", editProperty.description);
       formData.append("address", editProperty.address);
       formData.append("status", editProperty.status);
-      formData.append("owner_id", user.owner_id);
+      formData.append("owner_id", user.id);
   
       if (editProperty.image instanceof File) {
         formData.append("image", editProperty.image);

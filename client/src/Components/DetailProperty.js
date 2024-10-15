@@ -123,15 +123,15 @@ const DetailProperty = () => {
             <h2 style={{ textAlign: 'center', margin: '10px 0' }}>User Details</h2>
             <p style={styles.userDetail}>
               <span style={styles.userDetailLabel}>Username: </span>
-              {property.user_id ? property.user_id.username : "No user found"}
+              {property.owner ? property.owner.username : "No user found"}
             </p>
             <p style={styles.userDetail}>
               <span style={styles.userDetailLabel}>Email: </span>
-              {property.user_id ? property.user_id.email : "No email found"}
+              {property.owner ? property.owner.email : "No email found"}
             </p>
             <p style={styles.userDetail}>
               <span style={styles.userDetailLabel}>Phone Number: </span>
-              {property.user_id ? property.user_id.phone_number : "No phone number found"}
+              {property.owner ? property.owner.phone_number : "No phone number found"}
             </p>
           </div>
           <button onClick={() => navigate(-1)} style={styles.backButton}>Go Back</button>

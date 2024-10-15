@@ -21,13 +21,10 @@ function Navbar() {
                         <a href="/login">Login</a>
                     </li>
                     <li>
-                        <a href="/utilitiespage">Utility Page</a>
-                    </li>
-                    <li>
                         <a href="/signup">Sign up</a>
                     </li>
                     <li>
-                        <a href="/allproperties">Properties</a>
+                        <a href="/utilitiespage">Utility Page</a>
                     </li>
                     <li>
                         <a href="/About">About</a>
@@ -37,6 +34,7 @@ function Navbar() {
                             <li>
                                 <a href="/ownerDashboard">Owner Dashboard</a>
                             </li>
+                            
                             <li>
                                 <a href="/houses">my🏡</a>
                             </li>
@@ -48,6 +46,9 @@ function Navbar() {
                             <li>
                                 <a href="/MyPayments">PayMyRent</a>
                             </li>
+                            <li>
+                                <a href="/allproperties">Properties</a>
+                             </li>
                             <li>
                                 <a href="/manageRental">MyRentals</a>
                             </li>

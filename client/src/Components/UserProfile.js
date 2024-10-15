@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Usercontext } from "./UserContextProvider";
 
 const UserProfile = () => {
-    const [userData, setUserData] = useState({
-        username: "",
-        email: "",
-        phone_number: "",
-        address: "",
-        role: "",
-        profilePicture: "" // Assuming the backend provides a profile picture URL
-    });
+    const [userData, setUserData] = useState();
 
-    const { userId } = useParams();
+    const[user]=useContext(Usercontext);
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/users/${userId}`);
+                const response = await axios.get(`http://127.0.0.1:8000/users/${user.id}`);
                 setUserData(response.data);
             } catch (error) {
                 console.error("Error fetching user data:", error);
@@ -25,7 +18,7 @@ const UserProfile = () => {
         };
 
         fetchUserData();
-    }, [userId]);
+    }, [user.id]);
 
     const styles = {
         container: {
@@ -83,7 +76,7 @@ const UserProfile = () => {
     return (
         <div style={styles.container}>
             <img
-                src={userData.profilePicture || 'https://via.placeholder.com/150'}
+                src={'https://via.placeholder.com/150'}
                 alt="User Profile"
                 style={styles.profilePic}
             />

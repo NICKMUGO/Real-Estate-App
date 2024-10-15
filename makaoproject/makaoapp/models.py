@@ -61,7 +61,7 @@ class Property(models.Model):
         return f"{self.property_type} - {self.price}"
 
 class Rental(models.Model):
-    property_id = models.ForeignKey(Property, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
     tenant = models.ForeignKey(Client, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()

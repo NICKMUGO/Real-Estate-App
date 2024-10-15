@@ -116,13 +116,15 @@ function UtilitiesPage() {
         />
       </div>
 
+      <UtilityPopup/>
+
       <center>
         <div style={styles.utilityDisplay}>
           {utilities.length > 0 ? (
             UtilitySearch().map((utility) => (
               <div style={styles.card} key={utility.utility_id}>
                 <button onClick={() => DeleteUtility(utility.utility_id)} style={{marginLeft:'250px'}}>🚮</button>
-                <h2>{utility.utility_type}</h2>
+                <h2 style={{color:"orange"}}>{utility.utility_type}</h2>
                 <strong>
                   <p>{utility.description}</p>
                 </strong>

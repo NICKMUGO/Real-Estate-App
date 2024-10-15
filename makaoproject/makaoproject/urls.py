@@ -23,7 +23,6 @@ from makaoapp.views import (
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
     UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId
 )
-from .views import property_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),

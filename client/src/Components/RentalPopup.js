@@ -10,7 +10,7 @@ export default function RentalPopup() {
   const [clients, setClients] = useState([]);
   const [properties, setProperties] = useState([]);
   const [rental, setRental] = useState({
-    property_id: "",
+    property: {},
     tenant: "",
     start_date: "",
     end_date: "",
@@ -32,7 +32,7 @@ export default function RentalPopup() {
     e.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:8000/rentals/',{
-        property_id: rental.property_id,
+        property: rental.property,
         tenant: rental.tenant,
         start_date: rental.start_date,
         end_date: rental.end_date,
@@ -101,13 +101,13 @@ export default function RentalPopup() {
               <h2>Rental Form</h2>
               <form onSubmit={handleRentalSubmit}>
                 <div className='form-group'>
-                <label htmlFor='property_id'>Property </label>
-                <select name='property_id' value={rental.property_id} onChange={handleInputChange} required>
-                  <option value=''>Select Property</option>
+                <label htmlFor='property'>Property </label>
+                <select name='property' value={rental.property} onChange={handleInputChange} required>
+                  <option value='' disabled>Select Property</option>
                   {properties.map((property) => {
                     console.log('Property:', property);
                     return (
-                      <option key={property.id} value={property.id}>
+                      <option key={property.id} value={property}>
                         ({property.id}) {property.property_type} - {property.description}
                       </option>
                     );
