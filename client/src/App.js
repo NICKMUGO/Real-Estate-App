@@ -24,6 +24,7 @@ import AllProperties from './Components/AllPropertiesPage';
 import DetailProperty from './Components/DetailProperty';
 import MyRentals from './Components/MyRentals';
 import RentalDetail from './Components/RentalDetail';
+import AboutUs from "./Components/aboutusPage";
 import AboutusPage from "./Components/aboutusPage";
 function App() {
   return (
