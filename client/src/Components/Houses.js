@@ -13,6 +13,8 @@ const Houses = () => {
   const [search, setSearch] = useState("");
   const [editProperty, setEditProperty] = useState(null); 
 
+  console.log(user)
+
   useEffect(() => {
     const fetchMyProperties = async () => {
       try {

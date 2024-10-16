@@ -27,7 +27,7 @@ from makaoapp.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('user/<int:pk>/', UserDetails.as_view(), name='user_details'),
+    path('userprofile/<int:pk>/', UserDetails.as_view(), name='user_details'),
     path('users/', UserListCreate.as_view(), name='user_listcreate'),
     path('client/<int:pk>/', ClientDetails.as_view(), name='user_details'),
     path('clients/', ClienListCreate.as_view(), name='user_listcreate'),

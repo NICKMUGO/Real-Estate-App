@@ -17,12 +17,20 @@ function Navbar() {
                     <li>
                         <a href="/homepage">MAKAO Marketplace</a>
                     </li>
-                    <li>
-                        <a href="/login">Login</a>
-                    </li>
-                    <li>
-                        <a href="/signup">Sign up</a>
-                    </li>
+                    {user?(
+                        <li>
+                            <a href="/userprofile">Welcome🎉 {user.username}</a>
+                        </li>
+                    ):(
+                        <>
+                        <li>
+                            <a href="/login">Login</a>
+                        </li>
+                        <li>
+                          <a href="/signup">Sign up</a>
+                        </li>
+                        </>
+                    )}
                     <li>
                         <a href="/utilitiespage">Utility Page</a>
                     </li>
