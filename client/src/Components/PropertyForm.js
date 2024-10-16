@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Usercontext } from './UserContextProvider';
 
-function PropertyForm() {
+function PropertyForm (){
     const styles = {
         popupOverlay: {
             position: 'fixed',
@@ -22,10 +22,10 @@ function PropertyForm() {
             backgroundColor: '#031739',
             padding: '30px',
             borderRadius: '10px',
-            maxWidth: '75%',
-            width: '500px',
+            maxWidth: '75%', 
+            width: '500px', 
             position: 'relative',
-            overflowY: 'auto',
+            overflowY: 'auto', 
         },
         form: {
             display: 'flex',
@@ -60,12 +60,12 @@ function PropertyForm() {
         },
         closeButton: {
             position: 'absolute',
-            top: '40px',
-            right: '10px',
+            top: '40px',  
+            right: '10px', 
             background: 'none',
             border: 'none',
             color: 'white',
-            fontSize: '30px',
+            fontSize: '30px', 
             cursor: 'pointer',
         },
         openButton: {
@@ -77,26 +77,25 @@ function PropertyForm() {
             borderRadius: '100%',
             cursor: 'pointer',
             display: 'block',
-            margin: '20px auto',
-            position: 'absolute',
-            top: '48px',
-            left: '48%',
-            transform: 'translateX(-50%)',
+            margin: '20px auto', 
+            position: 'absolute', 
+            top: '48px', 
+            left: '48%', 
+            transform: 'translateX(-50%)', 
         },
         buttonContainer: {
             display: 'flex',
-            justifyContent: 'center',
-            marginTop: '20px',
+            justifyContent: 'center', 
+            marginTop: '20px', 
         }
     };
-
-    const [user] = useContext(Usercontext);
+    const[user]=useContext(Usercontext)
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [owners, setOwners] = useState([]);
     const [property, setProperty] = useState({
         owner: "",
         property_type: "",
-        image: null,
+        image: null, 
         status: "",
         price: "",
         description: ""
@@ -106,26 +105,24 @@ function PropertyForm() {
         const fetchOwners = async () => {
             const response = await axios.get('http://127.0.0.1:8000/owners/');
             setOwners(response.data);
-            console.log(response.data);
+            console.log(response.data)
         };
         fetchOwners();
     }, []);
+  
 
     const handlePropertySubmit = async (e) => {
         e.preventDefault();
 
         console.log("Property data before submission:", property);
-        const formData = new FormData();
-        
-        // Structure owner as expected by the API
-        formData.append('owner', JSON.stringify({ id: property.owner }));
-        console.log('Owner:', { id: property.owner });
-
-        formData.append('property_type', property.property_type);
+        const formData = new FormData(); 
+        console.log('Owner:', property.owner);  
+        formData.append('property_type', property.property_type); 
         formData.append('image', property.image);
         formData.append('status', property.status);
         formData.append('price', property.price);
         formData.append('description', property.description);
+        formData.append('owner', property.owner);
 
         for (let pair of formData.entries()) {
             console.log(`${pair[0]}: ${pair[1]}`);
@@ -141,7 +138,7 @@ function PropertyForm() {
             setIsPopupOpen(false);
         } catch (error) {
             if (error.response) {
-                console.error('Error response:', error.response.data);
+                console.error('Error response:', error.response.data); 
                 alert(error.response.data.detail || 'Failed to register Property');
             } else {
                 console.error('Error submitting form:', error);
@@ -159,7 +156,7 @@ function PropertyForm() {
                     <div style={styles.popupContent}>
                         <button style={styles.closeButton} onClick={() => setIsPopupOpen(false)}>
                             &times;
-                        </button>
+                        </button> 
                         <h2 style={styles.h2}>Register Property</h2>
                         <form style={styles.form} onSubmit={handlePropertySubmit} encType="multipart/form-data">
                             <label htmlFor="owner" style={styles.label}>Owner Name</label>
@@ -168,7 +165,7 @@ function PropertyForm() {
                                 required
                                 style={styles.input}
                                 value={property.owner}
-                                onChange={(e) => setProperty({ ...property, owner: e.target.value })}
+                                onChange={(e) => setProperty({ ...property, owner:e.target.value})} 
                             >
                                 <option value="">Select your name</option>
                                 {owners.map((owner) => (
@@ -194,10 +191,10 @@ function PropertyForm() {
 
                             <div style={styles.formGroup}>
                                 <label style={styles.label}>Image</label>
-                                <input
-                                    type="file"
-                                    required
-                                    style={styles.input}
+                                <input 
+                                    type="file" 
+                                    required 
+                                    style={styles.input} 
                                     onChange={(e) => setProperty({ ...property, image: e.target.files[0] })}
                                 />
                             </div>
@@ -217,10 +214,10 @@ function PropertyForm() {
 
                             <div style={styles.formGroup}>
                                 <label style={styles.label}>Price</label>
-                                <input
-                                    type="number"
-                                    required
-                                    style={styles.input}
+                                <input 
+                                    type="number" 
+                                    required 
+                                    style={styles.input} 
                                     value={property.price}
                                     step={1000000}
                                     onChange={(e) => setProperty({ ...property, price: e.target.value })}
@@ -229,14 +226,14 @@ function PropertyForm() {
 
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <label style={{ marginBottom: '10px', color: '#B4975A' }}>Description</label>
-                                <textarea
-                                    required
-                                    style={{ width: '300px', height: '150px', padding: '10px', backgroundColor: 'gray', borderRadius: '5px', border: '0.5px solid #ccc' }}
+                                <textarea 
+                                    required 
+                                    style={{ width: '300px', height: '150px', padding: '10px', backgroundColor: 'gray', borderRadius: '5px', border: '0.5px solid #ccc' }} 
                                     value={property.description}
                                     onChange={(e) => setProperty({ ...property, description: e.target.value })}
                                 />
                             </div>
-
+                            
                             <button type="submit" style={styles.button}>Submit</button>
                         </form>
                     </div>

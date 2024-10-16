@@ -18,14 +18,14 @@ class OwnerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PropertiesSerializer(serializers.ModelSerializer):
-    owner = OwnerSerializer(read_only=True)
+    # owner = OwnerSerializer(read_only=True)
     class Meta:
         model = Property
         fields='__all__'
 
 class RentalSerializer(serializers.ModelSerializer):
-    property_id = PropertiesSerializer(read_only=True)
-    tenant = ClientSerializer(read_only=True)
+    # property_id = PropertiesSerializer(read_only=True)
+    # tenant = ClientSerializer(read_only=True)
     class Meta:
         model = Rental
         fields='__all__'

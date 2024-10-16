@@ -3,14 +3,14 @@ import axios from "axios";
 import { Usercontext } from "./UserContextProvider";
 
 const UserProfile = () => {
-    const [userData, setUserData] = useState();
+    const [userData, setUserData] = useState(null); // Set initial state to null
 
-    const[user]=useContext(Usercontext);
+    const [user] = useContext(Usercontext);
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/users/${user.id}`);
+                const response = await axios.get(`http://127.0.0.1:8000/user/${user.user_id}`);
                 setUserData(response.data);
             } catch (error) {
                 console.error("Error fetching user data:", error);
@@ -18,7 +18,7 @@ const UserProfile = () => {
         };
 
         fetchUserData();
-    }, [user.id]);
+    }, [user.user_id]);
 
     const styles = {
         container: {
@@ -73,6 +73,7 @@ const UserProfile = () => {
         }
     };
 
+    // Conditional rendering to handle null or undefined data
     return (
         <div style={styles.container}>
             <img
@@ -81,27 +82,33 @@ const UserProfile = () => {
                 style={styles.profilePic}
             />
             <h2 style={styles.header}>User Profile</h2>
-            <div style={styles.fieldContainer}>
-                <span style={styles.label}>Username:</span>
-                <span style={styles.value}>{userData.username}</span>
-            </div>
-            <div style={styles.fieldContainer}>
-                <span style={styles.label}>Email:</span>
-                <span style={styles.value}>{userData.email}</span>
-            </div>
-            <div style={styles.fieldContainer}>
-                <span style={styles.label}>Phone Number:</span>
-                <span style={styles.value}>{userData.phone_number}</span>
-            </div>
-            <div style={styles.fieldContainer}>
-                <span style={styles.label}>Address:</span>
-                <span style={styles.value}>{userData.address}</span>
-            </div>
-            <div style={styles.fieldContainer}>
-                <span style={styles.label}>Role:</span>
-                <span style={styles.value}>{userData.role}</span>
-            </div>
-
+            {userData ? (
+                <>
+                    <div style={styles.fieldContainer}>
+                        <span style={styles.label}>Username:</span>
+                        <span style={styles.value}>{userData.username}</span>
+                    </div>
+                    <div style={styles.fieldContainer}>
+                        <span style={styles.label}>Email:</span>
+                        <span style={styles.value}>{userData.email}</span>
+                    </div>
+                    <div style={styles.fieldContainer}>
+                        <span style={styles.label}>Phone Number:</span>
+                        <span style={styles.value}>{userData.phone_number}</span>
+                    </div>
+                    <div style={styles.fieldContainer}>
+                        <span style={styles.label}>Address:</span>
+                        <span style={styles.value}>{userData.address}</span>
+                    </div>
+                    <div style={styles.fieldContainer}>
+                        <span style={styles.label}>Role:</span>
+                        <span style={styles.value}>{userData.role}</span>
+                    </div>
+                </>
+            ) : (
+                <p>Loading user data...</p> // Display loading message until data is fetched
+            )}
+            
             <button
                 style={styles.button}
                 onMouseOver={(e) => e.target.style.backgroundColor = styles.buttonHover.backgroundColor}

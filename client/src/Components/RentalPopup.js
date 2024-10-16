@@ -10,7 +10,7 @@ export default function RentalPopup() {
   const [clients, setClients] = useState([]);
   const [properties, setProperties] = useState([]);
   const [rental, setRental] = useState({
-    property: {},
+    property: "",
     tenant: "",
     start_date: "",
     end_date: "",
@@ -107,7 +107,7 @@ export default function RentalPopup() {
                   {properties.map((property) => {
                     console.log('Property:', property);
                     return (
-                      <option key={property.id} value={property}>
+                      <option key={property.id} value={property.id}>
                         ({property.id}) {property.property_type} - {property.description}
                       </option>
                     );

@@ -8,6 +8,7 @@ import RentalPopup from "./RentalPopup";
 
 function MyRentals() {
   const [user] = useContext(Usercontext);
+  console.log("User Context:", user);
   const [rentals, setRentals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -105,8 +106,17 @@ function MyRentals() {
 
   const filteredRentals = () => {
     return rentals.filter((rental) => {
-      const matchesType = rental.property_id.property_type.toLowerCase().includes(search.toLowerCase());
-      const matchesPrice = rental.property_id.price.toString().includes(searchPrice);
+      // Check if rental.property is defined
+      if (!rental.property) return false;
+  
+      const matchesType = rental.property.property_type
+        ? rental.property.property_type.toLowerCase().includes(search.toLowerCase())
+        : false;
+  
+      const matchesPrice = rental.property.price
+        ? rental.property.price.toString().includes(searchPrice)
+        : false;
+  
       return matchesType && matchesPrice;
     });
   };
@@ -132,26 +142,26 @@ function MyRentals() {
       <RentalPopup/>
       <center>
         <div style={styles.houseDisplay}>
-          {filteredRentals().length > 0 ? (
-            filteredRentals().map((rental) => (
+          {rentals.length > 0 ? (
+            rentals.map((rental) => (
               <div style={styles.card} key={rental.id}>
                 <Link to={`/rental/${rental.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <img
-                    src={rental.property_id ? rental.property_id.image : "No tenant Found"}
-                    alt={rental.property_id ? rental.property_id.description : "No tenant Found"}
+                    src={rental.property ? rental.property.image : "No tenant Found"}
+                    alt={rental.property ? rental.property.description : "No tenant Found"}
                     style={styles.image}
                   />
                   <div style={styles.cardTitle}>
-                    {rental.property_id ? rental.property_id.property_type : "No Property Found"}
+                    {rental.property ? rental.property.property_type : "No Property Found"}
                   </div>
                   <div style={styles.cardText}>
                     Tenant: {rental.tenant ? rental.tenant.username : "No Tenant Found"}
                   </div>
                   <div style={styles.cardText}>
-                    Price: KES {rental.property_id ? rental.property_id.price : "No Price Found"}
+                    Price: KES {rental.monthly_rent}
                   </div>
                   <div style={styles.cardText}>
-                    Status: {rental.property_id ? rental.property_id.status : "No Status Found"}
+                    Status: {rental.property ? rental.property.status : "No Status Found"}
                   </div>
                   <div style={styles.cardText}>
                     Start Date: {new Date(rental.start_date).toLocaleDateString("en-US", {

@@ -26,6 +26,7 @@ import MyRentals from './Components/MyRentals';
 import RentalDetail from './Components/RentalDetail';
 import AboutUs from "./Components/aboutusPage";
 import AboutusPage from "./Components/aboutusPage";
+import UserProfile from './Components/UserProfile';
 function App() {
   return (
     <BrowserRouter>
@@ -55,6 +56,7 @@ function App() {
         <Route path="/myrentals" element={<MyRentals/>} />
         <Route path="/rental/:id" element={<RentalDetail/>} />
         <Route path="/aboutusPage" element={<AboutusPage/>} />
+        <Route path='/userprofile' element={<UserProfile/>}/>
       </Routes>
       <Footer /> 
       </UserContextProvider>

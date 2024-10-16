@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     return HttpResponse("Welcome to MakaoApp API")
-
+@method_decorator(csrf_exempt, name='dispatch')
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= User.objects.all()
     serializer_class= UserSerializer
@@ -226,7 +226,7 @@ class RentalsByUserId(generics.ListAPIView):
 
     def get_queryset(self):
         owner_id = self.kwargs['owner_id']
-        return Rental.objects.filter(property_id__user_id=owner_id)
+        return Rental.objects.filter(property__owner__user_ptr=owner_id)
 
 
 

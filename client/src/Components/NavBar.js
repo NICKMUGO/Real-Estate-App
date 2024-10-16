@@ -27,7 +27,7 @@ function Navbar() {
                         <a href="/utilitiespage">Utility Page</a>
                     </li>
                     <li>
-                        <a href="/About">About</a>
+                        <a href="/aboutusPage">About</a>
                     </li>
                     {user.role === 'owner' && (
                         <>
