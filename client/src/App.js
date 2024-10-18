@@ -15,7 +15,7 @@ import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
-import UtilityProviderForm from './Components/utilityprovider';
+import UtilityProvider from './Components/UtilityProvider';
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
@@ -46,7 +46,7 @@ function App() {
         <Route path="/payrent" element={<PayRentPage/>}/>
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
-        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
+        <Route path="/utilityprovider" element={<UtilityProvider/>}/>
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/utilityform" element={<UtilityPopup/>}/>

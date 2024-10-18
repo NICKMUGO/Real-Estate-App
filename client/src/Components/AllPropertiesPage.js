@@ -133,7 +133,6 @@ const AllProperties = () => {
                     style={styles.image}
                   />
                   <br />
-                  Owner Name: {property.owner ? property.owner.username : "No owner Found"}<br />
                   Property Type: {property.property_type}<br />
                   Status: {property.status}<br />
                   Price: KES {property.price}<br />

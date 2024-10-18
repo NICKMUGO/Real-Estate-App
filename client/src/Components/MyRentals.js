@@ -11,6 +11,7 @@ function MyRentals() {
   console.log("User Context:", user);
   const [rentals, setRentals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const[tenantDetails,setTenantDetails]=useState([]);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [searchPrice, setPriceSearch] = useState("");
@@ -29,6 +30,18 @@ function MyRentals() {
 
     fetchMyProperties();
   }, [user.user_id]);
+
+  // useEffect(() => {
+  //   const fetchTenantDetails = async () => {
+  //     try {
+  //       const response = await axios.get(`http://127.0.0.1:8000/tenantDetail/${tenantId}/`);
+  //       setTenantDetails(response.data);
+  //     } catch (error) {
+  //       setError(error.response ? error.response.data.detail : "Failed to fetch tenant details");
+  //     }
+  //   };
+  //   fetchTenantDetails();
+  // },[])
 
   if (loading) {
     return <div>Loading...</div>;
@@ -106,9 +119,7 @@ function MyRentals() {
 
   const filteredRentals = () => {
     return rentals.filter((rental) => {
-      // Check if rental.property is defined
       if (!rental.property) return false;
-  
       const matchesType = rental.property.property_type
         ? rental.property.property_type.toLowerCase().includes(search.toLowerCase())
         : false;
@@ -120,6 +131,10 @@ function MyRentals() {
       return matchesType && matchesPrice;
     });
   };
+
+  console.log(rentals[0].payment_status)
+
+  console.log(rentals);
 
   return (
     <div style={styles.container}>
@@ -146,22 +161,22 @@ function MyRentals() {
             rentals.map((rental) => (
               <div style={styles.card} key={rental.id}>
                 <Link to={`/rental/${rental.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <img
+                  {/* <img
                     src={rental.property ? rental.property.image : "No tenant Found"}
                     alt={rental.property ? rental.property.description : "No tenant Found"}
                     style={styles.image}
                   />
                   <div style={styles.cardTitle}>
                     {rental.property ? rental.property.property_type : "No Property Found"}
-                  </div>
-                  <div style={styles.cardText}>
+                  </div> */}
+                  {/* <div style={styles.cardText}>
                     Tenant: {rental.tenant ? rental.tenant.username : "No Tenant Found"}
-                  </div>
+                  </div> */}
                   <div style={styles.cardText}>
                     Price: KES {rental.monthly_rent}
                   </div>
                   <div style={styles.cardText}>
-                    Status: {rental.property ? rental.property.status : "No Status Found"}
+                    Status: {rental.payment_status ? "Paid" : "Not Paid"}
                   </div>
                   <div style={styles.cardText}>
                     Start Date: {new Date(rental.start_date).toLocaleDateString("en-US", {
@@ -187,6 +202,6 @@ function MyRentals() {
       </center>
     </div>
   );
-}
 
+}
 export default MyRentals;

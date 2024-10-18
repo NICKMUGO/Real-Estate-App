@@ -3,7 +3,7 @@ import './utilityprovider.css';
 
 import React, { useEffect, useState } from "react";
 
-const UtilityProviderForm = () => {
+const UtilityProvider = () => {
     const styles = {
         popupOverlay: {
             position: 'fixed',
@@ -78,6 +78,7 @@ const UtilityProviderForm = () => {
         contact_info: "",
         utility_id: "", 
     });
+    const [providers,setProviders]=useState([]);
 
     const onUtilityProviderSubmit = async (e) => {
         e.preventDefault();
@@ -106,16 +107,39 @@ const UtilityProviderForm = () => {
                 setUtilities(response.data); 
             } catch (error) {
                 console.error("Error fetching utilities:", error);
-            }
+            }   
         };
         fetchUtilities();
     }, []);
 
+    useEffect(()=>{
+        const fetchUtilityProvider= async()=>{
+            try{
+                const response = await axios.get('http://127.0.0.1:8000/utilityproviders/')
+                console.log(response.data)
+                setProviders(response.data)
+            }catch (error) {
+                console.error("Error submitting form:", error.response || error.message);
+            }
+        }
+        fetchUtilityProvider();
+    },[])
+    console.log(providers)
     return (
         <div>
             <button style={styles.openButton} onClick={() => setIsOpen(true)}>
                 Open Utility Provider Form
             </button>
+            <div>
+            {providers.map((provider) => (
+                <div key={provider.provider_id}> 
+                    <h2 style={{color: "orange"}}>{provider.utility_type}</h2>
+                    <strong>
+                        <p>{provider.description}</p>
+                    </strong>
+                </div>
+            ))}
+            </div>
             {isOpen && (
                 <div style={styles.popupOverlay}>
                     <div style={styles.popupContent}>
@@ -131,7 +155,7 @@ const UtilityProviderForm = () => {
                                 id="provider_name"
                                 name="provider_name"
                                 required
-                                className="utility-provider-input provider-name"
+                                className="provider-provider-input provider-name"
                                 value={Utilityprovider.providername}
                                 onChange={(e) =>
                                     setUtilityprovider({ ...Utilityprovider, providername: e.target.value })
@@ -156,16 +180,16 @@ const UtilityProviderForm = () => {
                                 id="utility_type"
                                 name="utility_type"
                                 required
-                                className="utility-provider-input utility-type"
+                                className="provider-provider-input provider-type"
                                 value={Utilityprovider.utility_id}
                                 onChange={(e) =>
                                     setUtilityprovider({ ...Utilityprovider, utility_id: e.target.value })
                                 }
                             >
-                                <option value="" disabled>Select a utility</option>
-                                {utilities && utilities.map((utility) => (
-                                    <option key={utility.utility_id} value={utility.utility_id}>
-                                        {utility.utility_type}
+                                <option value="" disabled>Select a utility type</option>
+                                {utilities && utilities.map((provider) => (
+                                    <option key={provider.utility_id} value={provider.utility_id}>
+                                        {provider.utility_type} 
                                     </option>
                                 ))}
                             </select>
@@ -180,4 +204,4 @@ const UtilityProviderForm = () => {
     );
 };
 
-export default UtilityProviderForm;
+export default UtilityProvider;

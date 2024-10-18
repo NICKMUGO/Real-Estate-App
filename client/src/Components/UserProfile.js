@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Usercontext } from "./UserContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
     const [userData, setUserData] = useState(null);
     const [editUser, SeteditUser] = useState(null);
     const [user] = useContext(Usercontext);
 
+
+    console.log(userData)
     const fetchUserData = async () => {
         try {
             const response = await axios.get(`http://127.0.0.1:8000/userprofile/${user.user_id}/`);
@@ -15,6 +18,8 @@ const UserProfile = () => {
             console.error("Error fetching user data:", error);
         }
     };
+
+    const navigate= useNavigate();
 
     useEffect(() => {
         fetchUserData();
@@ -146,6 +151,8 @@ const UserProfile = () => {
 
             })
             await fetchUserData(); 
+            alert("Log in Again to Update")
+            navigate('/login')
             console.log(response.data)
         }
         catch (error) {
@@ -216,6 +223,17 @@ const UserProfile = () => {
                         value={editUser.phone_number}
                         onChange={(e) =>
                             SeteditUser({ ...editUser, phone_number: e.target.value })
+                        }
+                    />
+                    <input
+                        style={styles.input}
+                        type="password"
+                        required
+                        minLength="8"
+                        placeholder="Password"
+                        value={editUser.password}
+                        onChange={(e) =>
+                            SeteditUser({ ...editUser, password: e.target.value })
                         }
                     />
                     <textarea

@@ -18,7 +18,7 @@ function RentalDetail() {
     const fetchMyProperties = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/rental/${id}/`);
-        setRentals(Array.isArray(response.data) ? response.data : [response.data]); // Ensure rentals is always an array
+        setRentals(Array.isArray(response.data) ? response.data : [response.data]); 
       } catch (error) {
         console.error(error);
         setError(error.response ? error.response.data.detail : "Failed to fetch properties");
@@ -117,16 +117,19 @@ function RentalDetail() {
         rentals.map((rental) => (
           <div key={rental.id}>
             <img
-              src={rental.property_id ? rental.property_id.image : "No image available"}
-              alt={rental.property_id ? rental.property_id.description : "No description available"}
+              src={rental.property ? `http://127.0.0.1:8000${rental.property.image}` : "No image available"}
+              alt={rental.property ? rental.property.description : "No description available"}
               style={styles.image}
             />
             <div style={styles.details}>
               <h1 style={styles.propertyType}>
-                {rental.property_id ? rental.property_id.property_type : "No Property Found"}
+                {rental.property ? rental.property.property_type : "No Property Found"}
               </h1>
+              <p>
+                {rental.property ? rental.property.description : "No description available"}
+              </p>
               <p style={styles.price}>
-                Price: KES {rental.property_id ? rental.property_id.price : "No Price Found"}
+                Price: KES {rental.property ? rental.property.price : "No Price Found"}
               </p>
               <p style={styles.description}>
                 Tenant: {rental.tenant ? rental.tenant.username : "No Tenant Found"}
