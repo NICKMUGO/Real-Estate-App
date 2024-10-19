@@ -1,34 +1,31 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
-import PropertyForm from "./PropertyForm";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function RentalDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [user] = useContext(Usercontext);
-  const [rentals, setRentals] = useState([]);
+  const [rental, setRental] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState("");
-  const [searchPrice, setPriceSearch] = useState("");
 
   useEffect(() => {
-    const fetchMyProperties = async () => {
+    const fetchRental = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/rental/${id}/`);
-        setRentals(Array.isArray(response.data) ? response.data : [response.data]); 
+        setRental(response.data);
       } catch (error) {
         console.error(error);
-        setError(error.response ? error.response.data.detail : "Failed to fetch properties");
+        setError(error.response ? error.response.data.detail : "Failed to fetch rental details");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchMyProperties();
-  }, [user.user_id, id]);
+    fetchRental();
+  }, [id]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -43,9 +40,9 @@ function RentalDetail() {
       maxWidth: '500px',
       margin: '50px auto',
       padding: '20px',
-      backgroundColor: '#ffffff !important', 
+      backgroundColor: '#ffffff',
       borderRadius: '15px',
-      border: '5px solid #000 !important', 
+      border: '5px solid #000',
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
     },
     image: {
@@ -113,34 +110,46 @@ function RentalDetail() {
 
   return (
     <div id="rental-details" style={styles.container}>
-      {rentals.length > 0 ? (
-        rentals.map((rental) => (
-          <div key={rental.id}>
-            <img
-              src={rental.property ? `http://127.0.0.1:8000${rental.property.image}` : "No image available"}
-              alt={rental.property ? rental.property.description : "No description available"}
-              style={styles.image}
-            />
-            <div style={styles.details}>
-              <h1 style={styles.propertyType}>
-                {rental.property ? rental.property.property_type : "No Property Found"}
-              </h1>
-              <p style={{color:"black"}}>
-                {rental.property ? rental.property.description : "No description available"}
+      {rental ? (
+        <div>
+          <img
+            src={rental.property ? `http://127.0.0.1:8000${rental.property.image}` : "No image available"}
+            alt={rental.property ? rental.property.description : "No description available"}
+            style={styles.image}
+          />
+          <div style={styles.details}>
+            <h1 style={styles.propertyType}>
+              {rental.property ? rental.property.property_type : "No Property Found"}
+            </h1>
+            <p style={styles.price}>
+              Price: KES {rental.property ? rental.property.price : "No Price Found"}
+            </p>
+            <p style={styles.description}>
+              {rental.property ? rental.property.description : "No description available"}
+            </p>
+          </div>
+          {rental.tenant && (
+            <div style={styles.userDetailsContainer}>
+              <h2 style={{ textAlign: 'center', margin: '10px 0' }}>Tenant Details</h2>
+              <p style={styles.userDetail}>
+                <span style={styles.userDetailLabel}>Username: </span>
+                {rental.tenant.username || "No username found"}
               </p>
-              <p style={styles.price}>
-                Price: KES {rental.property ? rental.property.price : "No Price Found"}
+              <p style={styles.userDetail}>
+                <span style={styles.userDetailLabel}>Email: </span>
+                {rental.tenant.email || "No email found"}
               </p>
-              <p style={styles.description}>
-                Tenant: {rental.tenant ? rental.tenant.username : "No Tenant Found"}
+              <p style={styles.userDetail}>
+                <span style={styles.userDetailLabel}>Phone Number: </span>
+                {rental.tenant.phone_number || "No phone number found"}
               </p>
             </div>
-          </div>
-        ))
+          )}
+          <button onClick={() => navigate(-1)} style={styles.backButton}>Go Back</button>
+        </div>
       ) : (
-        <p>No rentals available.</p>
+        <p>No rental details found.</p>
       )}
-      <button onClick={() => window.history.back()} style={styles.backButton}>Go Back</button>
     </div>
   );
 }

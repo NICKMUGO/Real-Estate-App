@@ -118,7 +118,7 @@ function UtilityPopup() {
   };
 
   return (
-    <div className="App">
+    <div>
       <button style={styles.openButton} onClick={openModal}>
         Open Utility Form
       </button>

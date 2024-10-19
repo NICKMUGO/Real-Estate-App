@@ -17,18 +17,21 @@ function Navbar() {
                     <li>
                         <a href="/homepage">MAKAO Marketplace</a>
                     </li>
-                    {user?(
+                    <li>
+                        <a href="/logout">⏻</a>
+                    </li>
+                    {user ? (
                         <li>
                             <a href="/userprofile">Welcome🎉 {user.username}</a>
                         </li>
-                    ):(
+                    ) : (
                         <>
-                        <li>
-                            <a href="/login">Login</a>
-                        </li>
-                        <li>
-                          <a href="/signup">Sign up</a>
-                        </li>
+                            <li>
+                                <a href="/login">Login</a>
+                            </li>
+                            <li>
+                                <a href="/signup">Sign up</a>
+                            </li>
                         </>
                     )}
                     <li>
@@ -37,26 +40,25 @@ function Navbar() {
                     <li>
                         <a href="/aboutusPage">About</a>
                     </li>
-                    {user.role === 'owner' && (
+                    {user && user.role === 'owner' && ( // Safely checking user
                         <>
                             <li>
                                 <a href="/ownerDashboard">Owner Dashboard</a>
                             </li>
-                            
                             <li>
                                 <a href="/houses">my🏡</a>
                             </li>
                         </>
                     )}
 
-                    {user.role === 'client' && (
+                    {user && user.role === 'client' && ( // Safely checking user
                         <>
                             <li>
                                 <a href="/MyPayments">PayMyRent</a>
                             </li>
                             <li>
                                 <a href="/allproperties">Properties</a>
-                             </li>
+                            </li>
                             <li>
                                 <a href="/manageRental">MyRentals</a>
                             </li>
@@ -85,26 +87,15 @@ function Navbar() {
             {isSidebarOpen && (
                 <div className="sidebar">
                     <ul>
-                        {user.role === 'owner' ? (
+                        {user && user.role === 'owner' ? (
                             <>
-                                {/* <li>
-                                    <a href="/houses">Property View</a>
-                                </li> */}
-                                {/* <li>
-                                    <a href="/ownerUtilities">Owner Utilities</a>
-                                </li> */}
                                 <li>
                                     <a href="/myrentals">Rentals Overview</a>
                                 </li>
                             </>
                         ) : (
                             <>
-                                {/* <li>
-                                    <a href="/payrent">Pay Rent</a>
-                                </li> */}
-                                {/* <li>
-                                    <a href="/clientUtilities">Client Utilities</a>
-                                </li> */}
+                            
                             </>
                         )}
                     </ul>

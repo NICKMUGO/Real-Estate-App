@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Usercontext } from "./UserContextProvider";
 import { useNavigate } from "react-router-dom";
+import Logout from "./Logout";
 
 const UserProfile = () => {
     const [userData, setUserData] = useState(null);
     const [editUser, SeteditUser] = useState(null);
     const [user] = useContext(Usercontext);
-
 
     console.log(userData)
     const fetchUserData = async () => {
@@ -162,6 +162,7 @@ const UserProfile = () => {
 
     return (
         <div style={styles.container}>
+            {/* <Logout/> */}
             <img
                 src={'https://via.placeholder.com/150'}
                 alt="User Profile"
