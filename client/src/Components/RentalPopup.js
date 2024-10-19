@@ -41,6 +41,8 @@ export default function RentalPopup() {
 
       });
       console.log(response.data);
+      setModal(!modal);
+
     } catch (error) {
       if (error.response) {
         console.error('Error response:', error.response.data);
@@ -93,7 +95,7 @@ export default function RentalPopup() {
 
   return (
     <>
-      <button onClick={toggleModal} className='btn-modal'>Rental ADD</button>
+      <button onClick={toggleModal} className='btn-modal'>Add</button>
       {modal && (
         <div className='modal'>
           <div className='overlay'>

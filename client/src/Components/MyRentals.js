@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
-import PropertyForm from "./PropertyForm";
 import { Link } from "react-router-dom";
 import RentalPopup from "./RentalPopup";
 
@@ -11,16 +10,19 @@ function MyRentals() {
   console.log("User Context:", user);
   const [rentals, setRentals] = useState([]);
   const [loading, setLoading] = useState(true);
-  const[tenantDetails,setTenantDetails]=useState([]);
+  const[editRental,setEditRental]=useState();
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [searchPrice, setPriceSearch] = useState("");
+  const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    const fetchMyProperties = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/rentalUser/${user.user_id}/`);
         setRentals(response.data);
+        const responseClients = await axios.get('http://127.0.0.1:8000/clients/');
+        setClients(responseClients.data);
       } catch (error) {
         setError(error.response ? error.response.data.detail : "Failed to fetch properties");
       } finally {
@@ -28,7 +30,7 @@ function MyRentals() {
       }
     };
 
-    fetchMyProperties();
+    fetchData();
   }, [user.user_id]);
 
   // useEffect(() => {
@@ -131,10 +133,50 @@ function MyRentals() {
       return matchesType && matchesPrice;
     });
   };
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditRental(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch(
+        `http://127.0.0.1:8000/rental/${editRental.id}/`,
+        editRental
+      );
+      setRentals((prevRentals) =>
+        prevRentals.map((rental) =>
+          rental.id === editRental.id ? response.data : rental
+        )
+      );
+      setEditRental(null); 
+    } catch (error) {
+      console.error("Error updating rental:", error);
+      setError("Failed to update rental");
+    }
+  };
+  const handleDelete = async (e,id) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete(
+        `http://127.0.0.1:8000/rental/${id}/`,
+      );
+      setRentals(rentals.filter((property) => property.id !== id));
+    } catch (error) {
+      console.error("Error updating rental:", error);
+      setError("Failed to update rental");
+    }
+  };
 
   console.log(rentals[0].payment_status)
 
   console.log(rentals);
+
+  console.log(editRental);
 
   return (
     <div style={styles.container}>
@@ -154,6 +196,76 @@ function MyRentals() {
           onChange={(e) => setPriceSearch(e.target.value)}
         />
       </div>
+      {editRental &&
+        <div>
+           <form>
+                <div className='form-group'>
+                  <button onClick={()=>setEditRental(null)} style={{cursor:'pointer'}}>❌</button>
+                  <label htmlFor='tenantname'>Tenant Name: </label>
+                  <select
+                    name='tenant'
+                    value={editRental.tenant}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value=''>Select Tenant</option>
+                    {clients.map((client) => (
+                      <option key={client.id} value={client.id}>{client.username}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='startdate'>Choose Start Date: </label>
+                  <input
+                    type='date'
+                    id='startdate'
+                    name='start_date' 
+                    value={editRental.start_date ? new Date(editRental.start_date).toISOString().split('T')[0] : ''}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='enddate'>Choose End Date: </label>
+                  <input
+                    type='date'
+                    id='enddate'
+                    name='end_date' 
+                    value={editRental.end_date ? new Date(editRental.end_date).toISOString().split('T')[0] : ''}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='monthlyrent'>Monthly Rent: </label>
+                  <input
+                    type='number'
+                    id='monthlyrent'
+                    name='monthly_rent'
+                    value={editRental.monthly_rent}
+                    onChange={handleInputChange}
+                    step={10000}
+                    min={0}
+                    required
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='paymentstatus'>Payment Status: </label>
+                  <select
+                    id='paymentstatus'
+                    name='payment_status'
+                    value={editRental.payment_status}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value={false}>Not Paid</option>
+                    <option value={true}>Paid</option>
+                  </select>
+                </div>
+                <button type='submit' onClick={handleEdit} style={{cursor:'pointer'}}>Edit</button>
+              </form>
+        </div>
+      }
       <RentalPopup/>
       <center>
         <div style={styles.houseDisplay}>
@@ -193,6 +305,14 @@ function MyRentals() {
                     })}
                   </div>
                 </Link>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <button onClick={() => { setEditRental(rental); }} style={{ cursor: 'pointer', background: 'none', border: 'none', fontSize: '16px' }}>
+                    ✏️
+                  </button>
+                  <button type="button" onClick={(e) => handleDelete(e, rental.id)} style={{ cursor: 'pointer', background: 'none', border: 'none', fontSize: '16px' }}>
+                    🚮
+                  </button>
+                </div>
               </div>
             ))
           ) : (

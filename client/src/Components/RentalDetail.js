@@ -125,7 +125,7 @@ function RentalDetail() {
               <h1 style={styles.propertyType}>
                 {rental.property ? rental.property.property_type : "No Property Found"}
               </h1>
-              <p>
+              <p style={{color:"black"}}>
                 {rental.property ? rental.property.description : "No description available"}
               </p>
               <p style={styles.price}>

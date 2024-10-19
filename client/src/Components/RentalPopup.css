@@ -4,16 +4,26 @@ body.active-modal {
 }
 
 .btn-modal {
-    padding: 10px 20px;
-    display: block;
-    margin: 100px;
-    margin-left: 550px;
-    font-size: 18px;
+    padding: 10px 20px; 
+    width: 4%;
+    max-width: 10%;
+    height: 14%;
+    /* aspect-ratio: 1;  */
+    margin: 0 auto 40px auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     background: #031739; 
-    color: #ffffff; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    color: white; 
+    border: none; 
+    border-radius: 50%; 
+    font-size: 1rem; 
+    transition: background 0.3s;
+}
+
+/* Optional hover effect */
+.btn-modal:hover {
+    background: #025b8b; /* Change background on hover */
 }
 
 .modal, .overlay {
