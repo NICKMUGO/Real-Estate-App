@@ -143,6 +143,12 @@ class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
         }
         property_data = {
             'id': instance.property.id,
+            'owner': {
+                'id': instance.property.owner.id,             
+                'username': instance.property.owner.username,
+                'email':instance.property.owner.email,   
+                'phone_number':instance.property.owner.phone_number,       
+            },
             'property_type': instance.property.property_type,
             'status': instance.property.status,
             'price': instance.property.price,
@@ -275,7 +281,7 @@ class PropertyDetailView(generics.RetrieveAPIView):
             'owner': owner_data,
         })
 
-class TenatDetailView(generics.RetrieveAPIView):
+class RentalMoreDetailView(generics.RetrieveAPIView):
     queryset = Rental.objects.all()
     serializer_class = RentalSerializer
     permission_classes = [AllowAny]
@@ -310,6 +316,45 @@ class TenatDetailView(generics.RetrieveAPIView):
             'property': property_data,
         })
 
+class TenatDetailView(generics.RetrieveAPIView):
+    queryset = Rental.objects.all()
+    serializer_class = RentalSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'tenant'  
+
+    def get_queryset(self):
+        tenant_id = self.kwargs.get('tenant')
+        return Rental.objects.filter(tenant__id=tenant_id)
+
+    def retrieve(self, request, *args, **kwargs):
+        rentals = self.get_queryset()
+        rental_data = RentalSerializer(rentals, many=True).data 
+        
+        properties = {rental.property for rental in rentals}
+        property_data = []
+
+        for property_instance in properties:
+            property_data.append({
+                'id': property_instance.id,
+                'property_type': property_instance.property_type,
+                'status': property_instance.status,
+                'price': property_instance.price,
+                'description': property_instance.description,
+                'image': property_instance.image.url if property_instance.image else None,
+                'created_at': property_instance.created_at,
+                'updated_at': property_instance.updated_at,
+                'owner': {
+                    'id': property_instance.owner.id,
+                    'username': property_instance.owner.username,
+                    'email': property_instance.owner.email,
+                    'phone_number': property_instance.owner.phone_number,
+                } if property_instance.owner else None, 
+            })
+
+        return Response({
+            'rental': rental_data,
+            'properties': property_data,
+        })
 
 
 

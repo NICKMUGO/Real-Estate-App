@@ -28,6 +28,8 @@ import AboutUs from "./Components/aboutusPage";
 import AboutusPage from "./Components/aboutusPage";
 import UserProfile from './Components/UserProfile';
 import Logout from './Components/Logout';
+import ClientRental from './Components/ClientRentals';
+import RentalDetailClient from './Components/RentalDetailClient';
 function App() {
   return (
     <BrowserRouter>
@@ -59,6 +61,8 @@ function App() {
         <Route path="/aboutusPage" element={<AboutusPage/>} />
         <Route path='/userprofile' element={<UserProfile/>}/>
         <Route path='/logout' element={<Logout/>}/>
+        <Route path='/manageRental' element={<ClientRental/>}/>
+        <Route path="/rentalClient/:id" element={<RentalDetailClient/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>

@@ -7,7 +7,7 @@ from .models import UtilityProvider;
 from .models import Payment
 from .models import PayRent
 from .models import Owner
-from .models import Client
+from .models import Client,PayProperty
 
 
 
@@ -21,6 +21,7 @@ admin.site.register(Payment)
 admin.site.register(PayRent)
 admin.site.register(Owner)
 admin.site.register(Client)
+admin.site.register(PayProperty)
 
 
 

@@ -139,18 +139,30 @@ const UserProfile = () => {
     };
 
     const handleUserUpdate = async () => {
-        SeteditUser(null);
+      if (editUser) {
+            const formData = new FormData();
+            formData.append("username", editUser.username);
+            formData.append("email", editUser.email);
+            formData.append("phone_number", editUser.phone_number);
+            formData.append("address", editUser.address);
+            formData.append("password", editUser.password);
+            formData.append("role", editUser.role);
+        
+        if (editUser.profile_picture instanceof File) {
+              formData.append("profile_picture", editUser.profile_picture);
+        }
         try{
-            const response = await axios.patch(`http://127.0.0.1:8000/userprofile/${user.user_id}/`,{
-                username:editUser.username,
-                email:editUser.email,
-                phone_number:editUser.phone_number,
-                address:editUser.address,
-                password:editUser.password,
-                role:editUser.role
-
-            })
+            const response = await axios.patch(`http://127.0.0.1:8000/userprofile/${user.user_id}/`,
+              formData,
+                {
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                    },
+                }
+            
+            )
             await fetchUserData(); 
+            SeteditUser(null);
             alert("Log in Again to Update")
             navigate('/login')
             console.log(response.data)
@@ -159,12 +171,13 @@ const UserProfile = () => {
             console.error("Error fetching user data:", error);
         }
     };
+}
 
     return (
         <div style={styles.container}>
             {/* <Logout/> */}
             <img
-                src={'https://via.placeholder.com/150'}
+                src={userData && userData.profile_picture ? userData.profile_picture : 'https://via.placeholder.com/150'}
                 alt="User Profile"
                 style={styles.profilePic}
             />
@@ -199,6 +212,15 @@ const UserProfile = () => {
                 <div style={styles.editForm}>
                     <h3>Edit Profile</h3>
                     <button onClick={() => SeteditUser(null)} style={styles.cancelButton}>❌</button>
+                    <input
+                        style={styles.input}
+                        type="file"
+                        placeholder="Profile Picture"
+                        onChange={(e) => {
+                            const file = e.target.files[0];
+                            SeteditUser({ ...editUser, profile_picture: file });
+                        }}
+                    />
                     <input
                         style={styles.input}
                         type="text"
@@ -260,5 +282,6 @@ const UserProfile = () => {
         </div>
     );
 };
+
 
 export default UserProfile;
