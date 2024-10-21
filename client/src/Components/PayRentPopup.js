@@ -85,7 +85,7 @@ function PayRentPopup() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [paymentData, setPaymentData] = useState({
-    tenant: '',
+    tenant_id: '',
     rental: '',
     amount: '',
     paymentDate: '',
@@ -112,11 +112,29 @@ function PayRentPopup() {
   const closeModal = () => setIsOpen(false);
 
   const handleChange = (e) => {
-    setPaymentData({
-      ...paymentData,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+    setPaymentData((prevData) => {
+        let newStatus = prevData.status;
+        if (name === 'rental') {
+            const rental = rentals.find(r => r.id === parseInt(value));
+            if (rental && paymentData.amount) {
+                newStatus = parseFloat(paymentData.amount) >= parseFloat(rental.monthly_rent);
+            }
+        } else if (name === 'amount') {
+            const rental = rentals.find(r => r.id === parseInt(paymentData.rental));
+            if (rental) {
+                newStatus = parseFloat(value) >= parseFloat(rental.monthly_rent);
+            }
+            console.log(newStatus)
+        }
+        return {
+            ...prevData,
+            [name]: value,
+            status: newStatus,
+        };
     });
-  };
+};
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -142,7 +160,7 @@ function PayRentPopup() {
     e.preventDefault();
 
     try {
-      paymentData.status = false;
+      // paymentData.status = false;
       const currentDate = new Date();
 
       // if (parseFloat(paymentData.amount) >= parseFloat(requiredRent)) {
@@ -150,7 +168,7 @@ function PayRentPopup() {
       // }
       const response = await axios.post('http://127.0.0.1:8000/payRents/', {
         rental: paymentData.rental,
-        tenant: paymentData.tenant,
+        tenant_id: paymentData.tenant_id,
         amount: paymentData.amount,
         payment_date: paymentData.paymentDate,
         payment_status: paymentData.status,
@@ -159,18 +177,18 @@ function PayRentPopup() {
       console.log('Payment Data Submitted:', response.data);
       closeModal();
 
-      if (paymentData.status) {
-        setTimeout(async () => {
-          try {
-            await axios.patch(`http://127.0.0.1:8000/payRent/${response.data.payrent_id}/`, {
-              payment_status: false,
-            });
-            console.log(`Payment status for ${response.data.payrent_id} expired after one month`);
-          } catch (expireError) {
-            console.error('Error expiring payment status:', expireError);
-          }
-        }, 1000 * 60 * 60 * 24 * 30); 
-      }
+      // if (paymentData.status) {
+      //   setTimeout(async () => {
+      //     try {
+      //       await axios.patch(`http://127.0.0.1:8000/payRent/${response.data.payrent_id}/`, {
+      //         payment_status: false,
+      //       });
+      //       console.log(`Payment status for ${response.data.payrent_id} expired after one month`);
+      //     } catch (expireError) {
+      //       console.error('Error expiring payment status:', expireError);
+      //     }
+      //   }, 1000 * 60 * 60 * 24 * 30); 
+      // }
 
     } catch (error) {
       if (error.response) {
@@ -201,8 +219,8 @@ function PayRentPopup() {
               <div style={styles.formRow}>
               <label htmlFor="user" style={styles.label}>User Name</label>
                   <select
-                    name='tenant'
-                    value={paymentData.tenant}
+                    name='tenant_id'
+                    value={paymentData.tenant_id}
                     onChange={handleChange}
                     required
                   >

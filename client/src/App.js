@@ -11,7 +11,6 @@ import Signup from "./Components/Signup";
 import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
-import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
@@ -30,6 +29,7 @@ import UserProfile from './Components/UserProfile';
 import Logout from './Components/Logout';
 import ClientRental from './Components/ClientRentals';
 import RentalDetailClient from './Components/RentalDetailClient';
+import PayRentPopup from './Components/PayRentPopup';
 function App() {
   return (
     <BrowserRouter>
@@ -46,7 +46,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
-        <Route path="/payrent" element={<PayRentPage/>}/>
+        <Route path="/payrent" element={<PayRentPopup/>}/>
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
         <Route path="/utilityprovider" element={<UtilityProvider/>}/>

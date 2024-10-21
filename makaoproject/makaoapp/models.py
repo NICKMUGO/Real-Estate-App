@@ -111,7 +111,7 @@ class Payment(models.Model):
 
 class PayRent(models.Model):
     rental = models.ForeignKey(Rental, on_delete=models.CASCADE)
-    tenant = models.ForeignKey(Client, on_delete=models.CASCADE) 
+    tenant_id = models.ForeignKey(Client, on_delete=models.CASCADE) 
     payrent_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(decimal_places=2, max_digits=9)
     payment_date = models.DateTimeField()
