@@ -2,9 +2,9 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client
+from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer,PayRentSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -332,6 +332,15 @@ class TenatDetailView(generics.RetrieveAPIView):
         
         properties = {rental.property for rental in rentals}
         property_data = []
+        
+        tenant = rentals.first().tenant if rentals.exists() else None
+        tenant_data = {
+            'id': tenant.id,
+            'username': tenant.username,
+            'email': tenant.email,
+            'phone_number': tenant.phone_number
+        } if tenant else None
+
 
         for property_instance in properties:
             property_data.append({
@@ -353,9 +362,19 @@ class TenatDetailView(generics.RetrieveAPIView):
 
         return Response({
             'rental': rental_data,
+            'tenant':tenant_data,
             'properties': property_data,
         })
 
+class PayRentDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= PayRent.objects.all()
+    serializer_class= PayRentSerializer
+    permission_classes = [AllowAny]
+
+class PayRentListCreate(generics.ListCreateAPIView):
+    queryset = PayRent.objects.all()
+    serializer_class = PayRentSerializer
+    permission_classes = [AllowAny] 
 
 
 
