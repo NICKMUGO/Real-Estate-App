@@ -2,9 +2,9 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent
+from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent,PayProperty
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer,PayRentSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer,PayRentSerializer,PayPropertySerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -366,6 +366,16 @@ class TenatDetailView(generics.RetrieveAPIView):
             'properties': property_data,
         })
 
+class PayPropertyDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= PayProperty.objects.all()
+    serializer_class= PayPropertySerializer
+    permission_classes = [AllowAny]
+
+class PayPropertyListCreate(generics.ListCreateAPIView):
+    queryset = PayProperty.objects.all()
+    serializer_class = PayPropertySerializer
+    permission_classes = [AllowAny] 
+
 class PayRentDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= PayRent.objects.all()
     serializer_class= PayRentSerializer
@@ -374,7 +384,8 @@ class PayRentDetails(generics.RetrieveUpdateDestroyAPIView):
 class PayRentListCreate(generics.ListCreateAPIView):
     queryset = PayRent.objects.all()
     serializer_class = PayRentSerializer
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
+
 
 
 

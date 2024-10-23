@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,Payment,Property,Utility,UtilityProvider,Rental,Owner,Client,PayRent
+from .models import User,Payment,Property,Utility,UtilityProvider,Rental,Owner,Client,PayProperty,PayRent
 
 
 
@@ -58,5 +58,11 @@ class PayRentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PayRent
+        fields='__all__'
+
+class PayPropertySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PayProperty
         fields='__all__'
 

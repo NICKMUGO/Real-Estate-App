@@ -21,7 +21,7 @@ from makaoapp import views
 from makaoapp.views import (
     UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
-    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId,PropertyDetailView,RentalMoreDetailView,TenatDetailView,PayRentDetails,PayRentListCreate
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId,PropertyDetailView,RentalMoreDetailView,TenatDetailView,PayRentDetails,PayRentListCreate,PayPropertyListCreate,PayPropertyDetails
 )
 
 urlpatterns = [
@@ -53,6 +53,8 @@ urlpatterns = [
     path('rentalUserSide/<int:tenant>/', TenatDetailView.as_view(), name='rental-user-detail'), 
     path('payRent/<int:pk>/', PayRentDetails.as_view(), name='rental-more-detail'), 
     path('payRents/', PayRentListCreate.as_view(), name='rental-user-detail'),
+    path('payProperty/<int:pk>/', PayPropertyDetails.as_view(), name='pay-property-detail'), 
+    path('payProperties/', PayPropertyListCreate.as_view(), name='pay-property'),
 ]
 
 if settings.DEBUG:

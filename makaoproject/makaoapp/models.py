@@ -102,7 +102,7 @@ class Payment(models.Model):
     payment_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(decimal_places=2, max_digits=9)
     payment_date = models.DateTimeField()
-    payment_status = models.BooleanField()
+    payment_status = models.BooleanField() 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -30,6 +30,7 @@ import Logout from './Components/Logout';
 import ClientRental from './Components/ClientRentals';
 import RentalDetailClient from './Components/RentalDetailClient';
 import PayRentPopup from './Components/PayRentPopup';
+import PayProperty from './Components/PayProperty';
 function App() {
   return (
     <BrowserRouter>
@@ -63,6 +64,7 @@ function App() {
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/manageRental' element={<ClientRental/>}/>
         <Route path="/rentalClient/:id" element={<RentalDetailClient/>} />
+        <Route path="/payproperty" element={<PayProperty/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>

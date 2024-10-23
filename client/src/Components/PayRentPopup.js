@@ -72,14 +72,21 @@ function PayRentPopup() {
       fontSize: '20px',
       cursor: 'pointer',
     },
+    openButtonContainer: {
+      display: 'flex',
+      justifyContent: 'center', // Center horizontally
+      margin: '20px 0', // Add margin for spacing
+    },
+  
     openButton: {
       padding: '15px',
-      backgroundColor: 'blue',
+      backgroundColor: '#031739',
+      borderRadius: "100%",
       color: 'white',
       fontSize: '16px',
-      border: 'none',
-      borderRadius: '5px',
       cursor: 'pointer',
+      maxWidth: '200px',
+      width: '5%',
     },
   };
 
@@ -160,12 +167,7 @@ function PayRentPopup() {
     e.preventDefault();
 
     try {
-      // paymentData.status = false;
       const currentDate = new Date();
-
-      // if (parseFloat(paymentData.amount) >= parseFloat(requiredRent)) {
-      //   paymentData.status = true;
-      // }
       const response = await axios.post('http://127.0.0.1:8000/payRents/', {
         rental: paymentData.rental,
         tenant_id: paymentData.tenant_id,
@@ -176,19 +178,6 @@ function PayRentPopup() {
 
       console.log('Payment Data Submitted:', response.data);
       closeModal();
-
-      // if (paymentData.status) {
-      //   setTimeout(async () => {
-      //     try {
-      //       await axios.patch(`http://127.0.0.1:8000/payRent/${response.data.payrent_id}/`, {
-      //         payment_status: false,
-      //       });
-      //       console.log(`Payment status for ${response.data.payrent_id} expired after one month`);
-      //     } catch (expireError) {
-      //       console.error('Error expiring payment status:', expireError);
-      //     }
-      //   }, 1000 * 60 * 60 * 24 * 30); 
-      // }
 
     } catch (error) {
       if (error.response) {
@@ -202,10 +191,11 @@ function PayRentPopup() {
 
   return (
     <div>
-      <button style={styles.openButton} onClick={openModal}>
-        Pay Rent
-      </button>
-
+        <div style={styles.openButtonContainer}>
+            <button style={styles.openButton} onClick={openModal}>
+              💵
+            </button>
+        </div>
       {isOpen && (
         <div style={styles.popupOverlay}>
           <div style={styles.popupContent}>

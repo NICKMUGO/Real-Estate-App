@@ -3,7 +3,7 @@ import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import RentalPopup from "./RentalPopup";
+import PayRentPopup from "./PayRentPopup";
 
 function ClientRental() {
   const [user] = useContext(Usercontext);
@@ -181,6 +181,7 @@ function ClientRental() {
           onChange={(e) => setPriceSearch(e.target.value)}
         />
       </div> */}
+      <PayRentPopup/>
       {editRental && (
         <div>
           <form>
