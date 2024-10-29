@@ -30,9 +30,9 @@ function Navbar() {
                         <a href="/allproperties">Properties</a>
                     </li>
                     <li>
-                        <a href="/About">About</a>
+                        <a href="/aboutusPage">About</a>
                     </li>
-                    {user.role === 'owner' && (
+                    {/*{user.role === 'owner' && (*/}
                         <>
                             <li>
                                 <a href="/ownerDashboard">Owner Dashboard</a>
@@ -41,9 +41,9 @@ function Navbar() {
                                 <a href="/houses">my🏡</a>
                             </li>
                         </>
-                    )}
+                    {/*)}*/}
 
-                    {user.role === 'client' && (
+                    {/*{user.role === 'client' && (*/}
                         <>
                             <li>
                                 <a href="/MyPayments">PayMyRent</a>
@@ -52,7 +52,7 @@ function Navbar() {
                                 <a href="/manageRental">MyRentals</a>
                             </li>
                         </>
-                    )}
+                    {/*)}*/}
 
                     <li>
                         <button onClick={toggleSidebar} className="sidebar-toggle">
@@ -76,7 +76,7 @@ function Navbar() {
             {isSidebarOpen && (
                 <div className="sidebar">
                     <ul>
-                        {user.role === 'owner' ? (
+                        {/*{user.role === 'owner' ? (*/}
                             <>
                                 {/* <li>
                                     <a href="/houses">Property View</a>
@@ -88,7 +88,7 @@ function Navbar() {
                                     <a href="/myrentals">Rentals Overview</a>
                                 </li>
                             </>
-                        ) : (
+                        {/*) : (*/}
                             <>
                                 {/* <li>
                                     <a href="/payrent">Pay Rent</a>
@@ -97,7 +97,7 @@ function Navbar() {
                                     <a href="/clientUtilities">Client Utilities</a>
                                 </li> */}
                             </>
-                        )}
+                        {/*)}*/}
                     </ul>
                     <button onClick={toggleSidebar} className="close-sidebar-button">❌</button>
                 </div>
