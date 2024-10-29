@@ -15,6 +15,7 @@ class User(models.Model):
     phone_number = models.CharField(max_length=15)  
     address = models.CharField(max_length=255)  
     role = models.CharField(max_length=10, choices=ROLE_CHOICES,default='client')
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -57,11 +58,12 @@ class Property(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
     def __str__(self):
         return f"{self.property_type} - {self.price}"
 
 class Rental(models.Model):
-    property_id = models.ForeignKey(Property, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
     tenant = models.ForeignKey(Client, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
@@ -70,7 +72,7 @@ class Rental(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Rental for {self.property_id} by {self.tenant}"
+        return f"Rental for {self.property} by {self.tenant}"
 
 class Utility(models.Model):
     utility_id = models.AutoField(primary_key=True)
@@ -100,7 +102,7 @@ class Payment(models.Model):
     payment_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(decimal_places=2, max_digits=9)
     payment_date = models.DateTimeField()
-    payment_status = models.BooleanField()
+    payment_status = models.BooleanField() 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -109,7 +111,7 @@ class Payment(models.Model):
 
 class PayRent(models.Model):
     rental = models.ForeignKey(Rental, on_delete=models.CASCADE)
-    tenant = models.ForeignKey(Client, on_delete=models.CASCADE) 
+    tenant_id = models.ForeignKey(Client, on_delete=models.CASCADE) 
     payrent_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(decimal_places=2, max_digits=9)
     payment_date = models.DateTimeField()
@@ -119,3 +121,18 @@ class PayRent(models.Model):
 
     def __str__(self):
         return f"Rent Payment for {self.rental} by {self.tenant}"
+
+class PayProperty(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE) 
+    buyer = models.ForeignKey(Client, on_delete=models.CASCADE) 
+    owner = models.ForeignKey(Owner, on_delete=models.CASCADE) 
+    payproperty_id = models.AutoField(primary_key=True) 
+    amount = models.DecimalField(decimal_places=2, max_digits=12) 
+    payment_date = models.DateTimeField()  
+    payment_status = models.BooleanField() 
+    title_deed = models.FileField(upload_to='title_deeds/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Property Payment for {self.property} by {self.buyer}"

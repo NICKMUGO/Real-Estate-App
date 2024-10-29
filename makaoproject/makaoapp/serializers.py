@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,Payment,Property,Utility,UtilityProvider,Rental,Owner,Client
+from .models import User,Payment,Property,Utility,UtilityProvider,Rental,Owner,Client,PayProperty,PayRent
 
 
 
@@ -18,14 +18,14 @@ class OwnerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PropertiesSerializer(serializers.ModelSerializer):
-    owner = OwnerSerializer(read_only=True)
+    # owner = OwnerSerializer(read_only=True)
     class Meta:
         model = Property
         fields='__all__'
 
 class RentalSerializer(serializers.ModelSerializer):
-    property_id = PropertiesSerializer(read_only=True)
-    tenant = ClientSerializer(read_only=True)
+    # property_id = PropertiesSerializer(read_only=True)
+    # tenant = ClientSerializer(read_only=True)
     class Meta:
         model = Rental
         fields='__all__'
@@ -52,5 +52,17 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
+        fields='__all__'
+
+class PayRentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PayRent
+        fields='__all__'
+
+class PayPropertySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PayProperty
         fields='__all__'
 

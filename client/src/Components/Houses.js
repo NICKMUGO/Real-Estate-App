@@ -13,6 +13,8 @@ const Houses = () => {
   const [search, setSearch] = useState("");
   const [editProperty, setEditProperty] = useState(null); 
 
+  console.log(user)
+
   useEffect(() => {
     const fetchMyProperties = async () => {
       try {
@@ -107,7 +109,7 @@ const Houses = () => {
       formData.append("description", editProperty.description);
       formData.append("address", editProperty.address);
       formData.append("status", editProperty.status);
-      formData.append("owner_id", user.owner_id);
+      formData.append("owner_id", user.id);
   
       if (editProperty.image instanceof File) {
         formData.append("image", editProperty.image);

@@ -1,0 +1,32 @@
+.rent-details {
+    background-color:white; 
+    color: #B4975A;
+    padding: 10px;
+    border-radius: 20%;
+    box-shadow: 0 0 0px black;
+    margin-top: 50px;
+    font-weight: bold;
+  }
+  .rent-details h2 {
+    font-size: 24px;
+    font-weight:500;
+    color: #B4975A;
+    margin-bottom: 20px;
+  }
+  .rent-details table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+  
+  .rent-details th, .rent-details td {
+    border: 1px solid #B4975A;
+    padding: 10px;
+    text-align: left;
+  
+  }
+  
+  .rent-details th {
+    background-color:white; 
+    color: #031739; 
+    font-weight: 500;
+  }

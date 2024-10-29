@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Usercontext } from './UserContextProvider';
 
-const PropertyForm = () => {
+function PropertyForm (){
     const styles = {
         popupOverlay: {
             position: 'fixed',
@@ -93,7 +93,7 @@ const PropertyForm = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [owners, setOwners] = useState([]);
     const [property, setProperty] = useState({
-        owner: null,
+        owner: "",
         property_type: "",
         image: null, 
         status: "",
@@ -116,12 +116,17 @@ const PropertyForm = () => {
 
         console.log("Property data before submission:", property);
         const formData = new FormData(); 
-        formData.append('owner', property.owner); 
+        console.log('Owner:', property.owner);  
         formData.append('property_type', property.property_type); 
         formData.append('image', property.image);
         formData.append('status', property.status);
         formData.append('price', property.price);
         formData.append('description', property.description);
+        formData.append('owner', property.owner);
+
+        for (let pair of formData.entries()) {
+            console.log(`${pair[0]}: ${pair[1]}`);
+        }
 
         try {
             const response = await axios.post('http://127.0.0.1:8000/properties/', formData, {
@@ -134,7 +139,7 @@ const PropertyForm = () => {
         } catch (error) {
             if (error.response) {
                 console.error('Error response:', error.response.data); 
-                alert(error.response.data.detail || 'Failed to register User');
+                alert(error.response.data.detail || 'Failed to register Property');
             } else {
                 console.error('Error submitting form:', error);
             }
@@ -154,15 +159,15 @@ const PropertyForm = () => {
                         </button> 
                         <h2 style={styles.h2}>Register Property</h2>
                         <form style={styles.form} onSubmit={handlePropertySubmit} encType="multipart/form-data">
-                            <label htmlFor="owner_name" style={styles.label}>Owner Name</label>
+                            <label htmlFor="owner" style={styles.label}>Owner Name</label>
                             <select
-                                id="owner_name"
+                                id="owner"
                                 required
                                 style={styles.input}
                                 value={property.owner}
-                                onChange={(e) => setProperty({ ...property, owner: e.target.value })}
+                                onChange={(e) => setProperty({ ...property, owner:e.target.value})} 
                             >
-                                <option value="" disabled>Select your name</option>
+                                <option value="">Select your name</option>
                                 {owners.map((owner) => (
                                     <option key={owner.id} value={owner.id}>
                                         {owner.username}

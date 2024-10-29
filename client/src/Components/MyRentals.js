@@ -2,23 +2,27 @@ import React, { useContext, useState, useEffect } from "react";
 import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
-import PropertyForm from "./PropertyForm";
 import { Link } from "react-router-dom";
 import RentalPopup from "./RentalPopup";
 
 function MyRentals() {
   const [user] = useContext(Usercontext);
+  console.log("User Context:", user);
   const [rentals, setRentals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const[editRental,setEditRental]=useState();
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [searchPrice, setPriceSearch] = useState("");
+  const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    const fetchMyProperties = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/rentalUser/${user.user_id}/`);
         setRentals(response.data);
+        const responseClients = await axios.get('http://127.0.0.1:8000/clients/');
+        setClients(responseClients.data);
       } catch (error) {
         setError(error.response ? error.response.data.detail : "Failed to fetch properties");
       } finally {
@@ -26,8 +30,20 @@ function MyRentals() {
       }
     };
 
-    fetchMyProperties();
+    fetchData();
   }, [user.user_id]);
+
+  // useEffect(() => {
+  //   const fetchTenantDetails = async () => {
+  //     try {
+  //       const response = await axios.get(`http://127.0.0.1:8000/tenantDetail/${tenantId}/`);
+  //       setTenantDetails(response.data);
+  //     } catch (error) {
+  //       setError(error.response ? error.response.data.detail : "Failed to fetch tenant details");
+  //     }
+  //   };
+  //   fetchTenantDetails();
+  // },[])
 
   if (loading) {
     return <div>Loading...</div>;
@@ -105,11 +121,62 @@ function MyRentals() {
 
   const filteredRentals = () => {
     return rentals.filter((rental) => {
-      const matchesType = rental.property_id.property_type.toLowerCase().includes(search.toLowerCase());
-      const matchesPrice = rental.property_id.price.toString().includes(searchPrice);
+      if (!rental.property) return false;
+      const matchesType = rental.property.property_type
+        ? rental.property.property_type.toLowerCase().includes(search.toLowerCase())
+        : false;
+  
+      const matchesPrice = rental.property.price
+        ? rental.property.price.toString().includes(searchPrice)
+        : false;
+  
       return matchesType && matchesPrice;
     });
   };
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditRental(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch(
+        `http://127.0.0.1:8000/rental/${editRental.id}/`,
+        editRental
+      );
+      setRentals((prevRentals) =>
+        prevRentals.map((rental) =>
+          rental.id === editRental.id ? response.data : rental
+        )
+      );
+      setEditRental(null); 
+    } catch (error) {
+      console.error("Error updating rental:", error);
+      setError("Failed to update rental");
+    }
+  };
+  const handleDelete = async (e,id) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete(
+        `http://127.0.0.1:8000/rental/${id}/`,
+      );
+      setRentals(rentals.filter((property) => property.id !== id));
+    } catch (error) {
+      console.error("Error updating rental:", error);
+      setError("Failed to update rental");
+    }
+  };
+
+  console.log(rentals[0].payment_status)
+
+  console.log(rentals);
+
+  console.log(editRental);
 
   return (
     <div style={styles.container}>
@@ -129,29 +196,99 @@ function MyRentals() {
           onChange={(e) => setPriceSearch(e.target.value)}
         />
       </div>
+      {editRental &&
+        <div>
+           <form>
+                <div className='form-group'>
+                  <button onClick={()=>setEditRental(null)} style={{cursor:'pointer'}}>❌</button>
+                  <label htmlFor='tenantname'>Tenant Name: </label>
+                  <select
+                    name='tenant'
+                    value={editRental.tenant}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value=''>Select Tenant</option>
+                    {clients.map((client) => (
+                      <option key={client.id} value={client.id}>{client.username}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='startdate'>Choose Start Date: </label>
+                  <input
+                    type='date'
+                    id='startdate'
+                    name='start_date' 
+                    value={editRental.start_date ? new Date(editRental.start_date).toISOString().split('T')[0] : ''}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='enddate'>Choose End Date: </label>
+                  <input
+                    type='date'
+                    id='enddate'
+                    name='end_date' 
+                    value={editRental.end_date ? new Date(editRental.end_date).toISOString().split('T')[0] : ''}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='monthlyrent'>Monthly Rent: </label>
+                  <input
+                    type='number'
+                    id='monthlyrent'
+                    name='monthly_rent'
+                    value={editRental.monthly_rent}
+                    onChange={handleInputChange}
+                    step={10000}
+                    min={0}
+                    required
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='paymentstatus'>Payment Status: </label>
+                  <select
+                    id='paymentstatus'
+                    name='payment_status'
+                    value={editRental.payment_status}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value={false}>Not Paid</option>
+                    <option value={true}>Paid</option>
+                  </select>
+                </div>
+                <button type='submit' onClick={handleEdit} style={{cursor:'pointer'}}>Edit</button>
+              </form>
+        </div>
+      }
       <RentalPopup/>
       <center>
         <div style={styles.houseDisplay}>
-          {filteredRentals().length > 0 ? (
-            filteredRentals().map((rental) => (
+          {rentals.length > 0 ? (
+            rentals.map((rental) => (
               <div style={styles.card} key={rental.id}>
                 <Link to={`/rental/${rental.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <img
-                    src={rental.property_id ? rental.property_id.image : "No tenant Found"}
-                    alt={rental.property_id ? rental.property_id.description : "No tenant Found"}
+                  {/* <img
+                    src={rental.property ? rental.property.image : "No tenant Found"}
+                    alt={rental.property ? rental.property.description : "No tenant Found"}
                     style={styles.image}
                   />
                   <div style={styles.cardTitle}>
-                    {rental.property_id ? rental.property_id.property_type : "No Property Found"}
-                  </div>
-                  <div style={styles.cardText}>
+                    {rental.property ? rental.property.property_type : "No Property Found"}
+                  </div> */}
+                  {/* <div style={styles.cardText}>
                     Tenant: {rental.tenant ? rental.tenant.username : "No Tenant Found"}
+                  </div> */}
+                  <div style={styles.cardText}>
+                    Price: KES {rental.monthly_rent}
                   </div>
                   <div style={styles.cardText}>
-                    Price: KES {rental.property_id ? rental.property_id.price : "No Price Found"}
-                  </div>
-                  <div style={styles.cardText}>
-                    Status: {rental.property_id ? rental.property_id.status : "No Status Found"}
+                    Status: {rental.payment_status ? "Paid" : "Not Paid"}
                   </div>
                   <div style={styles.cardText}>
                     Start Date: {new Date(rental.start_date).toLocaleDateString("en-US", {
@@ -168,6 +305,14 @@ function MyRentals() {
                     })}
                   </div>
                 </Link>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <button onClick={() => { setEditRental(rental); }} style={{ cursor: 'pointer', background: 'none', border: 'none', fontSize: '16px' }}>
+                    ✏️
+                  </button>
+                  <button type="button" onClick={(e) => handleDelete(e, rental.id)} style={{ cursor: 'pointer', background: 'none', border: 'none', fontSize: '16px' }}>
+                    🚮
+                  </button>
+                </div>
               </div>
             ))
           ) : (
@@ -177,6 +322,6 @@ function MyRentals() {
       </center>
     </div>
   );
-}
 
+}
 export default MyRentals;

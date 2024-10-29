@@ -2,9 +2,9 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client
+from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent,PayProperty
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer,PayRentSerializer,PayPropertySerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     return HttpResponse("Welcome to MakaoApp API")
-
+@method_decorator(csrf_exempt, name='dispatch')
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset= User.objects.all()
     serializer_class= UserSerializer
@@ -132,6 +132,38 @@ class RentalDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class= RentalSerializer
     permission_classes = [AllowAny]
 
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object() 
+        serializer = self.get_serializer(instance)
+        tenant_data = {
+            'id': instance.tenant.id,
+            'username': instance.tenant.username,  
+            'email': instance.tenant.email,
+            'phone_number': instance.tenant.phone_number,
+        }
+        property_data = {
+            'id': instance.property.id,
+            'owner': {
+                'id': instance.property.owner.id,             
+                'username': instance.property.owner.username,
+                'email':instance.property.owner.email,   
+                'phone_number':instance.property.owner.phone_number,       
+            },
+            'property_type': instance.property.property_type,
+            'status': instance.property.status,
+            'price': instance.property.price,
+            'description': instance.property.description,
+            'image': instance.property.image.url if instance.property.image else None,
+            'created_at': instance.property.created_at,
+            'updated_at': instance.property.updated_at,
+        }
+        return Response({
+            'rental': serializer.data,
+            'tenant': tenant_data,
+            'property': property_data,
+        })
+
+
 class PaymentListCreate(generics.ListCreateAPIView):
     queryset= Payment.objects.all()
     serializer_class= PaymentSerializer
@@ -226,10 +258,133 @@ class RentalsByUserId(generics.ListAPIView):
 
     def get_queryset(self):
         owner_id = self.kwargs['owner_id']
-        return Rental.objects.filter(property_id__user_id=owner_id)
+        return Rental.objects.filter(property__owner__user_ptr=owner_id)
+
+class PropertyDetailView(generics.RetrieveAPIView):
+    queryset = Property.objects.all()
+    serializer_class = PropertiesSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'id'  
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object() 
+        serializer = self.get_serializer(instance)
+        owner_data = {
+            'id': instance.owner.id,
+            'username': instance.owner.username,  
+            'email': instance.owner.email,
+            'phone_number':instance.owner.phone_number,
+        }
+
+        return Response({
+            'property': serializer.data,
+            'owner': owner_data,
+        })
+
+class RentalMoreDetailView(generics.RetrieveAPIView):
+    queryset = Rental.objects.all()
+    serializer_class = RentalSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'id'  
+
+    # def get_object(self):
+    #     tenant_id = self.kwargs.get('tenant')
+    #     return get_object_or_404(Rental, tenant__id=tenant_id)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object() 
+        serializer = self.get_serializer(instance)
+        tenant_data = {
+            'id': instance.tenant.id,
+            'username': instance.tenant.username,  
+            'email': instance.tenant.email,
+            'phone_number': instance.tenant.phone_number,
+        }
+        property_data = {
+            'id': instance.property.id,
+            'property_type': instance.property.property_type,
+            'status': instance.property.status,
+            'price': instance.property.price,
+            'description': instance.property.description,
+            'image': instance.property.image.url if instance.property.image else None,
+            'created_at': instance.property.created_at,
+            'updated_at': instance.property.updated_at,
+        }
+        return Response({
+            'rental': serializer.data,
+            'tenant': tenant_data,
+            'property': property_data,
+        })
+
+class TenatDetailView(generics.RetrieveAPIView):
+    queryset = Rental.objects.all()
+    serializer_class = RentalSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'tenant'  
+
+    def get_queryset(self):
+        tenant_id = self.kwargs.get('tenant')
+        return Rental.objects.filter(tenant__id=tenant_id)
+
+    def retrieve(self, request, *args, **kwargs):
+        rentals = self.get_queryset()
+        rental_data = RentalSerializer(rentals, many=True).data 
+        
+        properties = {rental.property for rental in rentals}
+        property_data = []
+        
+        tenant = rentals.first().tenant if rentals.exists() else None
+        tenant_data = {
+            'id': tenant.id,
+            'username': tenant.username,
+            'email': tenant.email,
+            'phone_number': tenant.phone_number
+        } if tenant else None
 
 
+        for property_instance in properties:
+            property_data.append({
+                'id': property_instance.id,
+                'property_type': property_instance.property_type,
+                'status': property_instance.status,
+                'price': property_instance.price,
+                'description': property_instance.description,
+                'image': property_instance.image.url if property_instance.image else None,
+                'created_at': property_instance.created_at,
+                'updated_at': property_instance.updated_at,
+                'owner': {
+                    'id': property_instance.owner.id,
+                    'username': property_instance.owner.username,
+                    'email': property_instance.owner.email,
+                    'phone_number': property_instance.owner.phone_number,
+                } if property_instance.owner else None, 
+            })
 
+        return Response({
+            'rental': rental_data,
+            'tenant':tenant_data,
+            'properties': property_data,
+        })
+
+class PayPropertyDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= PayProperty.objects.all()
+    serializer_class= PayPropertySerializer
+    permission_classes = [AllowAny]
+
+class PayPropertyListCreate(generics.ListCreateAPIView):
+    queryset = PayProperty.objects.all()
+    serializer_class = PayPropertySerializer
+    permission_classes = [AllowAny] 
+
+class PayRentDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset= PayRent.objects.all()
+    serializer_class= PayRentSerializer
+    permission_classes = [AllowAny]
+
+class PayRentListCreate(generics.ListCreateAPIView):
+    queryset = PayRent.objects.all()
+    serializer_class = PayRentSerializer
+    permission_classes = [AllowAny]
 
 
 

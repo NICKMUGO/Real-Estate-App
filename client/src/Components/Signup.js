@@ -41,12 +41,12 @@ const Signup = () => {
         button: {
             padding: '15px',
             backgroundColor: 'black',
-            color: 'white',
+            color: 'orange',
             fontSize: '16px',
             border: 'none',
             borderRadius: '5px',
             marginTop: '20px',
-            cursor: 'pointer',
+            cursor: 'pointer'
         },
         gender: {
             marginTop: '15px',
@@ -89,7 +89,7 @@ const Signup = () => {
                 address:newUser.address,
                 role:newUser.role
             })
-            // navigate('/login')
+            navigate('/login')
         }catch (error) {
             if (error.response) {
                 console.error('Error response:', error.response.data); 

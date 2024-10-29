@@ -11,11 +11,10 @@ import Signup from "./Components/Signup";
 import MyPaymentspage from "./Components/MyPaymentspage";
 import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
-import PayRentPage from "./Components/PayRentPage";
 import UserContextProvider from "./Components/UserContextProvider";
 import HighlightsofHouses from './Components/HighlightsofHouses';
 import PropertyForm from './Components/PropertyForm';
-import UtilityProviderForm from './Components/utilityprovider';
+import UtilityProvider from './Components/UtilityProvider';
 import RentalPopup from './Components/RentalPopup';
 import PaymentForm from './Components/PaymentForm';
 import UtilityPage from './Components/UtilitiesPage';
@@ -26,6 +25,13 @@ import MyRentals from './Components/MyRentals';
 import RentalDetail from './Components/RentalDetail';
 import AboutUs from "./Components/aboutusPage";
 import AboutusPage from "./Components/aboutusPage";
+import UserProfile from './Components/UserProfile';
+import Logout from './Components/Logout';
+import ClientRental from './Components/ClientRentals';
+import RentalDetailClient from './Components/RentalDetailClient';
+import PayRentPopup from './Components/PayRentPopup';
+import RentalPayment from './Components/RentalPayment';  
+
 function App() {
   return (
     <BrowserRouter>
@@ -42,10 +48,10 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
-        <Route path="/payrent" element={<PayRentPage/>}/>
+        <Route path="/payrent" element={<PayRentPopup/>}/>
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
-        <Route path="/utilityproviderform" element={<UtilityProviderForm/>}/>
+        <Route path="/utilityprovider" element={<UtilityProvider/>}/>
         <Route path="/paymentform" element={<PaymentForm/>}/>
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/utilityform" element={<UtilityPopup/>}/>
@@ -55,6 +61,11 @@ function App() {
         <Route path="/myrentals" element={<MyRentals/>} />
         <Route path="/rental/:id" element={<RentalDetail/>} />
         <Route path="/aboutusPage" element={<AboutusPage/>} />
+        <Route path='/userprofile' element={<UserProfile/>}/>
+        <Route path='/logout' element={<Logout/>}/>
+        <Route path='/manageRental' element={<ClientRental/>}/>
+        <Route path="/rentalClient/:id" element={<RentalDetailClient/>} />
+        <Route path="/rental-payments" element={<RentalPayment />} />
       </Routes>
       <Footer /> 
       </UserContextProvider>

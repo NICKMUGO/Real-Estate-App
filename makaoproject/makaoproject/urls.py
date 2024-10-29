@@ -21,14 +21,13 @@ from makaoapp import views
 from makaoapp.views import (
     UserDetails, UserListCreate, PropertyListCreate, PropertyDetails,
     RentalListCreate, RentalDetails, PaymentDetails, PaymentListCreate,
-    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId
+    UtilityDetails, UtilityListCreate, UtilityProviderListCreate, UtilityProviderDetails,Login,logout,PropertyByUserId,PaymentsByUserId,OwnerDetails,OnwerListCreate,ClienListCreate,ClientDetails,RentalsByUserId,PropertyDetailView,RentalMoreDetailView,TenatDetailView,PayRentDetails,PayRentListCreate,PayPropertyListCreate,PayPropertyDetails
 )
-from .views import property_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('user/<int:pk>/', UserDetails.as_view(), name='user_details'),
+    path('userprofile/<int:pk>/', UserDetails.as_view(), name='user_details'),
     path('users/', UserListCreate.as_view(), name='user_listcreate'),
     path('client/<int:pk>/', ClientDetails.as_view(), name='user_details'),
     path('clients/', ClienListCreate.as_view(), name='user_listcreate'),
@@ -40,7 +39,7 @@ urlpatterns = [
     path('payment/<int:pk>/', PaymentDetails.as_view(), name='payment_details'),
     path('utility/', UtilityListCreate.as_view(), name='utility_listcreate'),
     path('utility/<int:pk>/', UtilityDetails.as_view(), name='utility_details'),
-    path('utilityprovider/', UtilityProviderListCreate.as_view(), name='utilityprovider_listcreate'),
+    path('utilityproviders/', UtilityProviderListCreate.as_view(), name='utilityprovider_listcreate'),
     path('utilityprovider/<int:pk>/', UtilityProviderDetails.as_view(), name='utilityprovider_details'),
     path('login/',views.Login,name='login'),
     path('logout/',views.logout,name='logout'),
@@ -48,7 +47,14 @@ urlpatterns = [
     path('payments/user/<int:user_id>/', PaymentsByUserId.as_view(), name='payments_by_user_id'),
     path('owners/', OnwerListCreate.as_view(), name='onwer_listcreate'),
     path('owner/<int:pk>/', OwnerDetails.as_view(), name='onwer_details'),
-    path('rentalUser/<int:owner_id>/', RentalsByUserId.as_view(), name='rental_by_user'),  
+    path('rentalUser/<int:owner_id>/', RentalsByUserId.as_view(), name='rental_by_user'),
+    path('propertyOnwer/<int:id>/', PropertyDetailView.as_view(), name='property_detail'),
+    path('rentalUser/<int:id>/', RentalMoreDetailView.as_view(), name='rental-more-detail'), 
+    path('rentalUserSide/<int:tenant>/', TenatDetailView.as_view(), name='rental-user-detail'), 
+    path('payRent/<int:pk>/', PayRentDetails.as_view(), name='rental-more-detail'), 
+    path('payRents/', PayRentListCreate.as_view(), name='rental-user-detail'),
+    path('payProperty/<int:pk>/', PayPropertyDetails.as_view(), name='pay-property-detail'), 
+    path('payProperties/', PayPropertyListCreate.as_view(), name='pay-property'),
 ]
 
 if settings.DEBUG:
