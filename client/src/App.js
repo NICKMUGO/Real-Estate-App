@@ -31,6 +31,7 @@ import ClientRental from './Components/ClientRentals';
 import RentalDetailClient from './Components/RentalDetailClient';
 import PayRentPopup from './Components/PayRentPopup';
 import RentalPayment from './Components/RentalPayment';  
+import RentorDash from './Components/RentorDash';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path='/manageRental' element={<ClientRental/>}/>
         <Route path="/rentalClient/:id" element={<RentalDetailClient/>} />
         <Route path="/rental-payments" element={<RentalPayment />} />
+        <Route path="/rentordash" element={<RentorDash />} />
       </Routes>
       <Footer /> 
       </UserContextProvider>
