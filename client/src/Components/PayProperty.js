@@ -18,7 +18,7 @@ function PayProperty() {
       zIndex: 1000,
     },
     popupContent: {
-      backgroundColor: '#1E293B',
+      backgroundColor: '#031739',
       padding: '20px',
       borderRadius: '10px',
       maxWidth: '600px',
@@ -26,7 +26,7 @@ function PayProperty() {
       position: 'relative',
     },
     h2: {
-      color: '#F59E0B',
+      color: '#B4975A',
       textAlign: 'center',
       fontSize: '24px',
       marginBottom: '10px',
@@ -64,13 +64,14 @@ function PayProperty() {
     },
     button: {
       padding: '12px 20px',
-      backgroundColor: '#10B981',
+      backgroundColor: '#B4975A',
       color: 'white',
       fontSize: '16px',
       border: 'none',
       borderRadius: '5px',
       cursor: 'pointer',
-      width: '100%',
+      width: '20%',
+      marginLeft:"225px",
       marginTop: '20px',
     },
     closeButton: {

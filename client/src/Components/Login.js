@@ -81,7 +81,7 @@ const Login = () => {
             })
             setUser(response.data.user);
             console.log(response.data.user)
-            navigate('/homepage'); 
+            navigate('/'); 
         } catch (error) {
             console.log("Failed to login loggedinuser");
             alert("Invalid Username or Password");

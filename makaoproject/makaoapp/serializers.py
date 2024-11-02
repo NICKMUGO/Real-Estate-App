@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,Payment,Property,Utility,UtilityProvider,Rental,Owner,Client,PayProperty,PayRent
+from .models import User,Property,Utility,UtilityProvider,Rental,Owner,Client,PayProperty,PayRent,Payment
 
 
 
