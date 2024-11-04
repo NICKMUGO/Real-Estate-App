@@ -32,8 +32,8 @@ import RentalDetailClient from './Components/RentalDetailClient';
 import PayRentPopup from './Components/PayRentPopup';
 import RentalPayment from './Components/RentalPayment';  
 import RentorDash from './Components/RentorDash';
-
 import PayUtility from './Components/PayUtility';
+import PayProperty from './Components/PayProperty';
 function App() {
   return (
     <BrowserRouter>
@@ -69,6 +69,7 @@ function App() {
         <Route path="/rental-payments" element={<RentalPayment />} />
         <Route path="/rentordash" element={<RentorDash />} />
         <Route path="/payUtility" element={<PayUtility/>} />
+        <Route path="/payproperty" element={<PayProperty/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>
