@@ -15,7 +15,7 @@ function Navbar() {
             <nav>
                 <ul className="header">
                     <li>
-                        <a href="/homepage">MAKAO Marketplace</a>
+                        <a href="/">MAKAO Marketplace</a>
                     </li>
                     <li>
                         <a href="/logout">⏻</a>
@@ -54,7 +54,7 @@ function Navbar() {
                     {user && user.role === 'client' && ( // Safely checking user
                         <>
                             <li>
-                                <a href="/MyPayments">PayMyRent</a>
+                                <a href="/MyPayments">PayMyUtility</a>
                             </li>
                             <li>
                                 <a href="/allproperties">Properties</a>

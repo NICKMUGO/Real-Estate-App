@@ -1,17 +1,21 @@
 header {
-    background-color: #031739; 
-      color: #ffffff; 
-    padding: 12px;
-    text-align: left;
-    font-family: "Oswald";
-  }
+  background-color: white;
+  color: #B4975A;
+  padding: 12px;
+  text-align: center;
+  font-family: "Oswald";
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
   
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-image: url(property.jpeg);
+    /* background-image: url(property.jpeg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

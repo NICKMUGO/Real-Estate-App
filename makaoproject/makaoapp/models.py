@@ -96,9 +96,10 @@ class UtilityProvider(models.Model):
         return self.provider_name
 
 class Payment(models.Model):
+
     property_id = models.ForeignKey(Property, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    utility_id = models.ForeignKey(Utility, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    utilityprovider = models.ForeignKey(UtilityProvider, on_delete=models.CASCADE)
     payment_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(decimal_places=2, max_digits=9)
     payment_date = models.DateTimeField()
