@@ -3,7 +3,7 @@ import "./Houses.css";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PayRentPopup from "./PayyRentPopup";
+import PayRentPopup from "./PayRentPopup";
 
 function ClientRental() {
   const [user] = useContext(Usercontext);
