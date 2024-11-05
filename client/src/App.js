@@ -29,7 +29,7 @@ import UserProfile from './Components/UserProfile';
 import Logout from './Components/Logout';
 import ClientRental from './Components/ClientRentals';
 import RentalDetailClient from './Components/RentalDetailClient';
-import PayRentPopup from './Components/PayRentPopup';
+import PayRentPopup from './Components/PayyRentPopup';
 import RentalPayment from './Components/RentalPayment';  
 import RentorDash from './Components/RentorDash';
 import PayUtility from './Components/PayUtility';

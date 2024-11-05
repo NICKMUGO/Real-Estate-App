@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import PayRentPopup from "./PayRentPopup";
+import PayRentPopup from "./PayyRentPopup";
 
 function RentalDetailClient() {
   const { id } = useParams();
