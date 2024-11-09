@@ -4,6 +4,7 @@ import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import PropertyForm from "./PropertyForm";
 import { Link } from "react-router-dom";
+import PayProperty from "./PayProperty";
 
 const AllProperties = () => {
   const [user] = useContext(Usercontext);
@@ -88,19 +89,19 @@ const AllProperties = () => {
     });
   };
 
-  const DeleteProperty = async (id) => {
-    try {
-      await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
-      setMyProperties(myProperties.filter((property) => property.id !== id));
-    } catch (error) {
-      if (error.response) {
-        console.error('Error response:', error.response.data); 
-        alert(error.response.data.detail || 'Failed to Delete Property');
-      } else {
-        console.error('Error submitting form:', error);
-      }
-    }
-  };
+  // const DeleteProperty = async (id) => {
+  //   try {
+  //     await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
+  //     setMyProperties(myProperties.filter((property) => property.id !== id));
+  //   } catch (error) {
+  //     if (error.response) {
+  //       console.error('Error response:', error.response.data); 
+  //       alert(error.response.data.detail || 'Failed to Delete Property');
+  //     } else {
+  //       console.error('Error submitting form:', error);
+  //     }
+  //   }
+  // };
 
   return (
     <div style={styles.container}>
@@ -120,7 +121,7 @@ const AllProperties = () => {
           onChange={(e) => setPriceSearch(e.target.value)} 
         />
       </div>
-      <PropertyForm />
+      {/* <PropertyForm /> */}
       <center>
         <div style={styles.houseDisplay}>
           {myProperties.length > 0 ? (
@@ -138,7 +139,7 @@ const AllProperties = () => {
                   Price: KES {property.price}<br />
                   Description: {property.description}<br />
                 </Link>
-                <button onClick={() => DeleteProperty(property.id)}>🚮</button>
+                {/* <button onClick={() => DeleteProperty(property.id)}>🚮</button> */}
               </div>
             ))
           ) : (
