@@ -34,6 +34,8 @@ import RentalPayment from './Components/RentalPayment';
 import RentorDash from './Components/RentorDash';
 import PayUtility from './Components/PayUtility';
 import PayProperty from './Components/PayProperty';
+import LeaseForm from './Components/LeaseForm';
+
 function App() {
   return (
     <BrowserRouter>
@@ -70,6 +72,8 @@ function App() {
         <Route path="/rentordash" element={<RentorDash />} />
         <Route path="/payUtility" element={<PayUtility/>} />
         <Route path="/payproperty" element={<PayProperty/>} />
+        <Route path="/lease-form" element={<LeaseForm />} />
+      
       </Routes>
       <Footer /> 
       </UserContextProvider>
