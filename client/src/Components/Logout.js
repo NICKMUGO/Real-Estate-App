@@ -11,7 +11,8 @@ const Logout = () => {
         if( window.confirm("Are you sure ?")){
             try {
                 await axios.post('http://127.0.0.1:8000/logout/');
-                setUser(null);  
+                navigate('/');
+                setUser(null);   
                 localStorage.removeItem("user");    
                 navigate('/login');
             } catch (error) {

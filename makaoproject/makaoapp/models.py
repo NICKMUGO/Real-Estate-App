@@ -57,6 +57,7 @@ class Property(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    views= models.IntegerField(null=True, blank=True)
 
 
     def __str__(self):

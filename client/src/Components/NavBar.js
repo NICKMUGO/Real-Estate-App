@@ -41,9 +41,6 @@ function Navbar() {
                                 <a href="/utilitiespage">Utility Page</a>
                             </li>
                             <li>
-                                <a href="/ownerDashboard">Owner Dashboard</a>
-                            </li>
-                            <li>
                                 <a href="/houses">my🏡</a>
                             </li>
                         </>

@@ -193,12 +193,24 @@ function PayProperty() {
       });
 
       console.log('Payment Data Submitted:', response.data);
-      console.log('Payment Data Submitted:', response.data);
-      const patchPaymentStatus = await axios.patch(`http://127.0.0.1:8000/property/${payPropertyData.property}/`, {
-        status:payPropertyData.payment_status? "sold":"available",
-      }); 
-      console.log(patchPaymentStatus.data)
-      console.log(patchPaymentStatus.status) 
+      console.log(response.status)
+      if(response.status === 200){
+        const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
+          phone_number:"254741065519"
+        });
+        console.log(Mpesaresponse.data)
+        alert(Mpesaresponse.data)
+          if(Mpesaresponse.status=== 200){
+            const patchPaymentStatus = await axios.patch(`http://127.0.0.1:8000/property/${payPropertyData.property}/`, {
+              status:payPropertyData.payment_status? "sold":"available",
+            });
+            console.log(patchPaymentStatus.data)
+            console.log(patchPaymentStatus.status)
+          }
+          else{
+              alert("Payment not yet done")
+            }
+      }
       if (payPropertyData.payment_status){
         const deletePaidProperty = await axios.delete(`http://127.0.0.1:8000/property/${payPropertyData.property}/`); 
         console.log(deletePaidProperty.data)
@@ -257,7 +269,7 @@ function PayProperty() {
                   <option value="" disabled>Select Property</option>
                   {properties.map((property) => (
                     <option key={property.id} value={property.id}>
-                      ({property.id}){property.property_type} - Price: {property.price}
+                      ({property.id}){property.property_type} - Price: {property.price}-{property.description}
                     </option>
                   ))}
                 </select>

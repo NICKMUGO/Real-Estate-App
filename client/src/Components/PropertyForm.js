@@ -209,7 +209,7 @@ function PropertyForm (){
                             >
                                 <option value="" disabled>Select availability</option>
                                 <option value="available">Available</option>
-                                <option value="sold">Sold</option>
+                                {/* <option value="sold">Sold</option> */}
                             </select>
 
                             <div style={styles.formGroup}>

@@ -35,11 +35,14 @@ import RentorDash from './Components/RentorDash';
 import PayUtility from './Components/PayUtility';
 import PayProperty from './Components/PayProperty';
 import LeaseForm from './Components/LeaseForm';
+import PropertyViewsContext from './Components/PropertyViewsContext';
+import Statistics from './Components/Statistics';
 
 function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
+      <PropertyViewsContext>
       <NavBar /> 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -73,9 +76,10 @@ function App() {
         <Route path="/payUtility" element={<PayUtility/>} />
         <Route path="/payproperty" element={<PayProperty/>} />
         <Route path="/lease-form" element={<LeaseForm />} />
-      
+        <Route path="/statistics" element={<Statistics/>} />
       </Routes>
       <Footer /> 
+      </PropertyViewsContext>
       </UserContextProvider>
     </BrowserRouter>
   );

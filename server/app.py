@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, make_response, request,render_template,json
 # from models import db, Users, Sherehe
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from config import AppConfig
@@ -87,27 +87,39 @@ def validate():
     print("Validation Data:", json_data)
     return jsonify({"message": "Validation received."}), 200
 
-@app.route('/transact/mpesaexpress')
+@app.route('/transact/mpesaexpress', methods=['POST'])
 def simulate_stk_push():
+    phone_number = request.get_json().get('phone_number')
+    
+    if not phone_number:
+        return jsonify({"error": "Phone number is required"}), 400
+    
+    str_phone_number = str(phone_number)
+    
+    # Ensure the phone number is in the correct format
+    if not str_phone_number.startswith("254"):
+        return jsonify({"error": "Invalid phone number format. Use +2547xxxxxxxxx."}), 400
+    
     data = {
-        "business_shortcode": "174379", #from developers portal
-        "passcode": "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",#from developers portal
-        "amount": "1", # choose amount preferrably KSH 1
-        "phone_number":"254741065519", #phone number to be prompted to pay
-        "reference_code": "HelloWorld",#Code to inform the user of services he/she is paying for.
-        "callback_url": "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query", # cllback url should be exposes. for testing putposes you can route on host 0.0.0.0 and set the callback url to be https://youripaddress:yourport/endpoint
-        "description": "Hello World" #a description of the transaction its optional
+        "business_shortcode": "174379",  # From developers portal
+        "passcode": "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  # From developers portal
+        "amount": 1,  # Amount should be an integer
+        "phone_number": str_phone_number,
+        "reference_code": "HelloWorld",  # Code to inform the user of services
+        "callback_url": "https://your-ngrok-url.ngrok.io/callback",  # Replace with your valid callback URL
+        "description": "Hello World"  # Optional description
     }
-    resp = mpesa_api.MpesaExpress.stk_push(**data)  # ** unpacks the dictionary
-    ##use resp to capture the response
+    
     try:
+        # Call MPESA API
         resp = mpesa_api.MpesaExpress.stk_push(**data)
         print("Response:", resp)  # Debug print
-        return resp
+        return jsonify({"response": resp}), 200
     except Exception as e:
         print("Error:", str(e))  # Debug print
         return jsonify({"error": str(e)}), 500
 
+@cross_origin()
 @app.route('/callback-url',methods=["POST"])
 def callback_url():
     #get json data set to this route
