@@ -6,10 +6,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #031739;
     line-height: 1.6;
-    /* background-image: url('../../public/background.jpeg');
+    background-image: url('../../public/background.jpg');
     background-size: cover;
     background-position: center;
-    backdrop-filter: blur(5px); */
+    backdrop-filter: blur(5px);
 }
 
 .aboutus-container h1 {

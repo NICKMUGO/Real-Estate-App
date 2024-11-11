@@ -31,17 +31,18 @@ import ClientRental from './Components/ClientRentals';
 import RentalDetailClient from './Components/RentalDetailClient';
 import PayRentPopup from './Components/PayRentPopup';
 import RentalPayment from './Components/RentalPayment';  
-
+import RentorDash from './Components/RentorDash';
+import PayUtility from './Components/PayUtility';
+import PayProperty from './Components/PayProperty';
 function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
       <NavBar /> 
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/awards" element={<AwardsPage />} />
         <Route path="/questions" element={<QuestionsPage />} />
-        <Route path="/homepage" element={<HomePage />} />
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
         <Route path="/questions" element={<QuestionsPage/>}/>
@@ -66,6 +67,9 @@ function App() {
         <Route path='/manageRental' element={<ClientRental/>}/>
         <Route path="/rentalClient/:id" element={<RentalDetailClient/>} />
         <Route path="/rental-payments" element={<RentalPayment />} />
+        <Route path="/rentordash" element={<RentorDash />} />
+        <Route path="/payUtility" element={<PayUtility/>} />
+        <Route path="/payproperty" element={<PayProperty/>} />
       </Routes>
       <Footer /> 
       </UserContextProvider>

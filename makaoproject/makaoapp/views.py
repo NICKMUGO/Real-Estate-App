@@ -2,9 +2,9 @@ from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent,PayProperty
+from .models import Property,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent,PayProperty,Payment
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer,PayRentSerializer,PayPropertySerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,OwnerSerializer,ClientSerializer,PayRentSerializer,PayPropertySerializer,PaymentSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
