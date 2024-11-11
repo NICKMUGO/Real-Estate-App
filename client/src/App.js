@@ -34,6 +34,8 @@ import RentalPayment from './Components/RentalPayment';
 import RentorDash from './Components/RentorDash';
 import PayUtility from './Components/PayUtility';
 import PayProperty from './Components/PayProperty';
+import LeaseForm from './Components/LeaseForm';
+
 function App() {
   return (
     <BrowserRouter>
@@ -41,13 +43,13 @@ function App() {
       <NavBar /> 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/awards" element={<AwardsPage />} />
         <Route path="/questions" element={<QuestionsPage />} />
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
         <Route path="/questions" element={<QuestionsPage/>}/>
-        <Route path="/signup" element={<Signup/>}/>
-        <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPopup/>}/>
         <Route path="/houses" element={<Houses/>}/>
@@ -70,6 +72,8 @@ function App() {
         <Route path="/rentordash" element={<RentorDash />} />
         <Route path="/payUtility" element={<PayUtility/>} />
         <Route path="/payproperty" element={<PayProperty/>} />
+        <Route path="/lease-form" element={<LeaseForm />} />
+      
       </Routes>
       <Footer /> 
       </UserContextProvider>

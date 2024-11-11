@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./RentorDash.css";
+import UserProfile from "./UserProfile";
 
 function RentorDash() {
     const navigate = useNavigate();
 
     return (
         <div className="dashboard">
+            <UserProfile/>
             <h1>My Dashboard</h1>
             <div className="grid-container">
                 <div className="grid-item" onClick={() => navigate('/houses')}>
@@ -30,11 +32,6 @@ function RentorDash() {
                     </div>
                 </div>
                 <div className="grid-item" onClick={() => navigate('/additional-info')}>
-                    <div className="card">
-                        <div className="card-content">Additional Info</div>
-                    </div>
-                </div>
-                 <div className="grid-item" onClick={() => navigate('/additional-info')}>
                     <div className="card">
                         <div className="card-content">Additional Info</div>
                     </div>

@@ -176,7 +176,7 @@ export default function RentalPopup() {
                     required
                   >
                     <option value={false}>Not Paid</option>
-                    <option value={true}>Paid</option>
+                    {/* <option value={true}>Paid</option> This shouldnt be an option as the client needs to pay on their side for it to reflect */}
                   </select>
                 </div>
                 <button type='submit' className='submit-button'>Submit</button>

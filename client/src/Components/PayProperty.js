@@ -193,6 +193,29 @@ function PayProperty() {
       });
 
       console.log('Payment Data Submitted:', response.data);
+      console.log('Payment Data Submitted:', response.data);
+      const patchPaymentStatus = await axios.patch(`http://127.0.0.1:8000/property/${payPropertyData.property}/`, {
+        status:payPropertyData.payment_status? "sold":"available",
+      }); 
+      console.log(patchPaymentStatus.data)
+      console.log(patchPaymentStatus.status) 
+      if (payPropertyData.payment_status){
+        const deletePaidProperty = await axios.delete(`http://127.0.0.1:8000/property/${payPropertyData.property}/`); 
+        console.log(deletePaidProperty.data)
+        console.log(deletePaidProperty.status)
+        }else{
+          alert("You have not completed payment")
+        }
+      setPayPropertyData({
+        property: '',
+        buyer: '',
+        owner: '',
+        amount: '',
+        payment_date: '',
+        payment_status: false,
+        title_deed: null,
+      });
+
       closeModal();
     } catch (error) {
       if (error.response) {
@@ -203,7 +226,7 @@ function PayProperty() {
       }
     }
   };
-
+  
   return (
     <div>
       <div style={styles.openButtonContainer}>
@@ -281,6 +304,7 @@ function PayProperty() {
                   name="amount"
                   value={payPropertyData.amount}
                   onChange={handleChange}
+                  step={1000000}
                   required
                   style={styles.input}
                 />
