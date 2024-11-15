@@ -196,7 +196,7 @@ function PayProperty() {
       console.log(response.status)
       if(response.status === 200){
         const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
-          phone_number:"254741065519"
+          phone_number:"254748089691"
         });
         console.log(Mpesaresponse.data)
         alert(Mpesaresponse.data)

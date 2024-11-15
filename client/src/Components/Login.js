@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate, Link } from 'react-router-dom'; // Import Link
 import { Usercontext } from "./UserContextProvider";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
             height: '100%',
             maxWidth: '1300px',
             border: '1px solid #eaeaea',
-            backgroundColor: '#031739',
+            backgroundColor: 'white',
             overflow: 'hidden'
         },
         leftSection: {
@@ -21,7 +21,7 @@ const Login = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            color: '#B4975A',
+            color: '#031739',
         },
         form: {
             display: 'flex',
@@ -30,25 +30,43 @@ const Login = () => {
         label: {
             marginTop: '10px',
             fontFamily: 'Times New Roman, Times, serif',
-            color: '#B4975A',
+            color: '#031739',
         },
         input: {
             padding: '10px',
             marginTop: '5px',
             border: '0.5px solid #ccc',
             borderRadius: '5px',
-            backgroundColor: 'gray',  
+            backgroundColor: 'gray',
+              
         },
         button: {
-            padding: '15px',
+            padding: '8px 20px', // Adjust padding to make the button smaller
             backgroundColor: 'black',
             color: '#B4975A',
-            fontSize: '16px',
+            fontSize: '14px', // Decrease font size if needed
             border: 'none',
             borderRadius: '5px',
             marginTop: '20px',
             cursor: 'pointer',
+            width: '400px', // Optional: set a fixed width for a smaller look
+            
+            
         },
+        
+        linkText: {
+            marginTop: '15px',
+            
+            fontSize: '14px',
+            color: '#031739',
+        },
+        link: {
+            textDecoration: 'underline', // Adds underline
+            color: '#031739',
+            fontWeight: 'bold', // Makes the text bold
+            marginLeft: '5px',
+        },
+        
         rightSection: {
             flex: 1,
             backgroundSize: 'cover',
@@ -68,9 +86,8 @@ const Login = () => {
         password: ""
     });
 
-    const[user,setUser]=useContext(Usercontext);
-
-    const navigate = useNavigate(); 
+    const [user, setUser] = useContext(Usercontext);
+    const navigate = useNavigate();
 
     const onLoginSubmit = async (e) => {
         e.preventDefault();
@@ -78,16 +95,17 @@ const Login = () => {
             const response = await axios.post('http://127.0.0.1:8000/login/', {
                 email: loggedinuser.email,
                 password: loggedinuser.password
-            })
+            });
             setUser(response.data.user);
-            console.log(response.data.user)
-            navigate('/'); 
+            console.log(response.data.user);
+            navigate('/');
         } catch (error) {
             console.log("Failed to login loggedinuser");
             alert("Invalid Username or Password");
         }
     };
-    console.log(user)
+
+    console.log(user);
     return (
         <div style={styles.container}>
             <div style={styles.leftSection}>
@@ -99,7 +117,7 @@ const Login = () => {
                         name="email"
                         id="email"
                         required
-                        style={styles.input} 
+                        style={styles.input}
                         value={loggedinuser.email}
                         onChange={(e) => setloggedinUser({ ...loggedinuser, email: e.target.value })}
                     />
@@ -118,6 +136,11 @@ const Login = () => {
                     <small>Please enter 8 or more characters.</small>
 
                     <button type="submit" style={styles.button}>Login</button>
+
+                    <p style={styles.linkText}>
+                        Don't have an account?
+                        <Link to="/signup" style={styles.link}>Signup</Link>
+                    </p>
                 </form>
             </div>
 

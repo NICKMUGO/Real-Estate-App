@@ -70,7 +70,7 @@ function PropertyForm (){
         },
         openButton: {
             padding: '15px',
-            backgroundColor: 'blue',
+            backgroundColor: '#031739',
             color: 'white',
             fontSize: '16px',
             border: 'none',
