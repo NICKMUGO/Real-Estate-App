@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"; 
+import React, { useContext, useState } from "react";
 import "./NavBar.css";
 import { Usercontext } from "./UserContextProvider";
 
@@ -14,46 +14,13 @@ function Navbar() {
         <div className="NavBar">
             <nav>
                 <ul className="header">
+                   
                     <li>
                         <a href="/homepage">MAKAO Marketplace</a>
                     </li>
-                    <li>
+                    <li style={{ textAlign: "center" }}>
                         <a href="/login">Login</a>
                     </li>
-                    <li>
-                        <a href="/utilitiespage">Utility Page</a>
-                    </li>
-                    <li>
-                        <a href="/signup">Sign up</a>
-                    </li>
-                    <li>
-                        <a href="/allproperties">Properties</a>
-                    </li>
-                    <li>
-                        <a href="/About">About</a>
-                    </li>
-                    {user.role === 'owner' && (
-                        <>
-                            <li>
-                                <a href="/ownerDashboard">Owner Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="/houses">my🏡</a>
-                            </li>
-                        </>
-                    )}
-
-                    {user.role === 'client' && (
-                        <>
-                            <li>
-                                <a href="/MyPayments">PayMyRent</a>
-                            </li>
-                            <li>
-                                <a href="/manageRental">MyRentals</a>
-                            </li>
-                        </>
-                    )}
-
                     <li>
                         <button onClick={toggleSidebar} className="sidebar-toggle">
                             <svg
@@ -73,29 +40,49 @@ function Navbar() {
                     </li>
                 </ul>
             </nav>
+
             {isSidebarOpen && (
                 <div className="sidebar">
                     <ul>
-                        {user.role === 'owner' ? (
+                        {/* Common links */}
+                        <li>
+                            <a href="/homepage">Home</a>
+                        </li>
+                        <li>
+                            <a href="/allproperties">Properties</a>
+                        </li>
+                        <li>
+                            <a href="/About">About</a>
+                        </li>
+
+                        {/* Owner-specific links */}
+                        {user.role === 'owner' && (
                             <>
-                                {/* <li>
-                                    <a href="/houses">Property View</a>
-                                </li> */}
-                                {/* <li>
-                                    <a href="/ownerUtilities">Owner Utilities</a>
-                                </li> */}
+                             <li>
+                            <a href="/utilitiespage">Utility Page</a>
+                             </li>
+                                
                                 <li>
-                                    <a href="/myrentals">Rentals Overview</a>
+                                    <a href="/houses">my🏡</a>
                                 </li>
                             </>
-                        ) : (
+                        )}
+
+                        {/* Client-specific links */}
+                        {user.role === 'client' && (
                             <>
-                                {/* <li>
-                                    <a href="/payrent">Pay Rent</a>
-                                </li> */}
-                                {/* <li>
-                                    <a href="/clientUtilities">Client Utilities</a>
-                                </li> */}
+                            <li>
+                                    <a href="/rentordash">Client Dashboard</a>
+                                </li>
+                             <li>
+                            <a href="/utilitiespage">Utility Page</a>
+                             </li>
+                                <li>
+                                    <a href="/MyPayments">PayMyRent</a>
+                                </li>
+                                <li>
+                                    <a href="/manageRental">MyRentals</a>
+                                </li>
                             </>
                         )}
                     </ul>
