@@ -1,9 +1,11 @@
 footer {
     background-color: #031739;
     font-family: Playfair Display;
-    padding-top: 50px;
-    padding-bottom: 20px;
     background-size: 1298px;
+    margin: 0ch;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    
 }
 
 #footer {
@@ -11,10 +13,11 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0cm;
 }
 
 #f-title {
-    margin-top: -30px;
+    /* margin-top: -30px; */
     padding-left: 100px;
     font-size: xx-large;
     font-weight: bold;
