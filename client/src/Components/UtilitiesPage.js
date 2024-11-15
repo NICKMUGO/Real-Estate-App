@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UtilityPopup from "./UtilityPopup";
+import PayUtility from "./PayUtility";
 function UtilitiesPage() {
   const [utilities, setUtilities] = useState([]);
   const [error, setError] = useState(null);
@@ -130,6 +131,7 @@ function UtilitiesPage() {
 
   return (
     <div style={styles.container}>
+      <PayUtility/><br></br>
       <header style={styles.header}>
         <h1>Manage Your Utilities</h1>
         <p>Streamline your utility services for a hassle-free living experience.</p>

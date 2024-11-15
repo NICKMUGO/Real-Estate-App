@@ -55,6 +55,7 @@ urlpatterns = [
     path('payRents/', PayRentListCreate.as_view(), name='rental-user-detail'),
     path('payProperty/<int:pk>/', PayPropertyDetails.as_view(), name='pay-property-detail'), 
     path('payProperties/', PayPropertyListCreate.as_view(), name='pay-property'),
+    path('statistics/', views.statistics_view, name='statistics'), 
 ]
 
 if settings.DEBUG:

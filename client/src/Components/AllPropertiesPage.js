@@ -4,6 +4,8 @@ import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import PropertyForm from "./PropertyForm";
 import { Link } from "react-router-dom";
+import PayProperty from "./PayProperty";
+import { viewsContext } from "./PropertyViewsContext";
 
 const AllProperties = () => {
   const [user] = useContext(Usercontext);
@@ -12,6 +14,7 @@ const AllProperties = () => {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [searchPrice, setPriceSearch] = useState("");
+  const[countViews,setCountViews]=useContext(viewsContext)
 
   useEffect(() => {
     const fetchMyProperties = async () => {
@@ -88,17 +91,35 @@ const AllProperties = () => {
     });
   };
 
-  const DeleteProperty = async (id) => {
-    try {
-      await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
-      setMyProperties(myProperties.filter((property) => property.id !== id));
-    } catch (error) {
-      if (error.response) {
-        console.error('Error response:', error.response.data); 
-        alert(error.response.data.detail || 'Failed to Delete Property');
-      } else {
-        console.error('Error submitting form:', error);
-      }
+  // const DeleteProperty = async (id) => {
+  //   try {
+  //     await axios.delete(`http://127.0.0.1:8000/property/${id}/`);
+  //     setMyProperties(myProperties.filter((property) => property.id !== id));
+  //   } catch (error) {
+  //     if (error.response) {
+  //       console.error('Error response:', error.response.data); 
+  //       alert(error.response.data.detail || 'Failed to Delete Property');
+  //     } else {
+  //       console.error('Error submitting form:', error);
+  //     }
+  //   }
+  // };
+  const HandleViews = async (propertyID) => {
+    try{
+      const propertyResponse = await axios.get(`http://127.0.0.1:8000/property/${propertyID}/`);
+      const property = propertyResponse.data;
+      console.log(property.views)
+      const updatedPropertyViews= property.views + 1
+      const response = await axios.patch(`http://127.0.0.1:8000/property/${propertyID}/`,{
+        views:updatedPropertyViews,
+      });
+      console.log(response.data); 
+      setCountViews((prevData) => ({
+        ...prevData,
+        [propertyID]: updatedPropertyViews, 
+      }));
+    }catch (error) {
+      console.error('Error updating views:', error);
     }
   };
 
@@ -120,25 +141,26 @@ const AllProperties = () => {
           onChange={(e) => setPriceSearch(e.target.value)} 
         />
       </div>
-      <PropertyForm />
+      {/* <PropertyForm /> */}
       <center>
         <div style={styles.houseDisplay}>
           {myProperties.length > 0 ? (
             filteredProperties().map((property) => (
               <div style={styles.card} key={property.id}>
-                <Link to={`/property/${property.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link to={`/property/${property.id}`} onClick={() => HandleViews(property.id)} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <img
                     src={property.image}
                     alt={property.description || 'No description available'}
                     style={styles.image}
                   />
-                  <br />
+                  <br /> 
                   Property Type: {property.property_type}<br />
                   Status: {property.status}<br />
                   Price: KES {property.price}<br />
                   Description: {property.description}<br />
+                  Views:{property.views}
                 </Link>
-                <button onClick={() => DeleteProperty(property.id)}>🚮</button>
+                {/* <button onClick={() => DeleteProperty(property.id)}>🚮</button> */}
               </div>
             ))
           ) : (

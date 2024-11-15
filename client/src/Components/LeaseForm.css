@@ -1,0 +1,67 @@
+.lease-form-container {
+    font-family: "Oswald", sans-serif;
+    color: #ffffff;
+    background-color: #eae3e3;;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    background-color: #031739;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #B4975A;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.payment-details {
+    background-color: #031739;
+    color: #B4975A;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    margin-top: 30px;
+}
+
+.payment-details h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.payment-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-details th, .payment-details td {
+    border: 1px solid #B4975A;
+    padding: 12px;
+    text-align: left;
+}
+
+.payment-details th {
+    background-color: #031739;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #031739;
+    color: #ffffff;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 16px;
+}

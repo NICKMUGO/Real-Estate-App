@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerInteraction : MonoBehaviour
+{
+    // Reference to the Animator component
+    private Animator animator;
+
+    // Track whether the player is crouching or not
+    private bool isCrouching = false;
+
+    private bool isPickingUp = false;
+
+    void Start()
+    {
+        // Initialize the Animator component
+        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("Animator component not found on the GameObject.");
+        }
+    }
+
+    void Update()
+    {
+        Crouch();
+        PickingUp();
+    }
+
+    void Crouch()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (isCrouching)
+            {
+                animator.Play("Idle Walk Run Blend"); 
+                isCrouching = false;
+            }
+            else
+            {
+                animator.Play("Crouch"); 
+                isCrouching = true;
+            }
+        }
+    }
+
+    void PickingUp(){
+        if(Input.GetKeyDown(KeyCode.P)){
+            if(isPickingUp){
+                animator.Play("Idle Walk Run Blend");
+                isPickingUp = false;
+            }
+            else{
+                animator.Play("Picking Up");
+                isPickingUp = true;
+            }
+    }
+    }
+}

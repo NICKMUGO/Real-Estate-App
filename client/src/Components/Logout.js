@@ -8,15 +8,19 @@ const Logout = () => {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        try {
-            await axios.post('http://127.0.0.1:8000/logout/');
-            
-            setUser(null);  
-            localStorage.removeItem("user");    
-            navigate('/login');
-        } catch (error) {
-            console.error("Logout failed:", error);
-            alert("Failed to log out. Please try again.");
+        if( window.confirm("Are you sure ?")){
+            try {
+                await axios.post('http://127.0.0.1:8000/logout/');
+                navigate('/');
+                setUser(null);   
+                localStorage.removeItem("user");    
+                navigate('/login');
+            } catch (error) {
+                console.error("Logout failed:", error);
+                alert("Failed to log out. Please try again."); 
+            }
+        }else{
+            console.log("user cancelled")
         }
     };
 

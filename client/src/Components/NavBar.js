@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./NavBar.css";
 import { Usercontext } from "./UserContextProvider";
+import Logout from "./Logout";
 
 function Navbar() {
     const [user] = useContext(Usercontext);
@@ -16,7 +17,7 @@ function Navbar() {
                 <ul className="header">
                    
                     <li>
-                        <a href="/homepage">MAKAO Marketplace</a>
+                        <a href="/">MAKAO Marketplace</a>
                     </li>
                     <li style={{ textAlign: "center" }}>
                         <a href="/login">Login</a>
@@ -86,10 +87,10 @@ function Navbar() {
                             </>
                         )}
                     </ul>
-                    <button onClick={toggleSidebar} className="close-sidebar-button">❌</button>
                 </div>
             )}
         </div>
+        // )}
     );
 }
 

@@ -1,10 +1,11 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework.permissions import AllowAny
+from django.db.models import Sum, Avg, Count
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Property ,Payment,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent,PayProperty
+from .models import Property,User,Rental,UtilityProvider,Utility,Owner,Client,PayRent,PayProperty,Payment
 from rest_framework import generics,status
-from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,PaymentSerializer,OwnerSerializer,ClientSerializer,PayRentSerializer,PayPropertySerializer
+from .serializers import UserSerializer,PropertiesSerializer,RentalSerializer,UtilityProviderSerializer,UtilitySerializer,OwnerSerializer,ClientSerializer,PayRentSerializer,PayPropertySerializer,PaymentSerializer
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -12,6 +13,7 @@ from django.utils import timezone
 import json
 import logging
 from django.utils.decorators import method_decorator
+from rest_framework.decorators import api_view
 
 logger = logging.getLogger(__name__)
 
@@ -385,9 +387,53 @@ class PayRentListCreate(generics.ListCreateAPIView):
     queryset = PayRent.objects.all()
     serializer_class = PayRentSerializer
     permission_classes = [AllowAny]
+@csrf_exempt
+def statistics_view(request):
+    # Total Properties
+    total_properties = Property.objects.count()
 
+    # Total Rent Payments
+    total_rent_payments = PayRent.objects.count()
 
+    # Total Property Payments
+    total_property_payments = PayProperty.objects.count()
 
+    # Average Rent Price
+    average_rent_price = Rental.objects.aggregate(Avg('monthly_rent'))['monthly_rent__avg']
+
+    # Total Rent Collected
+    total_rent_collected = PayRent.objects.aggregate(Sum('amount'))['amount__sum']
+
+    # Total Property Sales Amount
+    total_property_sales = PayProperty.objects.aggregate(Sum('amount'))['amount__sum']
+
+    # Top 5 Properties with Most Views
+    top_properties = Property.objects.all().order_by('-views')[:3].values('id', 'description', 'views','image')  # Replace 'name' with 'description'
+
+    # Add necessary fields here
+
+    # Number of Utilities
+    total_utilities = UtilityProvider.objects.count()
+
+    # Total Clients and Owners
+    total_clients = User.objects.filter(role='client').count()
+    total_owners = User.objects.filter(role='owner').count()
+
+    # Prepare context data for rendering
+    context = {
+        'total_properties': total_properties,
+        'total_rent_payments': total_rent_payments,
+        'total_property_payments': total_property_payments,
+        'average_rent_price': average_rent_price,
+        'total_rent_collected': total_rent_collected,
+        'total_property_sales': total_property_sales,
+        'top_properties': list(top_properties),  # Convert QuerySet to a list
+        'total_utilities': total_utilities,
+        'total_clients': total_clients,
+        'total_owners': total_owners
+    }
+
+    return JsonResponse(context, status=200)
 
 
 

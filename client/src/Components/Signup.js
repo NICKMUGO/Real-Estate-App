@@ -30,13 +30,15 @@ const Signup = () => {
             marginTop: '10px',
             fontFamily: 'Times New Roman, Times, serif',
             color: '#B4975A', 
+            alignItems: 'center',
+            
         },
         input: {
             padding: '10px',
             marginTop: '5px',
             border: '0.5px solid #ccc',
             borderRadius: '5px',
-            backgroundColor: 'gray',  
+            backgroundColor: 'gray',            
         },
         button: {
             padding: '15px',

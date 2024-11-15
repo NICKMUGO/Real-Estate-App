@@ -32,22 +32,27 @@ import RentalDetailClient from './Components/RentalDetailClient';
 import PayRentPopup from './Components/PayRentPopup';
 import RentalPayment from './Components/RentalPayment';  
 import RentorDash from './Components/RentorDash';
+import PayUtility from './Components/PayUtility';
+import PayProperty from './Components/PayProperty';
+import LeaseForm from './Components/LeaseForm';
+import PropertyViewsContext from './Components/PropertyViewsContext';
+import Statistics from './Components/Statistics';
 
 function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
+      <PropertyViewsContext>
       <NavBar /> 
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/awards" element={<AwardsPage />} />
         <Route path="/questions" element={<QuestionsPage />} />
-        <Route path="/homepage" element={<HomePage />} />
         <Route path="/highlights" element={<HighlightsofHouses />} />
         <Route path="/MyPayments" element={<MyPaymentspage />} />
         <Route path="/questions" element={<QuestionsPage/>}/>
-        <Route path="/signup" element={<Signup/>}/>
-        <Route path="/login" element={<Login/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
         <Route path="/payrent" element={<PayRentPopup/>}/>
         <Route path="/houses" element={<Houses/>}/>
@@ -68,8 +73,13 @@ function App() {
         <Route path="/rentalClient/:id" element={<RentalDetailClient/>} />
         <Route path="/rental-payments" element={<RentalPayment />} />
         <Route path="/rentordash" element={<RentorDash />} />
+        <Route path="/payUtility" element={<PayUtility/>} />
+        <Route path="/payproperty" element={<PayProperty/>} />
+        <Route path="/lease-form" element={<LeaseForm />} />
+        <Route path="/statistics" element={<Statistics/>} />
       </Routes>
       <Footer /> 
+      </PropertyViewsContext>
       </UserContextProvider>
     </BrowserRouter>
   );

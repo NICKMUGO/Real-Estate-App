@@ -74,8 +74,8 @@ function PayRentPopup() {
     },
     openButtonContainer: {
       display: 'flex',
-      justifyContent: 'center', // Center horizontally
-      margin: '20px 0', // Add margin for spacing
+      justifyContent: 'center', 
+      margin: '20px 0',
     },
   
     openButton: {
@@ -95,7 +95,7 @@ function PayRentPopup() {
     tenant_id: '',
     rental: '',
     amount: '',
-    paymentDate: '',
+    paymentDate: new Date().toISOString().slice(0, 10),
     status: false, 
   });
   const [rentals, setRentals] = useState([]);
@@ -168,6 +168,7 @@ function PayRentPopup() {
 
     try {
       const currentDate = new Date();
+      console.log(paymentData)
       const response = await axios.post('http://127.0.0.1:8000/payRents/', {
         rental: paymentData.rental,
         tenant_id: paymentData.tenant_id,
@@ -177,7 +178,20 @@ function PayRentPopup() {
       });
 
       console.log('Payment Data Submitted:', response.data);
+      const patchPaymentStatus = await axios.patch(`http://127.0.0.1:8000/rental/${paymentData.rental}/`, {
+        payment_status:paymentData.status,
+      }); 
+      console.log(patchPaymentStatus.data)
+      console.log(patchPaymentStatus.status)
+      setPaymentData({
+        tenant_id: '',
+        rental: '',
+        amount: '',
+        paymentDate: new Date().toISOString().slice(0, 10),
+        status: false, 
+      });
       closeModal();
+      
 
     } catch (error) {
       if (error.response) {
@@ -240,6 +254,7 @@ function PayRentPopup() {
                   type="number"
                   name="amount"
                   style={styles.input}
+                  step={10000}
                   value={paymentData.amount}
                   onChange={handleChange}
                   required
@@ -252,8 +267,8 @@ function PayRentPopup() {
                   name="paymentDate"
                   style={styles.input}
                   value={paymentData.paymentDate}
-                  onChange={handleChange}
                   required
+                  disabled
                 />
               </div>
               <div style={styles.formRow}>
