@@ -66,7 +66,7 @@ const Houses = () => {
       gap: '20px',
     },
     card: {
-      backgroundColor: '#fff',
+      backgroundColor: '#f4f7fc',
       borderRadius: '10px',
       padding: '15px',
       boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',

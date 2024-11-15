@@ -20,16 +20,16 @@ function Navbar() {
                     </li>
                     {user ? (
                         <li>
-                            <a href="/">Welcome🎉 {user.username}</a>
+                            <a href="/">Welcome: {user.username}</a>
                         </li>
                     ) : (
                         <>
                             <li>
                                 <a href="/login">Login</a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a href="/signup">Sign up</a>
-                            </li>
+                            </li> */}
                         </>
                     )}
                     <li>
@@ -123,6 +123,7 @@ function Navbar() {
                             </>
                         }
                         <>
+
                             {user&&(
                             <Logout/>
                             )}
