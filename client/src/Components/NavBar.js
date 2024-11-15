@@ -19,9 +19,15 @@ function Navbar() {
                     <li>
                         <a href="/">MAKAO Marketplace</a>
                     </li>
+                    {user ?(
                     <li style={{ textAlign: "center" }}>
-                        <a href="/login">Login</a>
+                        <a href="/">Welcome: {user.username}</a>
                     </li>
+                    ):(
+                        <li style={{ textAlign: "center" }}>
+                            <a href="/login">Login</a>
+                        </li>
+                    )}
                     <li>
                         <button onClick={toggleSidebar} className="sidebar-toggle">
                             <svg
@@ -47,37 +53,32 @@ function Navbar() {
                     <ul>
                         {/* Common links */}
                         <li>
-                            <a href="/homepage">Home</a>
-                        </li>
-                        <li>
                             <a href="/allproperties">Properties</a>
                         </li>
                         <li>
                             <a href="/About">About</a>
                         </li>
-
+                        <Logout/>
                         {/* Owner-specific links */}
-                        {user.role === 'owner' && (
+                        {user && user.role === 'owner' && (
                             <>
-                             <li>
-                            <a href="/utilitiespage">Utility Page</a>
-                             </li>
-                                
+                                <li>
+                                    <a href="/utilitiespage">Utility Page</a>
+                                </li>
                                 <li>
                                     <a href="/houses">my🏡</a>
                                 </li>
                             </>
                         )}
 
-                        {/* Client-specific links */}
-                        {user.role === 'client' && (
+                        {user && user.role === 'client' && (
                             <>
-                            <li>
+                                <li>
                                     <a href="/rentordash">Client Dashboard</a>
                                 </li>
-                             <li>
-                            <a href="/utilitiespage">Utility Page</a>
-                             </li>
+                                <li>
+                                    <a href="/utilitiespage">Utility Page</a>
+                                </li>
                                 <li>
                                     <a href="/MyPayments">PayMyRent</a>
                                 </li>
