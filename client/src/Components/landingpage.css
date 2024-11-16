@@ -12,7 +12,7 @@
 
 .bodytext {
   height: 100vh;
-  background-image: url(house.jpg)!important;
+  /* background-image: url(house.jpg)!important; */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
