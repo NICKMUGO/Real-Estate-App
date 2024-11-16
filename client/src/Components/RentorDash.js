@@ -40,6 +40,15 @@ function RentorDash() {
                     </div>
                 </div>
             </div>
+            {/* Agreement Section */}
+            <div className="agreement-section">
+                <h2>Agreement</h2>
+                <img
+                    src="disagreementForm.jpg"
+                    alt="Agreement Illustration"
+                    className="agreement-image"
+                />
+            </div>
         </div>
     );
 }

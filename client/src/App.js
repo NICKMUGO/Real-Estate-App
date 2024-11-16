@@ -37,6 +37,7 @@ import PayProperty from './Components/PayProperty';
 import LeaseForm from './Components/LeaseForm';
 import PropertyViewsContext from './Components/PropertyViewsContext';
 import Statistics from './Components/Statistics';
+import OwnerDash from './Components/OwnerDash';
 
 function App() {
   return (
@@ -77,6 +78,8 @@ function App() {
         <Route path="/payproperty" element={<PayProperty/>} />
         <Route path="/lease-form" element={<LeaseForm />} />
         <Route path="/statistics" element={<Statistics/>} />
+        <Route path="/ownerdash" element={<OwnerDash/>} />
+
       </Routes>
       <Footer /> 
       </PropertyViewsContext>

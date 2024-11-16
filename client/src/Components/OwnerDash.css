@@ -1,0 +1,86 @@
+.dashboard {
+    text-align: center;
+    padding: 60px;
+    background: white;
+}
+
+.dashboard h1 {
+    font-size: 2.5em;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.card {
+    background-image: url('property.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 140px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    transition: transform 0.2s, filter 0.2s;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    filter: blur(1px);
+}
+
+.card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.313);
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.card-content {
+    position: absolute;
+    z-index: 3;
+    transition: opacity 0.2s;
+}
+
+.card:hover .card-content {
+    opacity: 1;
+}
+
+.agreement-section {
+    text-align: center;
+    margin-top: 30px; /* Add spacing from the content above */
+}
+
+.agreement-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px; /* Space between the label and the image */
+    color: #333; /* Adjust color as needed */
+}
+
+.agreement-image {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    height: auto;
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow effect */
+}
+
