@@ -34,21 +34,29 @@ function OwnerDash() {
                         <div className="card-content">Rental Details</div>
                     </div>
                 </div>
-                <div className="grid-item" onClick={() => navigate('/title-deeds')}>
-                    <div className="card">
-                        <div className="card-content">Title Deeds</div>
-                    </div>
-                </div>
+                
             </div>
             
-            {/* Agreement Section */}
-            <div className="agreement-section">
-                <h2>Agreement</h2>
-                <img 
-                    src="disagreementForm.jpg" 
-                    alt="Agreement Illustration" 
-                    className="agreement-image" 
-                />
+            {/* Agreement and Title Deed Section */}
+            <div className="image-section">
+                {/* Agreement */}
+                <div className="image-container">
+                    <h2>Agreement</h2>
+                    <img 
+                        src="disagreementForm.jpg" 
+                        alt="Agreement Illustration" 
+                        className="image"
+                    />
+                </div>
+                {/* Title Deed */}
+                <div className="image-container">
+                    <h2>Title Deed</h2>
+                    <img 
+                        src="deed.jpg" 
+                        alt="Title Deed Illustration" 
+                        className="image"
+                    />
+                </div>
             </div>
         </div>
     );

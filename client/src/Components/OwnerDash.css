@@ -1,48 +1,46 @@
-.dashboard {
-    text-align: center;
-    padding: 60px;
-    background: white;
-}
-
-.dashboard h1 {
-    font-size: 2.5em;
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
-
+/* Container for the grid of cards */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between cards */
+    margin-top: 30px; /* Space from heading */
+    padding: 0 20px; /* Add padding for better appearance */
 }
 
+/* Individual grid items (cards) */
 .grid-item {
-    position: relative;
+    display: flex;
+    justify-content: center; /* Center-align the card content */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text inside the card */
     cursor: pointer;
 }
 
+/* Styling for the card */
 .card {
-    background-image: url('property.jpeg');
+    background-image: url('property.jpeg'); /* Example background */
     background-size: cover;
     background-position: center;
     height: 140px;
-    border-radius: 10px;
+    width: 100%; /* Full width of grid item */
+    border-radius: 10px; /* Rounded corners */
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.5em;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    transition: transform 0.2s, filter 0.2s;
+    transition: transform 0.3s ease, filter 0.3s ease;
     position: relative;
-    margin-bottom: 0px;
 }
 
+/* Hover effect for the card */
 .card:hover {
-    transform: scale(1.05);
-    filter: blur(1px);
+    transform: scale(1.05); /* Slight zoom-in effect */
+    filter: brightness(0.9);
 }
 
+/* Hover overlay effect */
 .card:hover::before {
     content: '';
     position: absolute;
@@ -50,37 +48,47 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.313);
-    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
+    border-radius: 10px; /* Match card radius */
     z-index: 2;
 }
 
+/* Card content */
 .card-content {
-    position: absolute;
-    z-index: 3;
-    transition: opacity 0.2s;
+    position: relative;
+    z-index: 3; /* Ensure text stays above overlay */
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .card:hover .card-content {
-    opacity: 1;
+    opacity: 1; /* Ensure full visibility on hover */
 }
 
-.agreement-section {
+/* Agreement and Title Deed section styles */
+.image-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between images */
+    margin-top: 30px; /* Spacing from grid above */
+    flex-wrap: wrap; /* Stack images on smaller screens */
+}
+
+.image-container {
     text-align: center;
-    margin-top: 30px; /* Add spacing from the content above */
+    max-width: 300px; /* Control width */
 }
 
-.agreement-section h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px; /* Space between the label and the image */
-    color: #333; /* Adjust color as needed */
-}
-
-.agreement-image {
+.image {
     width: 100%;
-    max-width: 600px; /* Adjust as needed */
+    max-width: 100%;
     height: auto;
-    border-radius: 10px; /* Optional: Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow effect */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.image-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
+}
