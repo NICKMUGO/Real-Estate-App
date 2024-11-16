@@ -33,7 +33,7 @@ __pycache__/
 # Ignore static and media files (if applicable)
 staticfiles/
 media/
-../.idea/
+
 
 
 # Ignore environment-specific settings
