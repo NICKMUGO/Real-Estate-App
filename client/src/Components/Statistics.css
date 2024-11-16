@@ -63,3 +63,32 @@
     color: #555;
     text-align: center;
   }
+
+  .info-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .info-card {
+    background: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    max-width: 250px;
+  }
+  .info-card h3 {
+    color: #333;
+    font-size: 1.2em;
+  }
+  .info-card p {
+    color: #4BC0C0;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0 0;
+  }
+  
+  

@@ -94,7 +94,7 @@ function PayUtility() {
   const [isOpen, setIsOpen] = useState(false);
   const [paymentData, setPaymentData] = useState({
     property_id: '',
-    user: '',
+    user: user.user_id,
     utilityprovider: '',
     amount: '',
     payment_date: '',
@@ -143,8 +143,10 @@ function PayUtility() {
       const response= await axios.get('http://127.0.0.1:8000/utilityproviders/')
       setUtilityProviders(response.data)
       console.log(response.data)
-      const responseProperty= await axios.get('http://127.0.0.1:8000/properties/')
-      setProperties(responseProperty.data)
+      // const responseProperty= await axios.get('http://127.0.0.1:8000/owner_property/16/')
+      // setProperties(responseProperty.data.owner_properties) 
+      const responseProperty= await axios.get('http://127.0.0.1:8000/properties')
+      setProperties(responseProperty.data) 
       const responseUser= await axios.get('http://127.0.0.1:8000/users/')
       setUsers(responseUser.data)
       console.log(responseUser.data)
@@ -193,7 +195,16 @@ function PayUtility() {
               </div>
               <div style={styles.formRow}>
                 <label style={styles.label}>User:</label>
-                <select
+                <input
+                  name="user"
+                  type="text"
+                  style={styles.input}
+                  value={user.username}
+                  // onChange={handleChange}
+                  required
+                  disabled
+                />
+                {/* <select
                   name="user"
                   value={paymentData.user}
                   onChange={handleChange}
@@ -206,7 +217,7 @@ function PayUtility() {
                       {user.username}
                     </option>
                   ))}
-                </select>
+                </select> */}
                 </div>
               <div style={styles.formRow}>
                 <label style={styles.label}>Utility ID:</label>

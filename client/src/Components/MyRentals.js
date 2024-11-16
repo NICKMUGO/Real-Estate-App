@@ -172,7 +172,7 @@ function MyRentals() {
     }
   };
 
-  console.log(rentals[0].payment_status)
+  // console.log(rentals[0].payment_status)
 
   console.log(rentals);
 
@@ -180,7 +180,7 @@ function MyRentals() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.searchBarContainer}>
+      {/* <div style={styles.searchBarContainer}>
         <input
           type="text"
           style={styles.input}
@@ -195,7 +195,7 @@ function MyRentals() {
           value={searchPrice}
           onChange={(e) => setPriceSearch(e.target.value)}
         />
-      </div>
+      </div> */}
       {editRental &&
         <div>
            <form>

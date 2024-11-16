@@ -42,7 +42,7 @@ function MyPaymentsPage() {
             <PayUtility/>
             <main>
                 <section className="rent-details">
-                    <h2>Rent Details</h2>
+                    <h2>Utility Payments</h2>
                     <table>
                         <thead>
                             <tr>
@@ -76,9 +76,6 @@ function MyPaymentsPage() {
                     </table>
                 </section>
             </main>
-            <footer>
-                <p>&copy; 2024 Rent Collection Page</p>
-            </footer>
         </div>
     );
 }

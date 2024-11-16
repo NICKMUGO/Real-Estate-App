@@ -378,10 +378,56 @@ class PayPropertyListCreate(generics.ListCreateAPIView):
     serializer_class = PayPropertySerializer
     permission_classes = [AllowAny] 
 
-class PayRentDetails(generics.RetrieveUpdateDestroyAPIView):
-    queryset= PayRent.objects.all()
-    serializer_class= PayRentSerializer
+
+
+class PayRentDetails(generics.RetrieveAPIView):
+    queryset = PayRent.objects.all()
+    serializer_class = PayRentSerializer
     permission_classes = [AllowAny]
+    lookup_field = 'tenant_id'
+
+    def retrieve(self, request, *args, **kwargs):
+        tenant_id = self.kwargs.get('tenant_id')
+        payrentals = PayRent.objects.filter(tenant_id=tenant_id)
+
+        if not payrentals.exists():
+            return Response({"detail": "No rental payments found for this tenant."}, status=404)
+
+        payrent_data = PayRentSerializer(payrentals, many=True).data
+
+        rental_details = [
+            {
+                "payrent_id": payment.payrent_id,
+                "rental_id": payment.rental.id,
+                "property": {
+                    "id": payment.rental.property.id, 
+                    "property_type": payment.rental.property.property_type, 
+                    "description": payment.rental.property.description,  
+                },
+                "amount_paid": payment.amount,
+                "payment_date": payment.payment_date,
+                "payment_status": payment.payment_status,
+                "created_at": payment.created_at,
+                "updated_at": payment.updated_at,
+            }
+            for payment in payrentals
+        ]
+
+        # Get tenant information
+        tenant = payrentals.first().tenant_id if payrentals.exists() else None
+        tenant_data = {
+            "id": tenant.id,
+            "username": tenant.username,
+            "email": tenant.email,
+            "phone_number": tenant.phone_number,
+        } if tenant else None
+
+        return Response({
+            "tenant": tenant_data,
+            "payrent": payrent_data,
+            "rental_details": rental_details,
+        })
+
 
 class PayRentListCreate(generics.ListCreateAPIView):
     queryset = PayRent.objects.all()
@@ -434,6 +480,34 @@ def statistics_view(request):
     }
 
     return JsonResponse(context, status=200)
+
+class OwnerProperty(generics.RetrieveAPIView):
+    queryset = Property.objects.all()
+    serializer_class = PropertiesSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'owner'  
+
+    def retrieve(self, request, *args, **kwargs):
+        owner_id = self.kwargs.get('owner')
+        owner_properties = Property.objects.filter(owner__id=owner_id)
+
+        if not owner_properties.exists():
+            return Response({"error": "No properties found for this owner."}, status=404)
+
+        owner_properties_data = PropertiesSerializer(owner_properties, many=True).data
+
+        owner = owner_properties.first().owner
+        owner_data = {
+            'id': owner.id,
+            'username': owner.username,
+            'email': owner.email,
+            'phone_number': owner.phone_number,
+        }
+
+        return Response({
+            'owner': owner_data,
+            'owner_properties': owner_properties_data,  
+        })
 
 
 

@@ -50,15 +50,29 @@ function Navbar() {
 
             {isSidebarOpen && (
                 <div className="sidebar">
+                    <button onClick={toggleSidebar} className="sidebar-toggle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M3 12h18M3 6h18M3 18h18" />
+                            </svg>
+                        </button>
                     <ul>
                         {/* Common links */}
                         <li>
                             <a href="/allproperties">Properties</a>
                         </li>
                         <li>
-                            <a href="/About">About</a>
+                            <a href="/aboutusPage">About</a>
                         </li>
-                        <Logout/>
                         {/* Owner-specific links */}
                         {user && user.role === 'owner' && (
                             <>
@@ -68,7 +82,14 @@ function Navbar() {
                                 <li>
                                     <a href="/houses">my🏡</a>
                                 </li>
+                                <li>
+                                    <a href="/MyPayments">PayMyUtility</a>
+                                </li>
+                                <li>
+                                    <a href="/myrentals">MyRentals</a>
+                                </li>
                             </>
+
                         )}
 
                         {user && user.role === 'client' && (
@@ -80,13 +101,17 @@ function Navbar() {
                                     <a href="/utilitiespage">Utility Page</a>
                                 </li>
                                 <li>
-                                    <a href="/MyPayments">PayMyRent</a>
+                                    <a href="/MyPayments">PayMyUtility</a>
                                 </li>
                                 <li>
                                     <a href="/manageRental">MyRentals</a>
                                 </li>
+                                <li>
+                                    <a href="/rental-payments">rental-reciepts</a>
+                                </li>
                             </>
                         )}
+                         <Logout/>
                     </ul>
                 </div>
             )}

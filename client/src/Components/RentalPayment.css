@@ -1,67 +1,128 @@
-.rental-payments-container {
-    font-family: "Oswald", sans-serif;
-    color: #ffffff;
-    background-color: #031739;
-    padding: 20px;
-    text-align: center;
-}
-
-header {
-    background-color: #031739;
-    padding: 20px;
-}
-
-h1 {
-    font-size: 36px;
-    color: #B4975A;
-}
-
-main {
+/* Container Styles */
+#rental-payments-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px;
+    font-family: "Oswald", sans-serif;
+    color: #B4975A; /* Gold text for better visibility */
+    background-color: #ffffff; /* White background */
+    text-align: center;
+    max-width: 1200px; /* Limit maximum width */
+    margin: 0 auto; /* Center the container */
 }
 
-.payment-details {
-    background-color: #031739;
-    color: #B4975A;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+/* Header Styles */
+h1 {
+    font-size: 36px;
+    color: #B4975A; /* Gold color for header */
+    margin-bottom: 20px;
+}
+
+/* Payment Details Section */
+#payment-details {
+    background-color: #ffffff; /* White background */
+    color: #B4975A; /* Gold text */
+    padding: 30px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
     width: 80%;
     margin-top: 30px;
 }
 
-.payment-details h2 {
+/* Section Title */
+#payment-details h2 {
     font-size: 28px;
+    color: #B4975A; /* Gold color for section header */
     margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-.payment-details table {
+/* Table Styles */
+#payment-details table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Ensure there is no space between table cells */
+    margin-top: 20px;
 }
 
-.payment-details th, .payment-details td {
-    border: 1px solid #B4975A;
+/* Table Headers and Cells */
+#payment-details th, 
+#payment-details td {
+    border: 1px solid #003366; /* Dark blue borders for table lines */
     padding: 12px;
     text-align: left;
-}
-
-.payment-details th {
-    background-color: #031739;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-footer {
-    background-color: #031739;
-    color: #ffffff;
-    padding: 20px;
-    margin-top: 50px;
-}
-
-footer p {
     font-size: 16px;
+}
+
+/* Header Row Styles */
+#payment-details th {
+    background-color: #B4975A; /* Gold header background */
+    color: #ffffff; /* White text in the header */
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+/* Table Body Row Styles */
+#payment-details td {
+    background-color: #ffffff; /* White cells */
+    color: #003366; /* Dark blue text for body */
+}
+
+/* Alternating Row Styles */
+#payment-details tr:nth-child(even) td {
+    background-color: #F9F9F9; /* Light gray for alternating rows */
+}
+
+/* Responsive Design for Small Screens (Phones and Tablets) */
+@media (max-width: 768px) {
+    #rental-payments-container {
+        padding: 20px; /* Less padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 28px; /* Smaller header font size */
+    }
+
+    #payment-details {
+        width: 90%; /* Reduce width for better mobile view */
+        padding: 20px; /* Adjust padding */
+    }
+
+    #payment-details h2 {
+        font-size: 24px; /* Smaller font for subheading */
+    }
+
+    #payment-details table {
+        font-size: 14px; /* Smaller font size for table text */
+    }
+
+    #payment-details th, 
+    #payment-details td {
+        padding: 10px; /* Reduced padding for mobile */
+    }
+}
+
+/* Further Adjustments for Extra Small Screens (Phones in Portrait Mode) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px; /* Even smaller header for very small screens */
+    }
+
+    #payment-details {
+        width: 100%; /* Full width for the table */
+        padding: 15px; /* Less padding on extra small screens */
+    }
+
+    #payment-details h2 {
+        font-size: 20px; /* Smaller font for subheading */
+    }
+
+    #payment-details table {
+        font-size: 12px; /* Very small font size for smaller screens */
+    }
+
+    #payment-details th, 
+    #payment-details td {
+        padding: 8px; /* Less padding on extra small screens */
+    }
 }

@@ -142,6 +142,25 @@ function Statistics() {
            </div> ); })}
             </ul>
       </div>
+      <h2 style={{display:'flex',alignItems:"center",textAlign:"center",marginLeft:'500px'}}>Info Cards</h2>
+      <div className="info-cards">
+        <div className="info-card">
+          <h3>Total Rent Collected</h3>
+          <p>{statsData.total_rent_collected || 0}ksh</p>
+        </div>
+        <div className="info-card">
+          <h3>Total Property Sales</h3>
+          <p>{statsData.total_property_sales || 0}ksh</p>
+        </div>
+        <div className="info-card">
+          <h3>Average Rent Price</h3>
+          <p>{Math.round((statsData.average_rent_price || 0) / 10000) * 10000} Ksh</p>
+        </div>
+        <div className="info-card">
+          <h3>Total Utilities</h3>
+          <p>{statsData.total_utilities || 0}</p>
+        </div>
+      </div>
     </div>
   );
 }

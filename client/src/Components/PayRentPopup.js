@@ -89,10 +89,10 @@ function PayRentPopup() {
       width: '5%',
     },
   };
-
+  const[user]=useContext(Usercontext);
   const [isOpen, setIsOpen] = useState(false);
   const [paymentData, setPaymentData] = useState({
-    tenant_id: '',
+    tenant_id: user.user_id,
     rental: '',
     amount: '',
     paymentDate: new Date().toISOString().slice(0, 10),
@@ -110,8 +110,6 @@ function PayRentPopup() {
     };
     fetchClients();
 }, []);
-
-  const[user]=useContext(Usercontext);
   const [clients, setClients] = useState([]);
   const[tenantData,setTenantData]=useState([])
 
@@ -222,17 +220,26 @@ function PayRentPopup() {
             <form style={styles.form} onSubmit={handleSubmit}>
               <div style={styles.formRow}>
               <label htmlFor="user" style={styles.label}>User Name</label>
-                  <select
+                  <input
+                      type="text"
+                      name="user"
+                      style={styles.input}
+                      value={user.username}
+                      required
+                      disabled
+                    />
+                   {/* <select
                     name='tenant_id'
-                    value={paymentData.tenant_id}
-                    onChange={handleChange}
+                    value={user.username}
+                    // onChange={handleChange}
                     required
+                    disabled
                   >
                     <option value="">Select User</option>
                     {clients.map((client) => (
                       <option key={client.id} value={client.id}>{client.username}</option>
                     ))}
-                  </select>
+                  </select> */}
               </div>
               <div style={styles.formRow}>
               <label htmlFor='rental' style={styles.label}>Rental </label>
@@ -246,7 +253,7 @@ function PayRentPopup() {
                       </option>
                     );
                   })}
-                </select>
+                </select> 
               </div>
               <div style={styles.formRow}>
                 <label style={styles.label}>Amount:</label>
@@ -271,7 +278,7 @@ function PayRentPopup() {
                   disabled
                 />
               </div>
-              <div style={styles.formRow}>
+              <div style={styles.formRow}> 
                 <label style={styles.label}>Payment Status:</label>
                 <select
                   name="status"
@@ -279,9 +286,9 @@ function PayRentPopup() {
                   value={paymentData.status ? 'Paid' : 'Not Paid'}
                   onChange={handleChange}
                   disabled 
-                >
+                > 
                   <option value={true}>Paid</option>
-                  <option value={false}>Not Paid</option>
+                  <option value={false}>Not Paid</option> 
                 </select>
               </div>
               <button type="submit" style={styles.button}>
