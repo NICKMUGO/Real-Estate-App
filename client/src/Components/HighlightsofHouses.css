@@ -38,6 +38,11 @@ h3{
 .content {
     position: relative;
 }
+.content h3{
+    color: whitesmoke;
+    margin-bottom: 30px;
+    margin-left: 46px;
+}
 
 /* ----- carousel content stylings ----- */
 /* places the carousel content on center of the carousel */

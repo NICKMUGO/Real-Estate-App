@@ -1,0 +1,11 @@
+
+#homepage-container {
+    background-image: url(house.jpg)!important;
+    background-size: cover; /* Make the image cover the entire area */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-position: center center; /* Center the background */
+    min-height: 100vh; /* Ensure the background stretches the full height */
+    padding: 20px; /* Optional: Add padding if needed */
+    color: white; /* Adjust text color for better contrast */
+  }
+  
