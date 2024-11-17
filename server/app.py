@@ -105,9 +105,9 @@ def simulate_stk_push():
         "passcode": "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  # From developers portal
         "amount": 1,  # Amount should be an integer
         "phone_number": str_phone_number,
-        "reference_code": "HelloWorld",  # Code to inform the user of services
+        "reference_code": "Makao-MarketPlace",  # Code to inform the user of services
         "callback_url": "https://your-ngrok-url.ngrok.io/callback",  # Replace with your valid callback URL
-        "description": "Hello World"  # Optional description
+        "description": "Thankyou from Makao-MarketPlace"  # Optional description
     }
     
     try:

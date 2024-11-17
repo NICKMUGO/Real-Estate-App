@@ -93,7 +93,7 @@ function PropertyForm (){
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [owners, setOwners] = useState([]);
     const [property, setProperty] = useState({
-        owner: "",
+        owner: user.user_id,
         property_type: "",
         image: null, 
         status: "",
@@ -160,7 +160,14 @@ function PropertyForm (){
                         <h2 style={styles.h2}>Register Property</h2>
                         <form style={styles.form} onSubmit={handlePropertySubmit} encType="multipart/form-data">
                             <label htmlFor="owner" style={styles.label}>Owner Name</label>
-                            <select
+                            <input 
+                                type="text" 
+                                style={styles.input} 
+                                value={user.username}
+                                required
+                                disabled
+                            />
+                            {/* <select
                                 id="owner"
                                 required
                                 style={styles.input}
@@ -173,7 +180,7 @@ function PropertyForm (){
                                         {owner.username}
                                     </option>
                                 ))}
-                            </select>
+                            </select> */}
 
                             <label htmlFor="property_type" style={styles.label}>Property Type</label>
                             <select

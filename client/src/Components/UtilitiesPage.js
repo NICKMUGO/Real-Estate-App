@@ -149,7 +149,7 @@ function UtilitiesPage() {
       <UtilityPopup/>
       {editUtility &&
         <div>
-           <form>
+           <form> 
                 <div className='form-group'>
                   <button onClick={()=>setEditUtility(null)} style={{cursor:'pointer'}}>❌</button>
                 </div>
@@ -183,7 +183,7 @@ function UtilitiesPage() {
       <center>
         <div style={styles.utilityDisplay}>
           {utilities.length > 0 ? (
-            UtilitySearch().map((utility) => (
+            UtilitySearch().map((utility) => ( 
               <div style={styles.card} key={utility.utility_id}>
                 <button onClick={() => setEditUtility(utility)}>✏️</button>
                 <button onClick={() => DeleteUtility(utility.utility_id)} style={{marginLeft:'250px'}}>🚮</button>

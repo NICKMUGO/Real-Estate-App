@@ -91,7 +91,7 @@ function PayProperty() {
     },
     openButton: {
       padding: '15px',
-      backgroundColor: '#3B82F6',
+      backgroundColor: '#031739',
       color: 'white',
       fontSize: '16px',
       border: 'none',
@@ -100,21 +100,20 @@ function PayProperty() {
       maxWidth: '100px',
     },
   };
-
+  const [user] = useContext(Usercontext);
   const [isOpen, setIsOpen] = useState(false);
   const [payPropertyData, setPayPropertyData] = useState({
     property: '',
-    buyer: '',
+    buyer: user.user_id,
     owner: '',
     amount: '',
-    payment_date: '',
+    payment_date: new Date().toISOString().split('T')[0],
     payment_status: false,
     title_deed: null,
   });
   const [properties, setProperties] = useState([]);
   const [buyers, setBuyers] = useState([]);
   const [owners, setOwners] = useState([]);
-  const { user } = useContext(Usercontext);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -194,24 +193,8 @@ function PayProperty() {
 
       console.log('Payment Data Submitted:', response.data);
       console.log(response.status)
-      if(response.status === 200){
-        const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
-          phone_number:"254748089691"
-        });
-        console.log(Mpesaresponse.data)
-        alert(Mpesaresponse.data)
-          if(Mpesaresponse.status=== 200){
-            const patchPaymentStatus = await axios.patch(`http://127.0.0.1:8000/property/${payPropertyData.property}/`, {
-              status:payPropertyData.payment_status? "sold":"available",
-            });
-            console.log(patchPaymentStatus.data)
-            console.log(patchPaymentStatus.status)
-          }
-          else{
-              alert("Payment not yet done")
-            }
-      }
-      if (payPropertyData.payment_status){
+      testMpesa();
+      if (payPropertyData.payment_status && testMpesa){
         const deletePaidProperty = await axios.delete(`http://127.0.0.1:8000/property/${payPropertyData.property}/`); 
         console.log(deletePaidProperty.data)
         console.log(deletePaidProperty.status)
@@ -220,10 +203,10 @@ function PayProperty() {
         }
       setPayPropertyData({
         property: '',
-        buyer: '',
+        buyer: user.user_id,
         owner: '',
         amount: '',
-        payment_date: '',
+        payment_date: new Date().toISOString().split('T')[0],
         payment_status: false,
         title_deed: null,
       });
@@ -238,6 +221,14 @@ function PayProperty() {
       }
     }
   };
+
+  const testMpesa= async ()=>{
+      const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
+        phone_number:"254748089691"
+      });
+      console.log(Mpesaresponse.data)
+      alert(Mpesaresponse.data)
+    }
   
   return (
     <div>
@@ -246,7 +237,6 @@ function PayProperty() {
           🏠
         </button>
       </div>
-
       {isOpen && (
         <div style={styles.popupOverlay}>
           <div style={styles.popupContent}>
@@ -293,7 +283,15 @@ function PayProperty() {
               </div>
               <div style={styles.formRow}>
                 <label htmlFor="buyer" style={styles.label}>Buyer:</label>
-                <select
+                <input
+                  type="text"
+                  name="Buyer"
+                  value={user.username}
+                  required
+                  style={styles.input}
+                  disabled
+                />
+                {/* <select
                   name="buyer"
                   value={payPropertyData.buyer}
                   onChange={handleChange}
@@ -306,7 +304,7 @@ function PayProperty() {
                       {buyer.username}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </div>
 
               <div style={styles.formRow}>
@@ -328,9 +326,9 @@ function PayProperty() {
                   type="date"
                   name="payment_date"
                   value={payPropertyData.payment_date}
-                  onChange={handleChange}
                   required
                   style={styles.input}
+                  disabled
                 />
               </div>
 

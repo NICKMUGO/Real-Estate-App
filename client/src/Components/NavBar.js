@@ -109,6 +109,9 @@ function Navbar() {
                                 <li>
                                     <a href="/rental-payments">rental-reciepts</a>
                                 </li>
+                                <li>
+                                    <a href="/payproperty">pay-property</a>
+                                </li>
                             </>
                         )}
                          <Logout/>

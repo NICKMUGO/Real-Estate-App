@@ -14,6 +14,8 @@ import json
 import logging
 from django.utils.decorators import method_decorator
 from rest_framework.decorators import api_view
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import make_password
 
 logger = logging.getLogger(__name__)
 
@@ -23,9 +25,19 @@ def home(request):
     return HttpResponse("Welcome to MakaoApp API")
 @method_decorator(csrf_exempt, name='dispatch')
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
-    queryset= User.objects.all()
-    serializer_class= UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+    def update(self, request, *args, **kwargs):
+        # Check if password is in the request data and hash it
+        if 'password' in request.data:
+            password = request.data.get('password')
+            # Hash the password before saving
+            request.data['password'] = make_password(password)
+
+        # Call the parent class's update method to handle the actual update
+        return super().update(request, *args, **kwargs)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class UserListCreate(generics.ListCreateAPIView):
@@ -44,8 +56,13 @@ class UserListCreate(generics.ListCreateAPIView):
 
         serializer = self.get_serializer(data=request_data)
         serializer.is_valid(raise_exception=True)
-    
+
         user = serializer.save()
+
+        if 'password' in request_data:
+            from django.contrib.auth.hashers import make_password
+            user.password = make_password(request_data['password'])  # Manually hash the password
+            user.save()
 
         if role == 'owner':
             user.role = 'owner'  
@@ -54,7 +71,7 @@ class UserListCreate(generics.ListCreateAPIView):
                 user_ptr=user,
                 username=user.username,
                 email=user.email,
-                password=user.password,
+                password=user.password,  # Hashed password is saved
                 phone_number=user.phone_number,
                 address=user.address,
                 created_at=timezone.now(),
@@ -67,7 +84,7 @@ class UserListCreate(generics.ListCreateAPIView):
                 user_ptr=user, 
                 username=user.username,
                 email=user.email,
-                password=user.password,  
+                password=user.password,  # Hashed password is saved
                 phone_number=user.phone_number,
                 address=user.address,
                 created_at=timezone.now(),
@@ -207,13 +224,17 @@ def Login(request):
             if not email or not password:
                 return JsonResponse({'error': 'Email and password are required.'}, status=400)
             
-            user = User.objects.filter(email=email, password=password).first()
+            # Retrieve the user by email
+            user = User.objects.filter(email=email).first()
 
-            if user:
+            if user and check_password(password, user.password):  # Compare the raw password with the hashed password
+                # Set session data
                 request.session['user_id'] = user.id
                 request.session['username'] = user.username
                 request.session['role'] = user.role
                 print(f"Session data set: user_id={request.session['user_id']}, username={request.session['username']}, role={request.session['role']}")
+
+                # Prepare user data
                 user_data = {
                     'user_id': user.id,
                     'username': user.username,
@@ -232,7 +253,6 @@ def Login(request):
             return JsonResponse({'error': 'Invalid JSON format'}, status=400)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
-
 @csrf_exempt
 def logout(request):
     request.session.flush()  # Clears the session
