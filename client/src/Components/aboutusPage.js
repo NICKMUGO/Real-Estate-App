@@ -3,6 +3,8 @@ import "./aboutus.css";
 
 function AboutUs() {
     return (
+        <div>
+        <div className="image">
         <div className="aboutus-container">
             <h1>About Us</h1>
             <p>
@@ -26,6 +28,8 @@ function AboutUs() {
                 exceptional service and access to the best properties on the market.
             </p>
             <p>Let us help you find the home of your dreams—because your story deserves the perfect setting.</p>
+        </div>
+        </div>
         </div>
     );
 }
