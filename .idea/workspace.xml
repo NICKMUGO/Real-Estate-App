@@ -4,80 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da0eaccd-3e09-4b36-9c77-98de7ec9e973" name="Changes" comment="unresolved files">
-      <change afterPath="$PROJECT_DIR$/client/src/Components/ClientRentals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Logout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/PayProperty.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/PayProperty.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/PayRentPopup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/RentalDetailClient.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/RentalPayment.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/RentalPayment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0002_user_profile_picture.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0003_delete_payrent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/BarryAllen.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/BarryAllen_AFwZKo7.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/BartSimpson.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/BartSimpson.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/HomerSimpson.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/Justice_League.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/MilesMorales.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/MilesMorales_hIdKRD4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/profile_pictures/MrMugo.jpg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic1_ELspcQ6.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic1_Xo3qTEf.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic1_fJyO3FK.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic1_zSf2Duv.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic2_Te1RqsT.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic3_RXcAxMz.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic4_7ievBEW.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic4_DhaoQ2x.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic5_9NlJdfM.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic5_E1lPZTT.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic5_OQaBKfy.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/properties/AppartmentPic5_j0MoyH1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/title_deeds/KMUN-STRATH-ANYOLA_VS_MUKOTI.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makaoproject/media/title_deeds/PLATFORM_DEPENDENT_OPERATING_SYSTEM-166915.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/AllPropertiesPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/AllPropertiesPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/DetailProperty.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/DetailProperty.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Houses.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Houses.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/MyRentals.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/MyRentals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/PayRentPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/PropertyForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/PropertyForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/RentalDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/RentalDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/RentalPopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/RentalPopup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/RentalPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/RentalPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/UserContextProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/UserContextProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/UtilitiesPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/UtilitiesPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/UtilityPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/UtilityPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/aboutus.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/aboutus.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/utilityprovider.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/utilityprovider.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/utilityprovider.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/UtilityProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoapp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0002_remove_users_usertype.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0003_rename_users_client_rename_owners_owner_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0004_rename_client_user_delete_owner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0005_rename_user_id_rental_tenant_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0004_payrent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0006_client_owner_alter_rental_tenant.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0007_alter_property_user_id_alter_rental_tenant.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0008_user_role.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0009_remove_client_preferences_remove_owner_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0010_alter_payrent_tenant_alter_property_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0011_rename_user_id_user_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/migrations/0012_rename_user_id_property_owner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoapp/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoproject/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makaoproject/makaoproject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/makaoproject/makaoproject/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="da0eaccd-3e09-4b36-9c77-98de7ec9e973" name="Changes" comment="unresolved files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +19,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/client" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -119,7 +46,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/user/Desktop/Strathmore yr2.2/Software Engineering/Software Engineering Project/Makao Project/Real-Estate-App",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
