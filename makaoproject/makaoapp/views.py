@@ -474,7 +474,8 @@ def statistics_view(request):
     total_property_sales = PayProperty.objects.aggregate(Sum('amount'))['amount__sum']
 
     # Top 5 Properties with Most Views
-    top_properties = Property.objects.all().order_by('-views')[:3].values('id', 'description', 'views','image')  # Replace 'name' with 'description'
+    top_properties = Property.objects.filter(views__isnull=False).order_by('-views')[:3].values('id', 'description', 'views', 'image')
+  # Replace 'name' with 'description'
 
     # Add necessary fields here
 

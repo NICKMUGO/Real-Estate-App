@@ -51,10 +51,11 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/awards" element={<AwardsPage />} />
         <Route path="/questions" element={<QuestionsPage />} />
-        <Route path="/highlights" element={<HighlightsofHouses />} />
-        <Route path="/MyPayments" element={<MyPaymentspage />} />
-        <Route path="/questions" element={<QuestionsPage/>}/>
         <Route path="/landingpage" element={<LandingPage/>}/>
+        <Route path="/highlights" element={<HighlightsofHouses />} />
+        <Route path='/allproperties' element={<AllProperties/>}/>
+        <Route path="/aboutusPage" element={<AboutusPage/>} />
+        <Route path="/MyPayments" element={<MyPaymentspage />} />
         <Route path="/payrent" element={<PayRentPopup/>}/>
         <Route path="/houses" element={<Houses/>}/>
         <Route path="/propertyform" element={<PropertyForm/>}/>
@@ -63,11 +64,9 @@ function App() {
         <Route path="/utilitiespage" element={<UtilityPage/>}/>
         <Route path="/utilityform" element={<UtilityPopup/>}/>
         <Route path="/rentalpopup" element={<RentalPopup/>}/>
-        <Route path='/allproperties' element={<AllProperties/>}/>
         <Route path="/property/:id" element={<DetailProperty/>} />
         <Route path="/myrentals" element={<MyRentals/>} />
         <Route path="/rental/:id" element={<RentalDetail/>} />
-        <Route path="/aboutusPage" element={<AboutusPage/>} />
         <Route path='/userprofile' element={<UserProfile/>}/>
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/manageRental' element={<ClientRental/>}/>
@@ -78,8 +77,7 @@ function App() {
         <Route path="/payproperty" element={<PayProperty/>} />
         <Route path="/lease-form" element={<LeaseForm />} />
         <Route path="/statistics" element={<Statistics/>} />
-        <Route path="/ownerdash" element={<OwnerDash/>} />
-
+        <Route path="/ownerdashboard" element={<OwnerDash/>} />
       </Routes>
       <Footer /> 
       </PropertyViewsContext>

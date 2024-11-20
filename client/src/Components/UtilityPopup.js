@@ -67,18 +67,23 @@ function UtilityPopup() {
       right: '10px',
       background: 'none',
       border: 'none',
-      color: 'white',
+      color: 'white', 
       fontSize: '20px',
       cursor: 'pointer',
     },
     openButton: {
-      padding: '15px',
-      backgroundColor: 'blue',
+      padding: '10px',
+      backgroundColor: '#031739',
       color: 'white',
       fontSize: '16px',
       border: 'none',
-      borderRadius: '5px',
+      borderRadius: '50%',
       cursor: 'pointer',
+    },
+    openButtonContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      margin: '20px 0',
     },
   };
 
@@ -118,9 +123,9 @@ function UtilityPopup() {
   };
 
   return (
-    <div>
+    <div style={styles.openButtonContainer}>
       <button style={styles.openButton} onClick={openModal}>
-        Open Utility Form
+        Add 
       </button>
 
       {isOpen && (

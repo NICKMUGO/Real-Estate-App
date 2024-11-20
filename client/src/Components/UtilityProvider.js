@@ -62,13 +62,20 @@ const UtilityProvider = () => {
         },
         openButton: {
             padding: '15px',
-            backgroundColor: 'blue',
+            backgroundColor: '#031739',
             color: 'white',
-            fontSize: '16px',
+            fontSize: '10px',
             border: 'none',
-            borderRadius: '5px',
+            marginTop: '20px',
             cursor: 'pointer',
-        },
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '60%',
+            maxWidth: '65px', 
+            borderRadius:"50%",
+            textAlign: 'center'
+        }
     };
 
     const [isOpen, setIsOpen] = useState(false);
@@ -83,7 +90,7 @@ const UtilityProvider = () => {
     const onUtilityProviderSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/utilityprovider/', {
+            const response = await axios.post('http://127.0.0.1:8000/utilityproviders/', {
                 provider_name: Utilityprovider.providername,
                 contact_info: Utilityprovider.contact_info,
                 utility_id: parseInt(Utilityprovider.utility_id), 
@@ -94,6 +101,7 @@ const UtilityProvider = () => {
                 contact_info: "",
                 utility_id: "", 
             });
+            setIsOpen(false)
         } catch (error) {
             console.error("Error submitting form:", error.response || error.message);
         }
@@ -128,7 +136,7 @@ const UtilityProvider = () => {
     return (
         <div>
             <button style={styles.openButton} onClick={() => setIsOpen(true)}>
-                Open Utility Provider Form
+                ➕<br></br>Provider
             </button>
             <div>
             {providers.map((provider) => (

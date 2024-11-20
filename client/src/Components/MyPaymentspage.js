@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Usercontext } from "./UserContextProvider";
 import axios from "axios";
 import PayUtility from "./PayUtility";
+import UtilityProvider from "./UtilityProvider";
 
 function MyPaymentsPage() {
     const [user] = useContext(Usercontext);
@@ -39,6 +40,7 @@ function MyPaymentsPage() {
             {/* <header>
                 <h1>Utility Payments</h1>
             </header> */}
+            <UtilityProvider/>
             <PayUtility/>
             <main>
                 <section className="rent-details">

@@ -14,33 +14,22 @@ function RentorDash() {
             <UserProfile/>
             <h1>My Dashboard</h1>
             <div className="grid-container">
-                <div className="grid-item" onClick={() => navigate('/houses')}>
+                <div className="grid-item" onClick={() => navigate('/payProperty')}>
                     <div className="card">
-                        <div className="card-content">Properties</div>
+                        <div className="card-content">BuyProperty</div>
                     </div>
                 </div>
-                <div className="grid-item" onClick={() => navigate('/licenses')}>
+                <div className="grid-item" onClick={() => navigate('/manageRental')}>
                     <div className="card">
-                        <div className="card-content">Licenses & Agreements</div>
+                        <div className="card-content">PayRent</div>
                     </div>
                 </div>
-                <div className="grid-item" onClick={() => navigate('/title-deeds')}>
+                <div className="grid-item" onClick={() => navigate('/MyPayments')}>
                     <div className="card">
-                        <div className="card-content">Title Deeds</div>
-                    </div>
-                </div>
-                <div className="grid-item" onClick={() => navigate('/rentalpayment')}>
-                    <div className="card">
-                        <div className="card-content">Payment History</div>
-                    </div>
-                </div>
-                <div className="grid-item" onClick={() => navigate('/additional-info')}>
-                    <div className="card">
-                        <div className="card-content">Additional Info</div>
+                        <div className="card-content">PayUtility</div>
                     </div>
                 </div>
             </div>
-            {/* Agreement Section */}
             <div className="agreement-section">
                 <h2>Agreement</h2>
                 <img

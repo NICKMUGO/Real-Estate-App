@@ -77,6 +77,9 @@ function Navbar() {
                         {user && user.role === 'owner' && (
                             <>
                                 <li>
+                                    <a href="/ownerdashboard">Owner-Dashboard</a>
+                                </li>
+                                <li>
                                     <a href="/utilitiespage">Utility Page</a>
                                 </li>
                                 <li>
@@ -87,6 +90,9 @@ function Navbar() {
                                 </li>
                                 <li>
                                     <a href="/myrentals">MyRentals</a>
+                                </li>
+                                <li>
+                                    <a href="/statistics">Statistics</a>
                                 </li>
                             </>
 
@@ -111,6 +117,9 @@ function Navbar() {
                                 </li>
                                 <li>
                                     <a href="/payproperty">pay-property</a>
+                                </li>
+                                <li>
+                                    <a href="/statistics">Statistics</a>
                                 </li>
                             </>
                         )}

@@ -97,7 +97,7 @@ function PayUtility() {
     user: user.user_id,
     utilityprovider: '',
     amount: '',
-    payment_date: '',
+    payment_date: new Date().toISOString().split('T')[0],
     payment_status: true,
   });
   const[utilityProvider,setUtilityProviders]=useState([]);
@@ -126,6 +126,7 @@ function PayUtility() {
         payment_status: paymentData.payment_status,
       });
       console.log('Payment Data:', response.data);
+      testMpesa();
       closeModal();
     } catch (error) {
       if (error.response) {
@@ -156,6 +157,14 @@ function PayUtility() {
     }
     fetchData();
   },[]);
+
+  const testMpesa= async ()=>{
+    const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
+      phone_number:"254795767555"
+    });
+    console.log(Mpesaresponse.data)
+    alert(`Thankyou ${user.username} from Makao😆`)
+  }
 
   return (
     <div>
@@ -254,12 +263,13 @@ function PayUtility() {
               <div style={styles.formRow}>
                 <label style={styles.label}>Payment Date:</label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   name="payment_date"
                   style={styles.input}
                   value={paymentData.payment_date}
-                  onChange={handleChange}
+                  // onChange={handleChange}
                   required
+                  disabled
                 />
               </div>
               <button type="submit" style={styles.button}>

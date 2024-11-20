@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import UtilityPopup from "./UtilityPopup";
-import PayUtility from "./PayUtility";
+import { Usercontext } from "./UserContextProvider";
+
 function UtilitiesPage() {
   const [utilities, setUtilities] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [editUtility, setEditUtility] = useState();
+  const [editUtility, setEditUtility] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [user]=useContext(Usercontext)
 
   useEffect(() => {
     const fetchUtilities = async () => {
@@ -27,13 +30,6 @@ function UtilitiesPage() {
     fetchUtilities();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   const styles = {
     container: {
       display: "flex",
@@ -45,7 +41,8 @@ function UtilitiesPage() {
     },
     searchBarContainer: {
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "between",
+      gap:"300px",
       marginBottom: "30px",
       width: "40%",
     },
@@ -62,7 +59,7 @@ function UtilitiesPage() {
       gap: "20px",
     },
     card: {
-      backgroundColor: "black",
+      backgroundColor: "#f4f7fc",
       borderRadius: "10px",
       padding: "15px",
       boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
@@ -71,17 +68,16 @@ function UtilitiesPage() {
       height: "100%",
     },
     button: {
-      backgroundColor: "#d4af37",
-      color: "#fff",
-      padding: "10px 15px",
-      borderRadius: "5px",
+      borderRadius: "40px",
       border: "none",
+      padding: "5px",
       cursor: "pointer",
-      marginTop: "10px",
     },
-    header: {
-      textAlign: "center",
-      marginBottom: "20px",
+    image: {
+      width: "100%",
+      height: "200px",
+      objectFit: "cover",
+      borderRadius: "10px",
     },
   };
 
@@ -91,51 +87,46 @@ function UtilitiesPage() {
     );
   };
 
-  const handleEdit = async (e) => {
-    e.preventDefault();
+  const DeleteUtility = async (id) => {
     try {
-      const response = await axios.patch(
-        `http://127.0.0.1:8000/utility/${editUtility.utility_id}/`,
-        editUtility
-      );
-      setUtilities((prevUtilities) =>
-        prevUtilities.map((utility) =>
-          utility.utility_id === editUtility.utility_id ? response.data : utility
-        )
-      );
-      setEditUtility(null); 
+      await axios.delete(`http://127.0.0.1:8000/utility/${id}/`);
+      setUtilities(utilities.filter((utility) => utility.utility_id !== id));
     } catch (error) {
-      console.error("Error updating rental:", error);
-      setError("Failed to update rental");
+      console.error("Failed to delete utility", error);
     }
   };
 
-  console.log(utilities[0].utility_type)
-
-  const DeleteUtility= async(utility_id)=>{
-    const response = await axios.delete(`http://127.0.0.1:8000/utility/${utility_id}/`);
-    setUtilities(utilities.filter((utility)=>utility.id!==utility_id))
-    console.log(response.data);
-  }
-
-  const RedirectUtilityProviders=()=>{
-    window.location.href='/utilityproviderform';
-  }
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditUtility(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+  const handleUpdate = async () => {
+    if (editUtility) {
+      try {
+        const response = await axios.patch(
+          `http://127.0.0.1:8000/utility/${editUtility.utility_id}/`,
+          editUtility
+        );
+        setUtilities((prevUtilities) =>
+          prevUtilities.map((utility) =>
+            utility.utility_id === editUtility.utility_id
+              ? response.data
+              : utility
+          )
+        );
+        setEditUtility(null);
+      } catch (error) {
+        console.error("Failed to update utility", error);
+      }
+    }
   };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditUtility((prev) => ({ ...prev, [name]: value }));
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div style={styles.container}>
-      <PayUtility/><br></br>
-      <header style={styles.header}>
-        <h1>Manage Your Utilities</h1>
-        <p>Streamline your utility services for a hassle-free living experience.</p>
-      </header>
       <div style={styles.searchBarContainer}>
         <input
           type="text"
@@ -144,54 +135,58 @@ function UtilitiesPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+          <UtilityPopup/>
       </div>
 
-      <UtilityPopup/>
-      {editUtility &&
+      {editUtility && (
         <div>
-           <form> 
-                <div className='form-group'>
-                  <button onClick={()=>setEditUtility(null)} style={{cursor:'pointer'}}>❌</button>
-                </div>
-                <div className='form-group'>
-                  <label htmlFor='utility_name'>Choose Utility Name </label>
-                  <input
-                    type='text'
-                    id='utility_name'
-                    name='utility_type' 
-                    value={editUtility.utility_type}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div className='form-group'>
-                  <label htmlFor='description'>Utility Description </label>
-                  <textarea
-                    type='text'
-                    id='description'
-                    name='description' 
-                    value={editUtility.description}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <button type='submit' onClick={handleEdit} style={{cursor:'pointer'}}>Edit</button>
-              </form>
+          <h3>Edit Utility</h3>
+          <button
+            onClick={() => setEditUtility(null)}
+            style={styles.button}
+          >
+            ❌
+          </button>
+          <input
+            type="text"
+            name="utility_type"
+            value={editUtility.utility_type}
+            onChange={handleEditChange}
+          />
+          <textarea
+            name="description"
+            value={editUtility.description}
+            onChange={handleEditChange}
+          />
+          <button onClick={handleUpdate}>Update Utility</button>
         </div>
-      }
+      )}
 
       <center>
         <div style={styles.utilityDisplay}>
           {utilities.length > 0 ? (
-            UtilitySearch().map((utility) => ( 
+            UtilitySearch().map((utility) => (
               <div style={styles.card} key={utility.utility_id}>
-                <button onClick={() => setEditUtility(utility)}>✏️</button>
-                <button onClick={() => DeleteUtility(utility.utility_id)} style={{marginLeft:'250px'}}>🚮</button>
-                <h2 style={{color:"orange"}}>{utility.utility_type}</h2>
-                <strong>
-                  <p>{utility.description}</p>
-                </strong>
-                <button style={styles.button} onClick={()=>RedirectUtilityProviders()}>Find Providers</button>
+                <h3>{utility.utility_type}</h3>
+                <p>{utility.description}</p>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  {user.role==='owner' &&(
+                  <>
+                    <button
+                      onClick={() => DeleteUtility(utility.utility_id)}
+                      style={styles.button}
+                    >
+                      🚮
+                    </button>
+                    <button
+                      onClick={() => setEditUtility(utility)}
+                      style={styles.button}
+                    >
+                      ✏️
+                    </button>
+                  </>
+                  )}
+                </div>
               </div>
             ))
           ) : (
@@ -199,28 +194,6 @@ function UtilitiesPage() {
           )}
         </div>
       </center>
-
-      <section className="payment-portal">
-        <h2>Utility Payment Portal</h2>
-        <p>Pay your utility bills securely and conveniently.</p>
-        <button style={styles.button}>Go to Payment Portal</button>
-      </section>
-
-      <section className="resource-center">
-        <h2>Resource Center</h2>
-        <p>Find helpful articles and tips on managing your utilities efficiently.</p>
-        <button style={styles.button}>Read Articles</button>
-      </section>
-
-      <section className="contact-info">
-        <h2>Contact Us</h2>
-        <p>
-          If you have any questions or need assistance, feel free to reach out
-          to our support team.
-        </p>
-        <p>Email: support@makao.com</p>
-        <p>Phone: (254) 792-671-945</p>
-      </section>
     </div>
   );
 }

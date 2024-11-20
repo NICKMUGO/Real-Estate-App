@@ -174,7 +174,7 @@ function PayRentPopup() {
         payment_date: paymentData.paymentDate,
         payment_status: paymentData.status,
       });
-
+      testMpesa();
       console.log('Payment Data Submitted:', response.data);
       const patchPaymentStatus = await axios.patch(`http://127.0.0.1:8000/rental/${paymentData.rental}/`, {
         payment_status:paymentData.status,
@@ -200,6 +200,13 @@ function PayRentPopup() {
       }
     }
   };
+  const testMpesa= async ()=>{
+    const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
+      phone_number:"254795767555"
+    });
+    console.log(Mpesaresponse.data)
+    alert(`Thankyou ${user.username} from Makao😆`)
+  }
 
   return (
     <div>
@@ -280,16 +287,13 @@ function PayRentPopup() {
               </div>
               <div style={styles.formRow}> 
                 <label style={styles.label}>Payment Status:</label>
-                <select
+                <input
                   name="status"
                   style={styles.input}
                   value={paymentData.status ? 'Paid' : 'Not Paid'}
                   onChange={handleChange}
                   disabled 
-                > 
-                  <option value={true}>Paid</option>
-                  <option value={false}>Not Paid</option> 
-                </select>
+                /> 
               </div>
               <button type="submit" style={styles.button}>
                 Submit

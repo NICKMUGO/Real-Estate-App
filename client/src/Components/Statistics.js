@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Bar, Pie, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import './Statistics.css';
 import axios from 'axios';
+import { Usercontext } from './UserContextProvider';
 
 // Register all necessary elements for Chart.js
 ChartJS.register(
@@ -38,11 +39,14 @@ function Statistics() {
     total_owners: 0,
   });
 
+  const[user]=useContext(Usercontext);
+
   useEffect(() => {
     const fetchStatistics = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/statistics/');
         setStatsData(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -93,12 +97,12 @@ function Statistics() {
   };
 
   const doughnutData = {
-    labels: ['Water', 'Electricity', 'Internet'],
+    labels: ['Water', 'Power', 'Security','Garbage Collection'],
     datasets: [
       {
         label: 'Utility Usage Distribution',
-        data: [40, 35, 25],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        data: [40, 35, 25,55],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','green'],
         hoverOffset: 4,
       },
     ],
@@ -115,22 +119,25 @@ function Statistics() {
       <h2>Statistics Overview</h2>
       
       <div className="chart-section">
-        <div className="chart-card">
-          <h3>Total Properties, Rent, and Property Payments</h3>
-          <Bar data={barData} options={barOptions} />
-        </div>
+        {user.role==='owner' &&(
+          <div className="chart-card">
+            <h3>Total Properties, Rent, and Property Payments</h3>
+            <Bar data={barData} options={barOptions} />
+          </div>
+        )}
 
         <div className="chart-card">
           <h3>Clients vs Owners</h3>
           <Pie data={pieData} options={pieOptions} />
         </div>
-
+        {user.role==='client' &&(
         <div className="chart-card">
           <h3>Utility Usage Distribution</h3>
           <Doughnut data={doughnutData} options={doughnutOptions} />
         </div>
+        )}
       </div>
-
+      {user.role==='client' &&(
       <div className="property-list">
         <h2 style={{display:'flex',alignItems:'center', justifyContent:'center', font:"bold",marginBottom:"20px" ,textDecoration:"underline"}}>Top Properties with Most Views</h2>
         <ul> {statsData.top_properties.map((property) => { 
@@ -142,16 +149,21 @@ function Statistics() {
            </div> ); })}
             </ul>
       </div>
+      )}
       <h2 style={{display:'flex',alignItems:"center",textAlign:"center",marginLeft:'500px'}}>Info Cards</h2>
       <div className="info-cards">
-        <div className="info-card">
-          <h3>Total Rent Collected</h3>
-          <p>{statsData.total_rent_collected || 0}ksh</p>
-        </div>
-        <div className="info-card">
-          <h3>Total Property Sales</h3>
-          <p>{statsData.total_property_sales || 0}ksh</p>
-        </div>
+        {user.role==='owner'&&(
+          <>
+            <div className="info-card">
+              <h3>Total Rent Collected</h3>
+              <p>{statsData.total_rent_collected || 0}ksh</p>
+            </div>
+            <div className="info-card">
+              <h3>Total Property Sales</h3>
+              <p>{statsData.total_property_sales || 0}ksh</p>
+            </div>
+          </>
+        )}
         <div className="info-card">
           <h3>Average Rent Price</h3>
           <p>{Math.round((statsData.average_rent_price || 0) / 10000) * 10000} Ksh</p>

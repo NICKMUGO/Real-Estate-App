@@ -224,10 +224,10 @@ function PayProperty() {
 
   const testMpesa= async ()=>{
       const Mpesaresponse = await axios.post('http://127.0.0.1:5500/transact/mpesaexpress',{
-        phone_number:"254748089691"
+        phone_number:"254795767555"
       });
       console.log(Mpesaresponse.data)
-      alert(Mpesaresponse.data)
+      alert(`Thankyou ${user.username} from Makao😆`)
     }
   
   return (
